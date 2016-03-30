@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SopinetChat
 
 class ViewController: UIViewController {
 
