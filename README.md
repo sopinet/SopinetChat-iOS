@@ -22,8 +22,8 @@ pod "SopinetChat"
 
 ## Author
 
-davidmoreno, dmoreno@sopinet.com
+Sopinet Software S.L.
 
 ## License
 
-SopinetChat is available under the MIT license. See the LICENSE file for more info.
+SopinetChat is available under the GNU license. See the LICENSE file for more info.
