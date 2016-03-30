@@ -1,0 +1,13 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'SopinetChat_Example', :exclusive => true do
+  pod 'SopinetChat', :path => '../'
+end
+
+target 'SopinetChat_Tests', :exclusive => true do
+  pod 'SopinetChat', :path => '../'
+
+  pod 'Quick', '~> 0.8'
+  pod 'Nimble', '~> 3.0'
+end

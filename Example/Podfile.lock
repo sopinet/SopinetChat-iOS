@@ -1,0 +1,20 @@
+PODS:
+  - Nimble (3.2.0)
+  - Quick (0.9.1)
+  - SopinetChat (0.1.0)
+
+DEPENDENCIES:
+  - Nimble (~> 3.0)
+  - Quick (~> 0.8)
+  - SopinetChat (from `../`)
+
+EXTERNAL SOURCES:
+  SopinetChat:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
+  Quick: a5221fc21788b6aeda934805e68b061839bc3165
+  SopinetChat: 44754a528d410af2a90a2bed5fb7f83f674f87b2
+
+COCOAPODS: 0.39.0
