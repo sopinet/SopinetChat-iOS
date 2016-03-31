@@ -1,5 +1,5 @@
 //
-//  Chat+CoreDataProperties.swift
+//  MessageImage+CoreDataProperties.swift
 //  
 //
 //  Created by David Moreno Lora on 31/3/16.
@@ -12,10 +12,8 @@
 import Foundation
 import CoreData
 
-extension Chat {
+extension MessageImage {
 
-    @NSManaged var id: NSNumber?
-    @NSManaged var messages: NSSet?
-    @NSManaged var chatMembers: NSSet?
+    @NSManaged var file: ImageFile?
 
 }

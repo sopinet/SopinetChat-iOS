@@ -1,5 +1,5 @@
 //
-//  Chat+CoreDataProperties.swift
+//  User+CoreDataProperties.swift
 //  
 //
 //  Created by David Moreno Lora on 31/3/16.
@@ -12,10 +12,11 @@
 import Foundation
 import CoreData
 
-extension Chat {
+extension User {
 
     @NSManaged var id: NSNumber?
-    @NSManaged var messages: NSSet?
-    @NSManaged var chatMembers: NSSet?
+    @NSManaged var email: String?
+    @NSManaged var password: String?
+    @NSManaged var profileImage: String?
 
 }

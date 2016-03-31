@@ -142,6 +142,13 @@
 		AA1757791CABEDCB0091DBB5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1757751CABEDCB0091DBB5 /* Message.swift */; };
 		AA17577A1CABEDCB0091DBB5 /* Message+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1757761CABEDCB0091DBB5 /* Message+CoreDataProperties.swift */; };
 		AA314156AC500125F4078EE968DB14C6 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BB705055854C813E7153A8CE2FE26 /* Result.swift */; };
+		AA7829511CAD0D540055A48F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA78294B1CAD0D540055A48F /* User.swift */; };
+		AA7829521CAD0D540055A48F /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA78294C1CAD0D540055A48F /* User+CoreDataProperties.swift */; };
+		AA7829561CAD109C0055A48F /* SopinetChatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7829541CAD10990055A48F /* SopinetChatRouter.swift */; };
+		AA7829571CAD4F470055A48F /* MessageImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7829491CAD0D540055A48F /* MessageImage.swift */; };
+		AA7829581CAD4F540055A48F /* MessageImage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA78294A1CAD0D540055A48F /* MessageImage+CoreDataProperties.swift */; };
+		AA7829591CAD4F630055A48F /* ImageFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7829471CAD0D540055A48F /* ImageFile.swift */; };
+		AA78295A1CAD4F690055A48F /* ImageFile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7829481CAD0D540055A48F /* ImageFile+CoreDataProperties.swift */; };
 		ACF290BBFC856308FD673AC61B620A33 /* NSPersistentStore+MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB73633EEC17AFB153CA0F7D7EF2205 /* NSPersistentStore+MagicalRecord.m */; };
 		ADF19C953CE2A7D0B72EC93A81FCCC26 /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9258DA191198DD1A349E44553BC90F /* Alamofire-dummy.m */; };
 		AE4CF87C02C042DF13ED5B21C4FDC1E0 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA7ABD0692D4685E318FF9C6ACE4411 /* Stream.swift */; };
@@ -411,6 +418,13 @@
 		AA1757751CABEDCB0091DBB5 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Models/Message.swift; sourceTree = "<group>"; };
 		AA1757761CABEDCB0091DBB5 /* Message+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Message+CoreDataProperties.swift"; path = "Models/Message+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AA3EFC815CFF2CD0B9F28F2B43D55EF3 /* Quick-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Quick-umbrella.h"; sourceTree = "<group>"; };
+		AA7829471CAD0D540055A48F /* ImageFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageFile.swift; path = Models/ImageFile.swift; sourceTree = "<group>"; };
+		AA7829481CAD0D540055A48F /* ImageFile+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ImageFile+CoreDataProperties.swift"; path = "Models/ImageFile+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AA7829491CAD0D540055A48F /* MessageImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageImage.swift; path = Models/MessageImage.swift; sourceTree = "<group>"; };
+		AA78294A1CAD0D540055A48F /* MessageImage+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MessageImage+CoreDataProperties.swift"; path = "Models/MessageImage+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AA78294B1CAD0D540055A48F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
+		AA78294C1CAD0D540055A48F /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "Models/User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AA7829541CAD10990055A48F /* SopinetChatRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SopinetChatRouter.swift; path = Structs/SopinetChatRouter.swift; sourceTree = "<group>"; };
 		AAB5CB865C95DE67D6D79AE79BAC08D6 /* MatcherProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MatcherProtocols.swift; path = Sources/Nimble/Matchers/MatcherProtocols.swift; sourceTree = "<group>"; };
 		AC333EAC5572ED5536A4B22C61072A81 /* NMBExceptionCapture.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMBExceptionCapture.h; path = Sources/Nimble/objc/NMBExceptionCapture.h; sourceTree = "<group>"; };
 		AC35AF6379A27BB41A99955AA0914E59 /* NimbleEnvironment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NimbleEnvironment.swift; path = Sources/Nimble/Adapters/NimbleEnvironment.swift; sourceTree = "<group>"; };
@@ -850,6 +864,7 @@
 		84B8F7601A2DC94F7EEB95D1F8360986 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
+				AA7829531CAD107B0055A48F /* Structs */,
 				AA1757721CABED670091DBB5 /* Models */,
 				3212D4404838ADF3E1BB0F9074838514 /* Classes */,
 				AA17576E1CABE7640091DBB5 /* SopinetChat.xcdatamodeld */,
@@ -860,12 +875,26 @@
 		AA1757721CABED670091DBB5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AA7829471CAD0D540055A48F /* ImageFile.swift */,
+				AA7829481CAD0D540055A48F /* ImageFile+CoreDataProperties.swift */,
+				AA7829491CAD0D540055A48F /* MessageImage.swift */,
+				AA78294A1CAD0D540055A48F /* MessageImage+CoreDataProperties.swift */,
+				AA78294B1CAD0D540055A48F /* User.swift */,
+				AA78294C1CAD0D540055A48F /* User+CoreDataProperties.swift */,
 				AA1757731CABEDCB0091DBB5 /* Chat.swift */,
 				AA1757741CABEDCB0091DBB5 /* Chat+CoreDataProperties.swift */,
 				AA1757751CABEDCB0091DBB5 /* Message.swift */,
 				AA1757761CABEDCB0091DBB5 /* Message+CoreDataProperties.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		AA7829531CAD107B0055A48F /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				AA7829541CAD10990055A48F /* SopinetChatRouter.swift */,
+			);
+			name = Structs;
 			sourceTree = "<group>";
 		};
 		B971B4E1D3783568E890FF25E3F2B17E /* Pods */ = {
@@ -1399,11 +1428,16 @@
 			files = (
 				BCFE4235CB25C2012F37D504B0A302DB /* SopinetChat-dummy.m in Sources */,
 				AA1757771CABEDCB0091DBB5 /* Chat.swift in Sources */,
+				AA7829571CAD4F470055A48F /* MessageImage.swift in Sources */,
 				AA1757781CABEDCB0091DBB5 /* Chat+CoreDataProperties.swift in Sources */,
 				AA1757791CABEDCB0091DBB5 /* Message.swift in Sources */,
 				AA17577A1CABEDCB0091DBB5 /* Message+CoreDataProperties.swift in Sources */,
+				AA7829591CAD4F630055A48F /* ImageFile.swift in Sources */,
+				AA78295A1CAD4F690055A48F /* ImageFile+CoreDataProperties.swift in Sources */,
+				AA7829561CAD109C0055A48F /* SopinetChatRouter.swift in Sources */,
 				AA1757701CABE7640091DBB5 /* SopinetChat.xcdatamodeld in Sources */,
 				3BF20FDA336F33E03D9BDF8ADACE673E /* SopinetChat.swift in Sources */,
+				AA7829581CAD4F540055A48F /* MessageImage+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1413,6 +1447,7 @@
 			files = (
 				ADF19C953CE2A7D0B72EC93A81FCCC26 /* Alamofire-dummy.m in Sources */,
 				8EB11202167FCDDF1257AAAB1D1FB244 /* Alamofire.swift in Sources */,
+				AA7829521CAD0D540055A48F /* User+CoreDataProperties.swift in Sources */,
 				5CB05FBCB32D21E194B5ECF680CB6AE0 /* Download.swift in Sources */,
 				095406039B4D371E48D08B38A2975AC8 /* Error.swift in Sources */,
 				4081EA628AF0B73AC51FFB9D7AB3B89E /* Manager.swift in Sources */,
@@ -1429,6 +1464,7 @@
 				16102E4E35FAA0FC4161282FECE56469 /* Timeline.swift in Sources */,
 				5BC19E6E0F199276003F0AF96838BCE5 /* Upload.swift in Sources */,
 				2D3405986FC586FA6C0A5E0B6BA7E64E /* Validation.swift in Sources */,
+				AA7829511CAD0D540055A48F /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
