@@ -12,10 +12,10 @@
 import Foundation
 import CoreData
 
-extension Chat {
+public extension Chat {
 
-    @NSManaged var id: NSNumber?
-    @NSManaged var messages: NSSet?
-    @NSManaged var chatMembers: NSSet?
+    @NSManaged public var id: NSNumber?
+    @NSManaged public var messages: NSSet?
+    @NSManaged public var chatMembers: NSSet?
 
 }

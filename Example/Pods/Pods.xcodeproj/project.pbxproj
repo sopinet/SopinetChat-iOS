@@ -142,6 +142,7 @@
 		AA1757791CABEDCB0091DBB5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1757751CABEDCB0091DBB5 /* Message.swift */; };
 		AA17577A1CABEDCB0091DBB5 /* Message+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1757761CABEDCB0091DBB5 /* Message+CoreDataProperties.swift */; };
 		AA314156AC500125F4078EE968DB14C6 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33BB705055854C813E7153A8CE2FE26 /* Result.swift */; };
+		AA716FC41CCE47640008D115 /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA716FC31CCE47640008D115 /* NotificationsManager.swift */; };
 		AA7829511CAD0D540055A48F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA78294B1CAD0D540055A48F /* User.swift */; };
 		AA7829521CAD0D540055A48F /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA78294C1CAD0D540055A48F /* User+CoreDataProperties.swift */; };
 		AA7829561CAD109C0055A48F /* SopinetChatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7829541CAD10990055A48F /* SopinetChatRouter.swift */; };
@@ -418,6 +419,7 @@
 		AA1757751CABEDCB0091DBB5 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Models/Message.swift; sourceTree = "<group>"; };
 		AA1757761CABEDCB0091DBB5 /* Message+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Message+CoreDataProperties.swift"; path = "Models/Message+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AA3EFC815CFF2CD0B9F28F2B43D55EF3 /* Quick-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Quick-umbrella.h"; sourceTree = "<group>"; };
+		AA716FC31CCE47640008D115 /* NotificationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		AA7829471CAD0D540055A48F /* ImageFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageFile.swift; path = Models/ImageFile.swift; sourceTree = "<group>"; };
 		AA7829481CAD0D540055A48F /* ImageFile+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ImageFile+CoreDataProperties.swift"; path = "Models/ImageFile+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AA7829491CAD0D540055A48F /* MessageImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageImage.swift; path = Models/MessageImage.swift; sourceTree = "<group>"; };
@@ -667,6 +669,7 @@
 				5AC74044C4B9836E464A064519DF9BE7 /* SopinetChat.swift */,
 				AA1757691CABE3D30091DBB5 /* SopinetChat.h */,
 				AA17576A1CABE45A0091DBB5 /* SopinetChat_Bridging_Header.h */,
+				AA716FC31CCE47640008D115 /* NotificationsManager.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1436,6 +1439,7 @@
 				AA78295A1CAD4F690055A48F /* ImageFile+CoreDataProperties.swift in Sources */,
 				AA7829561CAD109C0055A48F /* SopinetChatRouter.swift in Sources */,
 				AA1757701CABE7640091DBB5 /* SopinetChat.xcdatamodeld in Sources */,
+				AA716FC41CCE47640008D115 /* NotificationsManager.swift in Sources */,
 				3BF20FDA336F33E03D9BDF8ADACE673E /* SopinetChat.swift in Sources */,
 				AA7829581CAD4F540055A48F /* MessageImage+CoreDataProperties.swift in Sources */,
 			);

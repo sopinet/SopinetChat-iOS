@@ -16,11 +16,6 @@ struct SopinetChatRouter
     {
         static let baseURLString = ""
         
-        case GetConfig(String, String)
-        case GetItems(String, Int, Int, String, String, String)
-        case GetCategories(String, String)
-        case PatchVoteItem(String, Int, Int)
-        
         case CleanUnprocessNotification()
         case CleanUnreadMessages()
         case CreateChat()
@@ -28,16 +23,9 @@ struct SopinetChatRouter
         case SendMessage()
         case SendUnprocessNotification()
         
-        var method: Alamofire.Method {
+        var method: Alamofire.Method
+        {
             switch self {
-            case .GetConfig:
-                return .GET
-            case .GetItems:
-                return .GET
-            case .GetCategories:
-                return .GET
-            case .PatchVoteItem:
-                return .PATCH
             case .CleanUnprocessNotification:
                 return .POST
             case .CleanUnreadMessages:
@@ -53,25 +41,10 @@ struct SopinetChatRouter
             }
         }
         
-        var URLRequest: NSMutableURLRequest {
+        var URLRequest: NSMutableURLRequest
+        {
             let result: (path: String, parameters: [String: AnyObject]) = {
                 switch self {
-                case .GetConfig(let api_token, let lang):
-                    let params = ["api_token":api_token]
-                    return ("/" + lang + "/config", params)
-                case .GetItems (let api_token, let category_id, let page, let sort, let q, let lang):
-                    
-                    let categoryId = category_id != -1 ? "\(category_id)" : ""
-                    let pageString = page != -1 ? "\(page)" : ""
-                    
-                    let params = ["api_token": api_token, "category_id": categoryId, "page": pageString, "sort": sort, "q": q, "lang": lang]
-                    return ("/" + lang + "/items", params)
-                case .GetCategories(let api_token, let lang):
-                    let params = ["api_token":api_token, "lang":lang]
-                    return ("/" + lang + "/categories", params)
-                case .PatchVoteItem(let api_token, let itemId, let rating):
-                    let params = ["api_token":api_token, "item":"\(itemId)", "rating":"\(rating)"]
-                    return ("/items/\(itemId)", params)
                 case .CleanUnprocessNotification():
                     let params = ["key":"value"]
                     return ("/chat/cleanUnprocessNotification", params)

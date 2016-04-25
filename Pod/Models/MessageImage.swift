@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class MessageImage: Message {
+public class MessageImage: Message {
 
 // Insert code here to add functionality to your managed object subclass
 

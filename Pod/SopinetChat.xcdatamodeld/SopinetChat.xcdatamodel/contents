@@ -32,9 +32,9 @@
     </entity>
     <elements>
         <element name="Chat" positionX="-54" positionY="45" width="128" height="90"/>
+        <element name="ImageFile" positionX="-45" positionY="63" width="128" height="90"/>
         <element name="Message" positionX="-63" positionY="-18" width="128" height="180"/>
         <element name="MessageImage" positionX="-54" positionY="54" width="128" height="60"/>
-        <element name="ImageFile" positionX="-45" positionY="63" width="128" height="90"/>
         <element name="User" positionX="-27" positionY="72" width="128" height="105"/>
     </elements>
 </model>

@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-class Chat: NSManagedObject {
+public class Chat: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 

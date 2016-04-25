@@ -12,10 +12,10 @@
 import Foundation
 import CoreData
 
-extension ImageFile {
+public extension ImageFile {
 
-    @NSManaged var id: NSNumber?
-    @NSManaged var path: String?
-    @NSManaged var messageImage: NSManagedObject?
+    @NSManaged public var id: NSNumber?
+    @NSManaged public var path: String?
+    @NSManaged public var messageImage: NSManagedObject?
 
 }

@@ -12,8 +12,8 @@
 import Foundation
 import CoreData
 
-extension MessageImage {
+public extension MessageImage {
 
-    @NSManaged var file: ImageFile?
+    @NSManaged public var file: ImageFile?
 
 }

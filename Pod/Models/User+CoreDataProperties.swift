@@ -12,11 +12,11 @@
 import Foundation
 import CoreData
 
-extension User {
+public extension User {
 
-    @NSManaged var id: NSNumber?
-    @NSManaged var email: String?
-    @NSManaged var password: String?
-    @NSManaged var profileImage: String?
+    @NSManaged public var id: NSNumber?
+    @NSManaged public var email: String?
+    @NSManaged public var password: String?
+    @NSManaged public var profileImage: String?
 
 }
