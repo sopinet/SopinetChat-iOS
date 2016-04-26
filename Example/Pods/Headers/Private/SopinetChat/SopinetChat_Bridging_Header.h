@@ -1,0 +1,1 @@
+../../../../../Pod/Classes/SopinetChat_Bridging_Header.h

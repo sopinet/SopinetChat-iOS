@@ -15,6 +15,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		A1297544D83B524D8900F4CF /* Pods_SopinetChat_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC93589DE062F99928AED27E /* Pods_SopinetChat_Example.framework */; };
+		AA3155B51CCFCE37005599A9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3155B41CCFCE37005599A9 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		70941655E73D479249EF3512 /* Pods-SopinetChat_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SopinetChat_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SopinetChat_Tests/Pods-SopinetChat_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		7DF34036757E3935BEE4DCA9 /* Pods_SopinetChat_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SopinetChat_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A2FC63D3E80D223FC4AB47 /* SopinetChat.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SopinetChat.podspec; path = ../SopinetChat.podspec; sourceTree = "<group>"; };
+		AA3155B41CCFCE37005599A9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Models/User.swift; sourceTree = "<group>"; };
 		C1D6A95015950271BEC7AF34 /* Pods-SopinetChat_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SopinetChat_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SopinetChat_Example/Pods-SopinetChat_Example.release.xcconfig"; sourceTree = "<group>"; };
 		C34D574920C12C7EBD8AE440 /* Pods-SopinetChat_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SopinetChat_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SopinetChat_Tests/Pods-SopinetChat_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC93589DE062F99928AED27E /* Pods_SopinetChat_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SopinetChat_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +95,7 @@
 		607FACD21AFB9204008FA782 /* Example for SopinetChat */ = {
 			isa = PBXGroup;
 			children = (
+				AA3155B31CCFCDD6005599A9 /* Models */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -148,6 +151,14 @@
 				70941655E73D479249EF3512 /* Pods-SopinetChat_Tests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		AA3155B31CCFCDD6005599A9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA3155B41CCFCE37005599A9 /* User.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		CAF6DFF751258599FA49C4BE /* Frameworks */ = {
@@ -361,6 +372,7 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				AA3155B51CCFCE37005599A9 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

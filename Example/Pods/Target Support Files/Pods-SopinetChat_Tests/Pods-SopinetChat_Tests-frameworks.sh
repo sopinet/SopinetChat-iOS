@@ -86,6 +86,8 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-SopinetChat_Tests/Alamofire.framework"
   install_framework "Pods-SopinetChat_Tests/MagicalRecord.framework"
+  install_framework "Pods-SopinetChat_Tests/Realm.framework"
+  install_framework "Pods-SopinetChat_Tests/RealmSwift.framework"
   install_framework "Pods-SopinetChat_Tests/SopinetChat.framework"
   install_framework "Pods-SopinetChat_Tests/Nimble.framework"
   install_framework "Pods-SopinetChat_Tests/Quick.framework"
@@ -93,6 +95,8 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-SopinetChat_Tests/Alamofire.framework"
   install_framework "Pods-SopinetChat_Tests/MagicalRecord.framework"
+  install_framework "Pods-SopinetChat_Tests/Realm.framework"
+  install_framework "Pods-SopinetChat_Tests/RealmSwift.framework"
   install_framework "Pods-SopinetChat_Tests/SopinetChat.framework"
   install_framework "Pods-SopinetChat_Tests/Nimble.framework"
   install_framework "Pods-SopinetChat_Tests/Quick.framework"

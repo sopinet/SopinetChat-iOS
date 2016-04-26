@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SopinetChat
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,6 +42,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    func application(application:UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken:NSData) {
+        //IPMessagingManager.sharedManager.updatePushToken(deviceToken);
+    }
+    
+    func application(application:UIApplication, didFailToRegisterForRemoteNotificationsWithError error:NSError)
+    {
+        print("Failed to get token, error: %@", error);
+        //IPMessagingManager.sharedManager.updatePushToken();
+    }
+    
+    func application(application:UIApplication, didRegisterUserNotificationSettings notificationSettings:UIUserNotificationSettings)
+    {
+        if(notificationSettings.types == UIUserNotificationType.None) {
+            print("Failed to get token, error: Notifications are not allowed");
+            //IPMessagingManager.sharedManager.updatePushToken();
+        } else {
+            UIApplication.sharedApplication().registerForRemoteNotifications();
+        }
+    }
+    
+    func application(application:UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject])
+    {
+        if(application.applicationState != UIApplicationState.Active) {
+            // If your application supports multiple types of push notifications, you may wish to limit which ones you send to the TwilioIPMessagingClient here
+            //IPMessagingManager.sharedManager.receivedNotification(userInfo);
+            NotificationsManager.notificationsManager.receivedNotification(userInfo)
+        }
+    }
 }
 

@@ -7,14 +7,15 @@
 //
 
 import Foundation
+import UIKit
 
 public class NotificationsManager {
     
-    static let notificationsManager = NotificationsManager()
+    public static let notificationsManager = NotificationsManager()
     
     // MARK: Notifications functions
     
-    func receivedNotification(notification: NSDictionary) {
+    public func receivedNotification(notification: NSDictionary) {
     
     }
 }
