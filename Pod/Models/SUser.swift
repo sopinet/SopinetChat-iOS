@@ -8,17 +8,17 @@
 
 import Foundation
 import UIKit
-import RealmSwift
 
-public class SUser: Object {
-    
-// Specify properties to ignore (Realm won't persist these)
-    
-//  override static func ignoredProperties() -> [String] {
-//    return []
-//  }
+public class SUser {
     
     public dynamic var id = -1
-    public let chats = List<SChat>()
-    public let messages = List<SMessage>()
+    public let chats: [SChat]
+    public let messages: [SMessage]
+    
+    init(id: Int, chats: [SChat], messages: [SMessage])
+    {
+        self.id = id
+        self.chats = chats
+        self.messages = messages
+    }
 }

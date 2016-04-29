@@ -8,15 +8,8 @@
 
 import Foundation
 import UIKit
-import RealmSwift
 
-public class SMessage: Object {
-    
-// Specify properties to ignore (Realm won't persist these)
-    
-//  override static func ignoredProperties() -> [String] {
-//    return []
-//  }
+public class SMessage {
     
     public dynamic var id = -1
     public dynamic var data: NSData?
@@ -25,6 +18,19 @@ public class SMessage: Object {
     public dynamic var state = 0
     public dynamic var text = ""
     public dynamic var time = -1
-    public dynamic var chat: SChat?
-    public dynamic var fromUser: SUser?
+    public var chat: SChat?
+    public var fromUser: SUser?
+    
+    init(id: Int, data: NSData, dateString: String, read: Int, state: Int, text: String, time: Int, chat: SChat, fromUser: SUser)
+    {
+        self.id = id
+        self.data = data
+        self.dateString = dateString
+        self.read = read
+        self.state = state
+        self.text = text
+        self.time = time
+        self.chat = chat
+        self.fromUser = fromUser
+    }
 }

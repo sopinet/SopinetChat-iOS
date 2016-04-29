@@ -8,17 +8,17 @@
 
 import Foundation
 import UIKit
-import RealmSwift
 
-public class SImageFile: Object {
-    
-// Specify properties to ignore (Realm won't persist these)
-    
-//  override static func ignoredProperties() -> [String] {
-//    return []
-//  }
+public class SImageFile {
     
     public dynamic var id = -1
     public dynamic var path = ""
-    public dynamic var message: SMessageImage?
+    public var message: SMessageImage?
+    
+    init(id: Int, path: String, message: SMessageImage)
+    {
+        self.id = id
+        self.path = path
+        self.message = message
+    }
 }

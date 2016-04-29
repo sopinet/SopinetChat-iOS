@@ -17,8 +17,4 @@ class User: Object {
 //  override static func ignoredProperties() -> [String] {
 //    return []
 //  }
-    
-    func hola() {
-        
-    }
 }
