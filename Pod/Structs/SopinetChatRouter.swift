@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-struct SopinetChatRouter
+public struct SopinetChatRouter
 {
     static let token = "ed5002eff205bc93bd6d6224f7a66320"
     enum Router: URLRequestConvertible

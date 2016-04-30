@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-class SChatInputToolbar: UIToolbar {
+public class SChatInputToolbar: UIToolbar {
 
     // MARK: Properties
     
     weak var inputToolbarDelegate : SChatInputToolbarDelegate?
     
-    override var delegate: UIToolbarDelegate? {
+    override public var delegate: UIToolbarDelegate? {
         didSet {
             if delegate != nil {
                 let castedDelegate = unsafeBitCast(delegate, SChatInputToolbarDelegate.self)
@@ -37,7 +37,7 @@ class SChatInputToolbar: UIToolbar {
         setUp()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         setUp()
@@ -47,7 +47,7 @@ class SChatInputToolbar: UIToolbar {
     
     func loadToolbarView() -> SChatToolbarView
     {
-        return NSBundle.mainBundle().loadNibNamed("SChatToolbarView",
+        return NSBundle(forClass: SChatToolbarView.self).loadNibNamed("SChatToolbarView",
                                                   owner: self, options: nil)[0] as! SChatToolbarView
     }
     
@@ -60,10 +60,34 @@ class SChatInputToolbar: UIToolbar {
         self.addSubview(toolbarView)
         self.contentView = toolbarView
         
-        self.contentView?.leftButtonVIew = SChatToolbarButtonFactory.defaultAccessoryButtonItem()
-        self.contentView?.rightButtonView = SChatToolbarButtonFactory.defaultSendButtonItem()
+        self.contentView?.leftBarButtomItem = SChatToolbarButtonFactory.defaultAccessoryButtonItem()
+        self.contentView?.rightBarButtomItem = SChatToolbarButtonFactory.defaultSendButtonItem()
+        
+        if let auxLeftBarButtomItem = self.contentView?.leftBarButtomItem
+        {
+            self.contentView?.leftButtonView.addSubview(auxLeftBarButtomItem)
+            auxLeftBarButtomItem.addTarget(self, action: #selector(sChatLeftButtonTapped(_:)), forControlEvents: .TouchUpInside)
+        }
+        
+        if let auxRightBarButtomItem = self.contentView?.rightBarButtomItem
+        {
+            self.contentView?.leftButtonView.addSubview(auxRightBarButtomItem)
+            auxRightBarButtomItem.addTarget(self, action: #selector(sChatRightButtonTapped(_:)), forControlEvents: .TouchUpInside)
+        }
         
         toogleSendButtonEnabled()
+    }
+    
+    // MARK: Actions
+    
+    func sChatLeftButtonTapped(sender: AnyObject)
+    {
+        self.inputToolbarDelegate?.attachButtonTapped(sender)
+    }
+    
+    func sChatRightButtonTapped(sender: AnyObject)
+    {
+        self.inputToolbarDelegate?.sendButtonTapped(sender)
     }
     
     // MARK: Input Toolbar functions
@@ -78,5 +102,10 @@ class SChatInputToolbar: UIToolbar {
                 auxRightBarButtonItem.enabled = hasText
             }
         }
+    }
+    
+    func addTapGestureRecognizers()
+    {
+        
     }
 }

@@ -8,11 +8,11 @@
 
 import UIKit
 
-class SChatToolbarView: UIView {
+public class SChatToolbarView: UIView {
 
     // MARK: Outlets
     
-    @IBOutlet weak var leftButtonVIew: UIView!
+    @IBOutlet weak var leftButtonView: UIView!
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var rightButtonView: UIView!
     

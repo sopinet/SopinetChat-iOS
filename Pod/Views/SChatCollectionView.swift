@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SChatCollectionView: UICollectionView {
+public class SChatCollectionView: UICollectionView {
 
     /*
     // Only override drawRect: if you perform custom drawing.

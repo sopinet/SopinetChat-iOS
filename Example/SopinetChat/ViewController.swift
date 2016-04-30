@@ -8,7 +8,6 @@
 
 import UIKit
 import SopinetChat
-import MagicalRecord
 
 class ViewController: UIViewController {
 

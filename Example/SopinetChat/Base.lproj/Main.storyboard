@@ -14,47 +14,73 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SChat Demo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R0P-TX-Jqj">
+                                <rect key="frame" x="139" y="323" width="97" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epF-Kx-aMY">
+                                <rect key="frame" x="167" y="364" width="41" height="30"/>
+                                <state key="normal" title="Iniciar"/>
+                                <connections>
+                                    <segue destination="5Hy-NW-BDu" kind="presentation" id="x7g-9X-cDV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="epF-Kx-aMY" firstAttribute="top" secondItem="R0P-TX-Jqj" secondAttribute="bottom" constant="20" id="T6O-Qd-cRr"/>
+                            <constraint firstItem="R0P-TX-Jqj" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="WJa-K0-EXG"/>
+                            <constraint firstItem="epF-Kx-aMY" firstAttribute="centerX" secondItem="R0P-TX-Jqj" secondAttribute="centerX" id="fCb-rR-pTL"/>
+                            <constraint firstItem="R0P-TX-Jqj" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="fld-ef-9wd"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--Collection View Controller-->
-        <scene sceneID="KT1-yv-xfl">
+        <!--Chat View Controller-->
+        <scene sceneID="A00-Eg-XG6">
             <objects>
-                <collectionViewController id="cgq-jZ-mQc" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="zxv-vx-khu">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <viewController id="3rN-on-Zhv" customClass="ChatViewController" customModule="SopinetChat_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="G4t-Pw-ezN"/>
+                        <viewControllerLayoutGuide type="bottom" id="0NS-Tt-G8K"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gJq-J1-P7h">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="o6G-qx-dAi">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="WJM-co-VoT">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="cgq-jZ-mQc" id="NEg-nn-X7z"/>
-                            <outlet property="delegate" destination="cgq-jZ-mQc" id="sdj-RD-hFV"/>
-                        </connections>
-                    </collectionView>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rSv-SO-GCj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZWd-YC-dCl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qa3-vg-7FK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="954" y="597"/>
+            <point key="canvasLocation" x="1429.5" y="439.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xTv-1y-s7H">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Hy-NW-BDu" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MM2-Z8-hds">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3rN-on-Zhv" kind="relationship" relationship="rootViewController" id="QHO-XB-HVw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qoo-VN-gY2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="920.5" y="439.5"/>
         </scene>
     </scenes>
 </document>

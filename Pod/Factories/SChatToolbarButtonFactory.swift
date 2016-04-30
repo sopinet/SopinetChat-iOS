@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class SChatToolbarButtonFactory {
+public class SChatToolbarButtonFactory {
     
     // MARK: Functions
     
