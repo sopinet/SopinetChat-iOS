@@ -17,7 +17,7 @@ public class SChatToolbarButtonFactory {
     {
         // TODO: Improve this with mask for other states
         
-        let accessoryImage: UIImage = UIImage(named: "clipIcon")!
+        let accessoryImage: UIImage = UIImage.sChatDefaultAccesoryImage()
         
         let accessoryButton: UIButton = UIButton(frame: CGRectMake(0.0, 0.0, accessoryImage.size.width, 32.0))
         accessoryButton.setImage(accessoryImage, forState: .Normal)
@@ -26,14 +26,14 @@ public class SChatToolbarButtonFactory {
         accessoryButton.backgroundColor = UIColor.clearColor()
         accessoryButton.tintColor = UIColor.lightGrayColor()
         
-        accessoryButton.accessibilityLabel = NSLocalizedString("schat_share_media", comment: "")
+        accessoryButton.accessibilityLabel = NSBundle.sChatLocalizedStringForKey("schat_share_media")
         
         return accessoryButton
     }
     
     static func defaultSendButtonItem() -> UIButton
     {
-        let sendTitle: NSString = NSLocalizedString("schat_send", comment: "")
+        let sendTitle: NSString = NSBundle.sChatLocalizedStringForKey("schat_send")
         
         let sendButton = UIButton(frame: CGRectZero)
         sendButton.setTitle(sendTitle as String, forState: .Normal)

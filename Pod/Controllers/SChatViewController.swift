@@ -36,8 +36,6 @@ public class SChatViewController: UIViewController, SChatInputToolbarDelegate {
         SChatViewController.nib().instantiateWithOwner(self, options:nil)
     }
     
-    
-    
     // MARK: Helpers
     
     func setDelegates()

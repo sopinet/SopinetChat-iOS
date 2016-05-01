@@ -18,7 +18,8 @@ public class SChatInputToolbar: UIToolbar {
     override public var delegate: UIToolbarDelegate? {
         didSet {
             if delegate != nil {
-                let castedDelegate = unsafeBitCast(delegate, SChatInputToolbarDelegate.self)
+                //let castedDelegate = unsafeBitCast(delegate, SChatInputToolbarDelegate.self)
+                let castedDelegate: SChatInputToolbarDelegate = delegate as! SChatInputToolbarDelegate
                 inputToolbarDelegate = castedDelegate
             }
             else {
@@ -53,27 +54,20 @@ public class SChatInputToolbar: UIToolbar {
     
     func setUp()
     {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
         let toolbarView: SChatToolbarView = loadToolbarView()
         
         toolbarView.frame = self.frame
         
         self.addSubview(toolbarView)
+        sChatPinAllEdgesOfSubview(toolbarView)
+        self.setNeedsUpdateConstraints()
+        
         self.contentView = toolbarView
         
         self.contentView?.leftBarButtomItem = SChatToolbarButtonFactory.defaultAccessoryButtonItem()
         self.contentView?.rightBarButtomItem = SChatToolbarButtonFactory.defaultSendButtonItem()
-        
-        if let auxLeftBarButtomItem = self.contentView?.leftBarButtomItem
-        {
-            self.contentView?.leftButtonView.addSubview(auxLeftBarButtomItem)
-            auxLeftBarButtomItem.addTarget(self, action: #selector(sChatLeftButtonTapped(_:)), forControlEvents: .TouchUpInside)
-        }
-        
-        if let auxRightBarButtomItem = self.contentView?.rightBarButtomItem
-        {
-            self.contentView?.leftButtonView.addSubview(auxRightBarButtomItem)
-            auxRightBarButtomItem.addTarget(self, action: #selector(sChatRightButtonTapped(_:)), forControlEvents: .TouchUpInside)
-        }
         
         toogleSendButtonEnabled()
     }
