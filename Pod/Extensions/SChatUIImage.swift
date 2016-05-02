@@ -10,6 +10,29 @@ import Foundation
 
 extension UIImage
 {
+    func sChatImageMaskedWithColor(maskColor: UIColor) -> UIImage
+    {
+        let imageRect = CGRectMake(0.0, 0.0, self.size.width, self.size.height)
+        var newImage = UIImage()
+        
+        UIGraphicsBeginImageContextWithOptions(imageRect.size, false, self.scale)
+        
+        let context = UIGraphicsGetCurrentContext()
+        
+        CGContextScaleCTM(context, 1.0, -1.0)
+        CGContextTranslateCTM(context, 0.0, -(imageRect.size.height))
+        
+        CGContextClipToMask(context, imageRect, self.CGImage)
+        CGContextSetFillColorWithColor(context, maskColor.CGColor)
+        CGContextFillRect(context, imageRect)
+        
+        newImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
     static func sChatImageFromBundleWithName(name: String) -> UIImage
     {
         let bundle = NSBundle.sChatAssetBundle()

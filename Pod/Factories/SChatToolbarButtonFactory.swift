@@ -18,9 +18,13 @@ public class SChatToolbarButtonFactory {
         // TODO: Improve this with mask for other states
         
         let accessoryImage: UIImage = UIImage.sChatDefaultAccesoryImage()
+        let normalImage = accessoryImage.sChatImageMaskedWithColor(UIColor.lightGrayColor())
+        let highlightedImage = accessoryImage.sChatImageMaskedWithColor(UIColor.darkGrayColor())
         
         let accessoryButton: UIButton = UIButton(frame: CGRectMake(0.0, 0.0, accessoryImage.size.width, 32.0))
-        accessoryButton.setImage(accessoryImage, forState: .Normal)
+
+        accessoryButton.setImage(normalImage, forState: .Normal)
+        accessoryButton.setImage(highlightedImage, forState: .Highlighted)
         
         accessoryButton.contentMode = .ScaleAspectFit
         accessoryButton.backgroundColor = UIColor.clearColor()
@@ -38,7 +42,9 @@ public class SChatToolbarButtonFactory {
         let sendButton = UIButton(frame: CGRectZero)
         sendButton.setTitle(sendTitle as String, forState: .Normal)
         
-        // TODO: Maybe we should improve color system for different states
+        sendButton.setTitleColor(UIColor(netHex: blueBubbleColor), forState: .Normal)
+        sendButton.setTitleColor(UIColor(netHex: blueBubbleColor), forState: .Highlighted)
+        sendButton.setTitleColor(UIColor.lightGrayColor(), forState: .Disabled)
         
         sendButton.tintColor = UIColor(netHex: blueBubbleColor)
         

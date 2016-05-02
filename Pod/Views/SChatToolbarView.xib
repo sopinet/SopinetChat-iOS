@@ -19,7 +19,7 @@
                         <constraint firstAttribute="width" constant="34" id="rCP-3F-Bsm"/>
                     </constraints>
                 </view>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R5V-u8-SsI" userLabel="TextView">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R5V-u8-SsI" userLabel="TextView" customClass="SChatComposerTextView" customModule="SopinetChat" customModuleProvider="target">
                     <rect key="frame" x="50" y="8" width="204" height="28"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -52,7 +52,7 @@
                 <outlet property="leftButtonView" destination="PMn-FI-ccB" id="uHk-m0-xnw"/>
                 <outlet property="rightButtonView" destination="fgh-BW-CQa" id="eDR-S2-gDR"/>
             </connections>
-            <point key="canvasLocation" x="268" y="548"/>
+            <point key="canvasLocation" x="-35" y="549"/>
         </view>
     </objects>
 </document>

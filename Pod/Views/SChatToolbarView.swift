@@ -13,7 +13,7 @@ public class SChatToolbarView: UIView {
     // MARK: Outlets
     
     @IBOutlet weak var leftButtonView: UIView!
-    @IBOutlet weak var contentTextView: UITextView!
+    @IBOutlet weak var contentTextView: SChatComposerTextView!
     @IBOutlet weak var rightButtonView: UIView!
     
     // MARK: Actions
@@ -72,8 +72,6 @@ public class SChatToolbarView: UIView {
             rightButtonView.addSubview(rightBarButtomItem!)
             rightButtonView.sChatPinAllEdgesOfSubview(rightBarButtomItem!)
             self.setNeedsUpdateConstraints()
-            
-            print("RIGHT BUTTON VIEW FRAME: \(rightButtonView.frame) - RIGHT BUTTON ITEM FRAME: \(rightBarButtomItem?.frame)")
         }
     }
     
@@ -82,12 +80,18 @@ public class SChatToolbarView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        
+        self.translatesAutoresizingMaskIntoConstraints = false
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    // MARK: UIView overrides
+    
+    public override func setNeedsDisplay() {
+        super.setNeedsDisplay()
     }
 }
