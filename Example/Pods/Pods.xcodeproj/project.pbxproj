@@ -197,6 +197,8 @@
 		A80A78AA9E8ED6383E543D558E8188BF /* NSManagedObjectContext+MagicalObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = 065FB5DEEE64D82690BA41C0FECA11D4 /* NSManagedObjectContext+MagicalObserving.m */; };
 		A8BC8A538BA499DC3752E8060BD7D307 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAED385D7002E82486FD9EA6E7720394 /* Realm.swift */; };
 		AA00C02474145C496F8B61381C552334 /* SortDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9643FDAF910B33E9BD91054BC6F07D25 /* SortDescriptor.swift */; };
+		AA258FE71CD8912F00E251BB /* SChatKeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA258FE61CD8912F00E251BB /* SChatKeyboardController.swift */; };
+		AA258FE91CD891E700E251BB /* SChatKeyboardControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA258FE81CD891E700E251BB /* SChatKeyboardControllerDelegate.swift */; };
 		AA314156AC500125F4078EE968DB14C6 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E523474A17E0C358F67AB875E3ED3A49 /* Result.swift */; };
 		AA3155941CCFC9AE005599A9 /* SopinetChatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3155931CCFC9AE005599A9 /* SopinetChatRouter.swift */; };
 		AA3155AA1CCFCA71005599A9 /* SChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3155A91CCFCA71005599A9 /* SChat.swift */; };
@@ -652,6 +654,8 @@
 		A8E3CD82E29A00EC53E5670B586D14FF /* RaisesException.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RaisesException.swift; path = Sources/Nimble/Matchers/RaisesException.swift; sourceTree = "<group>"; };
 		AA10FBF65CDBEA40E27897C47149ED5D /* Realm-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Realm-prefix.pch"; sourceTree = "<group>"; };
 		AA130D464E0A2EB3294803AD864B540B /* List.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = List.swift; path = RealmSwift/List.swift; sourceTree = "<group>"; };
+		AA258FE61CD8912F00E251BB /* SChatKeyboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SChatKeyboardController.swift; sourceTree = "<group>"; };
+		AA258FE81CD891E700E251BB /* SChatKeyboardControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatKeyboardControllerDelegate.swift; path = Delegates/SChatKeyboardControllerDelegate.swift; sourceTree = "<group>"; };
 		AA2E2FD08836789E118133AB91820E24 /* RLMArray.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = RLMArray.mm; path = Realm/RLMArray.mm; sourceTree = "<group>"; };
 		AA3155931CCFC9AE005599A9 /* SopinetChatRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SopinetChatRouter.swift; path = Structs/SopinetChatRouter.swift; sourceTree = "<group>"; };
 		AA3155A91CCFCA71005599A9 /* SChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChat.swift; path = Models/SChat.swift; sourceTree = "<group>"; };
@@ -1325,6 +1329,7 @@
 				FD671BC8C9ACFD0B5B84DAAD925436BE /* SopinetChat.h */,
 				2777788582C81F4FC09046E8EC41F738 /* SopinetChat.swift */,
 				F8E756DDFB87D0AF44CDB6EDDEBE9506 /* SopinetChat_Bridging_Header.h */,
+				AA258FE61CD8912F00E251BB /* SChatKeyboardController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1402,6 +1407,7 @@
 			isa = PBXGroup;
 			children = (
 				AAF3DB771CD236D500759E27 /* SChatInputToolbarDelegate.swift */,
+				AA258FE81CD891E700E251BB /* SChatKeyboardControllerDelegate.swift */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -2050,6 +2056,7 @@
 				AAF3DB711CD227A800759E27 /* SChatCollectionView.swift in Sources */,
 				AAF3DB781CD236D500759E27 /* SChatInputToolbarDelegate.swift in Sources */,
 				AAF1DBB01CD67CA80040A0FB /* SChatUIImage.swift in Sources */,
+				AA258FE71CD8912F00E251BB /* SChatKeyboardController.swift in Sources */,
 				AAF1DBAC1CD61E3F0040A0FB /* SChatUIView.swift in Sources */,
 				AAF118C91CD76CED002B94DD /* SChatComposerTextView.swift in Sources */,
 				AA3155AE1CCFCA94005599A9 /* SMessage.swift in Sources */,
@@ -2060,6 +2067,7 @@
 				AADE92041CD34AD20008E68B /* SChatInputToolbar.swift in Sources */,
 				AAF118CB1CD77687002B94DD /* SChatString.swift in Sources */,
 				AA3155B01CCFCCD0005599A9 /* SImageFile.swift in Sources */,
+				AA258FE91CD891E700E251BB /* SChatKeyboardControllerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

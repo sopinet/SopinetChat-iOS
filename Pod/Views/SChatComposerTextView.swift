@@ -11,9 +11,9 @@ import Foundation
 
 class SChatComposerTextView: UITextView {
     
-    var placeHolder: String?
+    var placeHolder: String = NSBundle.sChatLocalizedStringForKey("schat_new_message")
     
-    var placeHolderTextColor: UIColor?
+    var placeHolderTextColor: UIColor = UIColor.lightGrayColor()
     
     // MARK: Initialization
     
@@ -49,10 +49,7 @@ class SChatComposerTextView: UITextView {
         
         self.text = ""
         
-        self.placeHolder = ""
-        self.placeHolderTextColor = UIColor.lightGrayColor()
-        
-        // TODO: We have to add notification observers right here
+        self.sChatAddTextViewNotificationObservers()
     }
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
@@ -71,6 +68,99 @@ class SChatComposerTextView: UITextView {
     
     override func hasText() -> Bool {
         return self.text.sChatStringByTrimingWhitespace().characters.count > 0
+    }
+    
+    func setComposerText(text: String)
+    {
+        self.text = text
+        self.setNeedsDisplay()
+    }
+    
+    func setComposerFont(font: UIFont)
+    {
+        self.font = font
+        self.setNeedsDisplay()
+    }
+    
+    func setComposerTextAlignment(textAlignment: NSTextAlignment)
+    {
+        self.textAlignment = textAlignment
+        self.setNeedsDisplay()
+    }
+    
+    // MARK: Setters
+    
+    func setComposerPlaceHolder(placeHolder: String)
+    {
+        if placeHolder == self.placeHolder {
+            return
+        }
+        
+        self.placeHolder = placeHolder
+        self.setNeedsDisplay()
+    }
+    
+    func setComposerPlaceHolderTextColor(placeHolderTextColor: UIColor)
+    {
+        if placeHolderTextColor == self.placeHolderTextColor {
+            return
+        }
+        
+        self.placeHolderTextColor = placeHolderTextColor
+        self.setNeedsDisplay()
+    }
+    
+    // MARK: Drawing
+    
+    override func drawRect(rect: CGRect)
+    {
+        super.drawRect(rect)
+        
+        if self.text.characters.count == 0
+        {
+            self.placeHolderTextColor.set()
+            
+            self.placeHolder.drawInRect(CGRectInset(rect, 7.0, 4.0),
+                                         withAttributes: self.sChatPlaceHolderTextAttributes() as! [String : AnyObject])
+        }
+    }
+    
+    // MARK: Utils
+    
+    func sChatPlaceHolderTextAttributes() -> NSDictionary
+    {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineBreakMode = .ByTruncatingTail
+        paragraphStyle.alignment = self.textAlignment
+        
+        return [NSFontAttributeName : self.font!,
+                NSForegroundColorAttributeName: self.placeHolderTextColor,
+                NSParagraphStyleAttributeName: paragraphStyle]
+    }
+    
+    // MARK: Notifications
+    
+    func sChatAddTextViewNotificationObservers()
+    {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.sChatDidReceiveTextViewNotification(_:)), name: UITextViewTextDidChangeNotification, object: self)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.sChatDidReceiveTextViewNotification(_:)), name: UITextViewTextDidBeginEditingNotification, object: self)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.sChatDidReceiveTextViewNotification(_:)), name: UITextViewTextDidEndEditingNotification, object: self)
+    }
+    
+    func sChatRemoveTextViewNotificationObservers()
+    {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextViewTextDidChangeNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextViewTextDidBeginEditingNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextViewTextDidEndEditingNotification, object: nil)
+    }
+    
+    func sChatDidReceiveTextViewNotification(notification: NSNotification)
+    {
+        self.setNeedsDisplay()
     }
 
 }

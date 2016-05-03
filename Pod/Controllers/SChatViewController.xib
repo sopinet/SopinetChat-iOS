@@ -10,6 +10,7 @@
                 <outlet property="sChatCollectionView" destination="RFF-7W-C33" id="gtH-t2-pQr"/>
                 <outlet property="schatInputToolbar" destination="Evs-Qe-djh" id="XmE-G8-Jkf"/>
                 <outlet property="schatview" destination="iN0-l3-epB" id="v6i-X6-qwj"/>
+                <outlet property="toolbarBottomLayoutGuide" destination="bK8-MB-VaD" id="L2T-QN-jMu"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
