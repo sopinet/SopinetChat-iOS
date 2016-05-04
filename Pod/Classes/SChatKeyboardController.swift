@@ -11,16 +11,6 @@ import UIKit
 
 let kSChatKeyboardControllerKeyValueObservingContext = UnsafeMutablePointer<()>()
 
-//self.addObserver(self, forKeyPath: …, options: nil, context: kSChatKeyboardControllerKeyValueObservingContext)
-
-/*override func observeValueForKeyPath(keyPath: String!, ofObject object: AnyObject!, change: [NSObject : AnyObject]!, context: UnsafePointer<()>) {
-    if context == kSChatKeyboardControllerKeyValueObservingContext {
-        …
-    } else {
-        super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
-    }
-}*/
-
 public class SChatKeyboardController : NSObject
 {
     // MARK: Properties

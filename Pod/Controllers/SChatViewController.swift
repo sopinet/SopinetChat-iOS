@@ -18,6 +18,7 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
     @IBOutlet weak public var schatInputToolbar: SChatInputToolbar!
     
     @IBOutlet weak var toolbarBottomLayoutGuide: NSLayoutConstraint!
+    @IBOutlet weak var toolbarHeightConstraint: NSLayoutConstraint!
     
     // MARK: Properties
     
@@ -54,6 +55,17 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         self.keyboardController?.beginListeningForKeyboard()
     }
     
+    public override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        self.view.layoutIfNeeded()
+        self.sChatCollectionView.collectionViewLayout.invalidateLayout()
+        
+        // ...
+        
+        self.sChatUpdateKeyboardTriggerPoint()
+    }
+    
     // MARK: Helpers
     
     func sChatConfigureSChatViewController()
@@ -74,6 +86,8 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
     {
         
     }
+    
+    
     
     // MARK: CollectionView Utilities
     
@@ -209,11 +223,109 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         // ...
     }
     
+    // MARK: Input Toolbar Utilities
+    
+    func sChatInputToolbarHasReachedMaximumHeight() -> Bool
+    {
+        return CGRectGetMinY(self.schatInputToolbar!.frame) == (self.topLayoutGuide.length + self.topContentAdditionalInset!)
+    }
+    
+    func sChatAdjustInputToolbarForComposerTextViewContentSizeChange(var dy: CGFloat)
+    {
+        let contentSizeIsIncreasing = (dy > 0)
+        
+        if sChatInputToolbarHasReachedMaximumHeight() {
+            let contentOffsetIsPositive = (self.schatInputToolbar.contentView?.contentTextView.contentOffset.y > 0)
+            
+            if contentSizeIsIncreasing || contentOffsetIsPositive {
+                self.sChatScrollComposerTextViewToBottomAnimated(true)
+                return
+            }
+        }
+        
+        let toolbarOriginY = CGRectGetMinY(self.schatInputToolbar.frame)
+        let newToolbarOriginY = toolbarOriginY - dy
+        
+        if newToolbarOriginY <= self.topLayoutGuide.length + self.topContentAdditionalInset!
+        {
+            dy = toolbarOriginY - (self.topLayoutGuide.length + self.topContentAdditionalInset!)
+            self.sChatScrollComposerTextViewToBottomAnimated(true)
+        }
+        
+        self.sChatAdjustInputToolbarHeightConstraintByDelta(dy)
+        
+        self.sChatUpdateKeyboardTriggerPoint()
+        
+        if dy < 0 {
+            self.sChatScrollComposerTextViewToBottomAnimated(false)
+        }
+    }
+    
+    func sChatAdjustInputToolbarHeightConstraintByDelta(dy: CGFloat)
+    {
+        let proposedHeight = self.toolbarHeightConstraint.constant + dy
+        
+        var finalHeight = max(proposedHeight, self.schatInputToolbar.preferredDefaultHeight)
+        
+        if self.schatInputToolbar.maximumHeight != NSNotFound {
+            finalHeight = min(finalHeight, CGFloat(self.schatInputToolbar.maximumHeight))
+        }
+        
+        if self.toolbarHeightConstraint.constant != finalHeight {
+            self.toolbarHeightConstraint.constant = finalHeight
+            self.view.setNeedsUpdateConstraints()
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func sChatScrollComposerTextViewToBottomAnimated(animated: Bool)
+    {
+        let textView = self.schatInputToolbar.contentView?.contentTextView
+        
+        let contentOffsetToShowLastLine = CGPointMake(0.0, textView!.contentSize.height - CGRectGetHeight(textView!.bounds))
+        
+        if !animated {
+            textView?.contentOffset = contentOffsetToShowLastLine
+            return
+        }
+        
+        UIView.animateWithDuration(NSTimeInterval(0.01),
+                                   delay: NSTimeInterval(0.01),
+                                   options: UIViewAnimationOptions.CurveLinear,
+            animations: {
+                textView?.contentOffset = contentOffsetToShowLastLine
+            }, completion: nil)
+    }
+    
+    // MARK: Key-Value Observing
+    
+    public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>)
+    {
+        if context == kSChatKeyboardControllerKeyValueObservingContext
+        {
+            if object!.isEqual(self.schatInputToolbar.contentView?.contentTextView)
+                && keyPath == NSStringFromSelector(Selector("contentSize"))
+            {
+                let oldContentSize = change![NSKeyValueChangeOldKey] as! CGSize
+                let newContentSize = change![NSKeyValueChangeNewKey] as! CGSize
+                
+                let dy = newContentSize.height - oldContentSize.height
+                
+                self.sChatAdjustInputToolbarForComposerTextViewContentSizeChange(dy)
+                self.sChatUpdateCollectionViewInsets()
+                
+                /*if self.sChatAutomaticallyScrollToMostRecentMessage() {
+                    self.scrollToBottomAnimated(false)
+                }*/
+            }
+        }
+    }
+    
     // MARK: SChatKeyboardControllerDelegate
     
     public func keyboardDidChangeFrame(keyboardFrame: CGRect)
     {
-        if self.schatInputToolbar.contentView!.contentTextView.isFirstResponder() && self.toolbarBottomLayoutGuide.constant == 0.0 {
+        if !self.schatInputToolbar.contentView!.contentTextView.isFirstResponder() && self.toolbarBottomLayoutGuide.constant == 0.0 {
             return
         }
         
@@ -226,7 +338,7 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
     
     func sChatSetToolbarBottomLayoutGuideConstant(constant: CGFloat)
     {
-        self.toolbarBottomLayoutGuide.constant = constant // 226 para probar
+        self.toolbarBottomLayoutGuide.constant = constant + self.schatInputToolbar.frame.height // 226 para probar
         self.view.setNeedsUpdateConstraints()
         self.view.layoutIfNeeded()
         

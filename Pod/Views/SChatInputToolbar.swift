@@ -15,6 +15,9 @@ public class SChatInputToolbar: UIToolbar {
     
     weak var inputToolbarDelegate : SChatInputToolbarDelegate?
     
+    var preferredDefaultHeight: CGFloat = 44.0
+    var maximumHeight: Int = NSNotFound
+    
     override public var delegate: UIToolbarDelegate? {
         didSet {
             if delegate != nil {
@@ -70,6 +73,13 @@ public class SChatInputToolbar: UIToolbar {
         self.contentView?.rightBarButtomItem = SChatToolbarButtonFactory.defaultSendButtonItem()
         
         toogleSendButtonEnabled()
+    }
+    
+    // MARK: Setters
+    
+    func sChatSetPreferredDefaultHeight(preferredDefaultHeight: CGFloat)
+    {
+        self.preferredDefaultHeight = preferredDefaultHeight
     }
     
     // MARK: Actions
