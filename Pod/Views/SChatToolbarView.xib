@@ -40,9 +40,9 @@
                 <constraint firstItem="PMn-FI-ccB" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="8" id="7Xw-59-ZvB"/>
                 <constraint firstItem="fgh-BW-CQa" firstAttribute="leading" secondItem="R5V-u8-SsI" secondAttribute="trailing" constant="8" id="CHE-km-Bg2"/>
                 <constraint firstItem="R5V-u8-SsI" firstAttribute="leading" secondItem="PMn-FI-ccB" secondAttribute="trailing" constant="8" id="GIk-6L-xL9"/>
-                <constraint firstItem="PMn-FI-ccB" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" id="pQ1-LQ-k8Z"/>
+                <constraint firstAttribute="bottom" secondItem="fgh-BW-CQa" secondAttribute="bottom" constant="6" id="Lmd-OX-CRi"/>
+                <constraint firstAttribute="bottom" secondItem="PMn-FI-ccB" secondAttribute="bottom" constant="6" id="YWK-bH-Npf"/>
                 <constraint firstAttribute="trailing" secondItem="fgh-BW-CQa" secondAttribute="trailing" constant="8" id="uOV-SN-SFQ"/>
-                <constraint firstItem="fgh-BW-CQa" firstAttribute="centerY" secondItem="1" secondAttribute="centerY" id="ucp-q4-R04"/>
                 <constraint firstAttribute="bottom" secondItem="R5V-u8-SsI" secondAttribute="bottom" constant="8" id="xbP-nW-NBh"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

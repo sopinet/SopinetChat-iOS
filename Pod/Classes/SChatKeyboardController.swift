@@ -58,7 +58,7 @@ public class SChatKeyboardController : NSObject
         
         self.keyboardView = keyboardView
         
-        if !self.isObserving
+        if self.keyboardView != nil && !self.isObserving
         {
             self.keyboardView?.addObserver(self,
                                            forKeyPath: NSStringFromSelector(Selector("frame")),
@@ -150,11 +150,13 @@ public class SChatKeyboardController : NSObject
     
     func sChatDidReceiveKeyboardWillChangeFrameNotification(notification: NSNotification)
     {
+        // TODO: Descomentar esto cuando tenga montado el recognizer
         self.sChatHandleKeyboardNotification(notification, completion: nil)
     }
     
     func sChatDidReceiveKeyboardDidChangeFrameNotification(notification: NSNotification)
     {
+        // TODO: Descomentar esto cuando tenga montado el recognizer
         self.sChatSetKeyboardViewHidden(false)
         
         self.sChatHandleKeyboardNotification(notification, completion: nil)
@@ -175,9 +177,9 @@ public class SChatKeyboardController : NSObject
     {
         let userInfo = notification.userInfo
         
-        let keyboardEndFrame = userInfo![UIKeyboardFrameEndUserInfoKey]?.CGRectValue()
+        let keyboardEndFrame: CGRect = userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue()
         
-        if CGRectIsNull(keyboardEndFrame!)
+        if CGRectIsNull(keyboardEndFrame)
         {
             return
         }
@@ -187,7 +189,7 @@ public class SChatKeyboardController : NSObject
         
         let animationDuration = userInfo![UIKeyboardAnimationDurationUserInfoKey]?.doubleValue
         
-        let keyboardEndFrameConverted = self.contextView.convertRect(keyboardEndFrame!, fromView: nil)
+        let keyboardEndFrameConverted = self.contextView.convertRect(keyboardEndFrame, fromView: nil)
         
         UIView.animateWithDuration(NSTimeInterval(animationDuration!),
                                    delay: NSTimeInterval(0.0),
@@ -242,6 +244,8 @@ public class SChatKeyboardController : NSObject
                     if CGRectEqualToRect(newKeyboardFrame!, oldKeyboardFrame!) || CGRectIsNull(newKeyboardFrame!) {
                         return
                     }
+                } else {
+                    return
                 }
                 
                 let keyboardEndFrameConverted = self.contextView.convertRect(newKeyboardFrame!, toView: self.keyboardView!.superview)
@@ -249,7 +253,7 @@ public class SChatKeyboardController : NSObject
                 self.sChatNotifyKeyboardFrameNotificationForFrame(keyboardEndFrameConverted)
             }
         } else {
-            observeValueForKeyPath(keyPath, ofObject: ofObject, change: change, context: context)
+            //observeValueForKeyPath(keyPath, ofObject: ofObject, change: change, context: context)
         }
     }
     

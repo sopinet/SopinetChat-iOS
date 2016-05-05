@@ -25,6 +25,8 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
     var keyboardController: SChatKeyboardController?
     var topContentAdditionalInset: CGFloat?
     var isObserving: Bool = false
+    var textViewWasFirstResponderDuringInteractivePop: Bool = false
+    var currentInteractivePopGestureRecognizer: UIGestureRecognizer? = nil
     
     // MARK: Class methods
     
@@ -52,6 +54,7 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         super.viewDidAppear(animated)
         
         self.sChatAddObservers()
+        self.sChatAddActionsToInteractivePopGestureRecognizer(true)
         self.keyboardController?.beginListeningForKeyboard()
     }
     
@@ -64,6 +67,14 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         // ...
         
         self.sChatUpdateKeyboardTriggerPoint()
+    }
+    
+    public override func viewDidDisappear(animated: Bool)
+    {
+        super.viewDidDisappear(animated)
+        self.sChatAddActionsToInteractivePopGestureRecognizer(false)
+        self.sChatRemoveObservers()
+        self.keyboardController?.endListeningForKeyboard()
     }
     
     // MARK: Helpers
@@ -86,8 +97,6 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
     {
         
     }
-    
-    
     
     // MARK: CollectionView Utilities
     
@@ -172,7 +181,19 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
     
     func sChatAddActionsToInteractivePopGestureRecognizer(addAction: Bool)
     {
-        // ...
+        if self.currentInteractivePopGestureRecognizer != nil
+        {
+            self.currentInteractivePopGestureRecognizer?.removeTarget(nil,
+                                                                      action: #selector(sChatHandleInteractivePopGestureRecognizer(_:)))
+            self.currentInteractivePopGestureRecognizer = nil
+        }
+        
+        if addAction
+        {
+            self.navigationController?.interactivePopGestureRecognizer?.addTarget(self, action: #selector(sChatHandleInteractivePopGestureRecognizer(_:)))
+            
+            self.currentInteractivePopGestureRecognizer = self.navigationController?.interactivePopGestureRecognizer
+        }
     }
     
     // MARK: TextView Delegate
@@ -208,7 +229,7 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
     
     func sChatHandleDidChangeStatusBarFrameNotification(notification: NSNotification)
     {
-        if self.keyboardController?.keyboardIsVisible() != nil{
+        if self.keyboardController!.keyboardIsVisible(){
             self.sChatSetToolbarBottomLayoutGuideConstant(CGRectGetHeight(self.keyboardController!.currentKeyboardFrame()))
         }
     }
@@ -221,6 +242,31 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
     func sChatDidReceiveMenuWillHideNotification(notification: NSNotification)
     {
         // ...
+    }
+    
+    // MARK: Gesture recognizers
+    
+    func sChatHandleInteractivePopGestureRecognizer(gestureRecognizer: UIGestureRecognizer)
+    {
+        switch gestureRecognizer.state {
+        case .Began:
+            self.textViewWasFirstResponderDuringInteractivePop = self.schatInputToolbar.contentView!.contentTextView.isFirstResponder()
+            
+            self.keyboardController?.endListeningForKeyboard()
+        case .Changed:
+            break
+        case .Cancelled,
+             .Ended,
+             .Failed:
+            self.keyboardController?.beginListeningForKeyboard()
+            
+            if self.textViewWasFirstResponderDuringInteractivePop
+            {
+                self.schatInputToolbar.contentView!.contentTextView.becomeFirstResponder()
+            }
+        default:
+            break
+        }
     }
     
     // MARK: Input Toolbar Utilities
@@ -306,8 +352,8 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
             if object!.isEqual(self.schatInputToolbar.contentView?.contentTextView)
                 && keyPath == NSStringFromSelector(Selector("contentSize"))
             {
-                let oldContentSize = change![NSKeyValueChangeOldKey] as! CGSize
-                let newContentSize = change![NSKeyValueChangeNewKey] as! CGSize
+                let oldContentSize: CGSize = change![NSKeyValueChangeOldKey]!.CGSizeValue()
+                let newContentSize: CGSize = change![NSKeyValueChangeNewKey]!.CGSizeValue()
                 
                 let dy = newContentSize.height - oldContentSize.height
                 
@@ -331,14 +377,16 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         
         var heightFromBottom = CGRectGetMaxY(self.sChatCollectionView.frame) - CGRectGetMinY(keyboardFrame)
         
-        heightFromBottom = max(0.0, heightFromBottom)
+        print("COLLECTION VIEW: \(CGRectGetMaxY(self.sChatCollectionView.frame)) - KEYBOARD: \(CGRectGetMinY(keyboardFrame)) - HEIGHT: \(heightFromBottom)")
+        
+        heightFromBottom = max(0.0, heightFromBottom + self.schatInputToolbar.frame.height)
         
         self.sChatSetToolbarBottomLayoutGuideConstant(heightFromBottom)
     }
     
     func sChatSetToolbarBottomLayoutGuideConstant(constant: CGFloat)
     {
-        self.toolbarBottomLayoutGuide.constant = constant + self.schatInputToolbar.frame.height // 226 para probar
+        self.toolbarBottomLayoutGuide.constant = constant //+ self.schatInputToolbar.frame.height // 226 para probar
         self.view.setNeedsUpdateConstraints()
         self.view.layoutIfNeeded()
         
