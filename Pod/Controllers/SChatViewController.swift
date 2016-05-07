@@ -377,16 +377,14 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         
         var heightFromBottom = CGRectGetMaxY(self.sChatCollectionView.frame) - CGRectGetMinY(keyboardFrame)
         
-        print("COLLECTION VIEW: \(CGRectGetMaxY(self.sChatCollectionView.frame)) - KEYBOARD: \(CGRectGetMinY(keyboardFrame)) - HEIGHT: \(heightFromBottom)")
-        
-        heightFromBottom = max(0.0, heightFromBottom + self.schatInputToolbar.frame.height)
+        heightFromBottom = max(0.0, heightFromBottom)
         
         self.sChatSetToolbarBottomLayoutGuideConstant(heightFromBottom)
     }
     
     func sChatSetToolbarBottomLayoutGuideConstant(constant: CGFloat)
     {
-        self.toolbarBottomLayoutGuide.constant = constant //+ self.schatInputToolbar.frame.height // 226 para probar
+        self.toolbarBottomLayoutGuide.constant = constant
         self.view.setNeedsUpdateConstraints()
         self.view.layoutIfNeeded()
         

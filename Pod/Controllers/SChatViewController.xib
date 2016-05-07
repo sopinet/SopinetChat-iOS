@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="RFF-7W-C33">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <collectionViewLayout key="collectionViewLayout" id="PIN-pZ-wsu"/>
                 </collectionView>
@@ -36,15 +36,15 @@
                 </toolbar>
             </subviews>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="RFF-7W-C33" secondAttribute="bottom" id="TCw-RN-Ais"/>
                 <constraint firstAttribute="bottom" secondItem="Evs-Qe-djh" secondAttribute="bottom" id="bK8-MB-VaD"/>
                 <constraint firstAttribute="trailing" secondItem="Evs-Qe-djh" secondAttribute="trailing" id="eAM-Y8-Ezc"/>
-                <constraint firstItem="Evs-Qe-djh" firstAttribute="top" secondItem="RFF-7W-C33" secondAttribute="bottom" id="eGb-tP-nqf"/>
                 <constraint firstItem="RFF-7W-C33" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="mHM-WP-Unu"/>
                 <constraint firstAttribute="trailing" secondItem="RFF-7W-C33" secondAttribute="trailing" id="qwE-dc-c3g"/>
                 <constraint firstItem="Evs-Qe-djh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="syf-1S-eJ0"/>
                 <constraint firstItem="RFF-7W-C33" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="uIK-rw-wTJ"/>
             </constraints>
-            <point key="canvasLocation" x="209.5" y="456.5"/>
+            <point key="canvasLocation" x="209" y="456"/>
         </view>
     </objects>
 </document>
