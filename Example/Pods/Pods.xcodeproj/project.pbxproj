@@ -197,6 +197,10 @@
 		A80A78AA9E8ED6383E543D558E8188BF /* NSManagedObjectContext+MagicalObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = 065FB5DEEE64D82690BA41C0FECA11D4 /* NSManagedObjectContext+MagicalObserving.m */; };
 		A8BC8A538BA499DC3752E8060BD7D307 /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAED385D7002E82486FD9EA6E7720394 /* Realm.swift */; };
 		AA00C02474145C496F8B61381C552334 /* SortDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9643FDAF910B33E9BD91054BC6F07D25 /* SortDescriptor.swift */; };
+		AA0F7E811CE9EF1D006FA052 /* SChatCollectionViewCellIncoming.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0F7E801CE9EF1D006FA052 /* SChatCollectionViewCellIncoming.swift */; };
+		AA0F7E831CE9EF99006FA052 /* SChatCollectionViewCellOutgoing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0F7E821CE9EF99006FA052 /* SChatCollectionViewCellOutgoing.swift */; };
+		AA0F7E851CE9F002006FA052 /* SChatCollectionViewCellIncoming.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA0F7E841CE9F002006FA052 /* SChatCollectionViewCellIncoming.xib */; };
+		AA0F7E871CE9F01A006FA052 /* SChatCollectionViewCellOutgoing.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA0F7E861CE9F01A006FA052 /* SChatCollectionViewCellOutgoing.xib */; };
 		AA1457031CE87BA0002FE4CB /* SChatLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1457021CE87BA0002FE4CB /* SChatLabel.swift */; };
 		AA1457051CE87E55002FE4CB /* SChatCollectionViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1457041CE87E55002FE4CB /* SChatCollectionViewCellDelegate.swift */; };
 		AA1457071CE87EDA002FE4CB /* SChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1457061CE87EDA002FE4CB /* SChatCollectionViewCell.swift */; };
@@ -658,6 +662,10 @@
 		A8C7381F4077D3ACB61E3AD03748A7EC /* CurrentTestCaseTracker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CurrentTestCaseTracker.m; path = Sources/Nimble/objc/CurrentTestCaseTracker.m; sourceTree = "<group>"; };
 		A8CD37C1210F33839DD4CCC5AA13A4F3 /* QCKDSL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QCKDSL.m; path = Sources/Quick/DSL/QCKDSL.m; sourceTree = "<group>"; };
 		A8E3CD82E29A00EC53E5670B586D14FF /* RaisesException.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RaisesException.swift; path = Sources/Nimble/Matchers/RaisesException.swift; sourceTree = "<group>"; };
+		AA0F7E801CE9EF1D006FA052 /* SChatCollectionViewCellIncoming.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatCollectionViewCellIncoming.swift; path = Views/SChatCollectionViewCellIncoming.swift; sourceTree = "<group>"; };
+		AA0F7E821CE9EF99006FA052 /* SChatCollectionViewCellOutgoing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatCollectionViewCellOutgoing.swift; path = Views/SChatCollectionViewCellOutgoing.swift; sourceTree = "<group>"; };
+		AA0F7E841CE9F002006FA052 /* SChatCollectionViewCellIncoming.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SChatCollectionViewCellIncoming.xib; path = Views/SChatCollectionViewCellIncoming.xib; sourceTree = "<group>"; };
+		AA0F7E861CE9F01A006FA052 /* SChatCollectionViewCellOutgoing.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SChatCollectionViewCellOutgoing.xib; path = Views/SChatCollectionViewCellOutgoing.xib; sourceTree = "<group>"; };
 		AA10FBF65CDBEA40E27897C47149ED5D /* Realm-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Realm-prefix.pch"; sourceTree = "<group>"; };
 		AA130D464E0A2EB3294803AD864B540B /* List.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = List.swift; path = RealmSwift/List.swift; sourceTree = "<group>"; };
 		AA1457021CE87BA0002FE4CB /* SChatLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatLabel.swift; path = Views/SChatLabel.swift; sourceTree = "<group>"; };
@@ -1415,6 +1423,10 @@
 				AA2CFFCB1CE5F9930022EF00 /* SChatCellTextView.swift */,
 				AA1457021CE87BA0002FE4CB /* SChatLabel.swift */,
 				AA1457061CE87EDA002FE4CB /* SChatCollectionViewCell.swift */,
+				AA0F7E801CE9EF1D006FA052 /* SChatCollectionViewCellIncoming.swift */,
+				AA0F7E821CE9EF99006FA052 /* SChatCollectionViewCellOutgoing.swift */,
+				AA0F7E841CE9F002006FA052 /* SChatCollectionViewCellIncoming.xib */,
+				AA0F7E861CE9F01A006FA052 /* SChatCollectionViewCellOutgoing.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1919,7 +1931,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0F7E871CE9F01A006FA052 /* SChatCollectionViewCellOutgoing.xib in Resources */,
 				AA8E11381CD5435500CA8DF1 /* SChatAssets.bundle in Resources */,
+				AA0F7E851CE9F002006FA052 /* SChatCollectionViewCellIncoming.xib in Resources */,
 				AAF3DB751CD2293300759E27 /* SChatToolbarView.xib in Resources */,
 				AAF3DB7C1CD2392100759E27 /* SChatViewController.xib in Resources */,
 				FAB97B0486DBC4E191661649440D360A /* SopinetChat.bundle in Resources */,
@@ -2082,6 +2096,7 @@
 				AAF1DBAE1CD6778C0040A0FB /* SChatNSBundle.swift in Sources */,
 				529444D409C1443AC331529447BBAAB0 /* SopinetChat-dummy.m in Sources */,
 				AAF3DB711CD227A800759E27 /* SChatCollectionView.swift in Sources */,
+				AA0F7E831CE9EF99006FA052 /* SChatCollectionViewCellOutgoing.swift in Sources */,
 				AA1457071CE87EDA002FE4CB /* SChatCollectionViewCell.swift in Sources */,
 				AAF3DB781CD236D500759E27 /* SChatInputToolbarDelegate.swift in Sources */,
 				AAF1DBB01CD67CA80040A0FB /* SChatUIImage.swift in Sources */,
@@ -2090,6 +2105,7 @@
 				AAF1DBAC1CD61E3F0040A0FB /* SChatUIView.swift in Sources */,
 				AA1457051CE87E55002FE4CB /* SChatCollectionViewCellDelegate.swift in Sources */,
 				AAF118C91CD76CED002B94DD /* SChatComposerTextView.swift in Sources */,
+				AA0F7E811CE9EF1D006FA052 /* SChatCollectionViewCellIncoming.swift in Sources */,
 				AA3155AE1CCFCA94005599A9 /* SMessage.swift in Sources */,
 				AA3155AC1CCFCA83005599A9 /* SUser.swift in Sources */,
 				C9976146223EA411E39CA66A6CE46CEC /* SopinetChat.swift in Sources */,
