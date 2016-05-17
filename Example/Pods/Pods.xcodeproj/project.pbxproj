@@ -214,6 +214,11 @@
 		AA3155AE1CCFCA94005599A9 /* SMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3155AD1CCFCA94005599A9 /* SMessage.swift */; };
 		AA3155B01CCFCCD0005599A9 /* SImageFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3155AF1CCFCCD0005599A9 /* SImageFile.swift */; };
 		AA3155B21CCFCD3D005599A9 /* SMessageImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3155B11CCFCD3D005599A9 /* SMessageImage.swift */; };
+		AA4EDD891CEB3F840014AC21 /* SChatBubbleSizeCalculating.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EDD881CEB3F840014AC21 /* SChatBubbleSizeCalculating.swift */; };
+		AA4EDD8B1CEB3FDF0014AC21 /* SChatBubbleSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EDD8A1CEB3FDF0014AC21 /* SChatBubbleSizeCalculator.swift */; };
+		AA4EDD8D1CEB412B0014AC21 /* SChatMessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EDD8C1CEB412B0014AC21 /* SChatMessageData.swift */; };
+		AA4EDD8F1CEB43890014AC21 /* SChatMediaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EDD8E1CEB43890014AC21 /* SChatMediaData.swift */; };
+		AA4EDD911CEB445E0014AC21 /* SChatCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EDD901CEB445E0014AC21 /* SChatCollectionViewFlowLayout.swift */; };
 		AA572C9AC15C6598E7D2BC2032056E68 /* Pods-SopinetChat_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 619F4CD4DA87834F02119580F7ABE57B /* Pods-SopinetChat_Tests-dummy.m */; };
 		AA8E11381CD5435500CA8DF1 /* SChatAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AA8E11371CD5435500CA8DF1 /* SChatAssets.bundle */; };
 		AADE92041CD34AD20008E68B /* SChatInputToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADE92031CD34AD20008E68B /* SChatInputToolbar.swift */; };
@@ -681,6 +686,11 @@
 		AA3155AD1CCFCA94005599A9 /* SMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMessage.swift; path = Models/SMessage.swift; sourceTree = "<group>"; };
 		AA3155AF1CCFCCD0005599A9 /* SImageFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SImageFile.swift; path = Models/SImageFile.swift; sourceTree = "<group>"; };
 		AA3155B11CCFCD3D005599A9 /* SMessageImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMessageImage.swift; path = Models/SMessageImage.swift; sourceTree = "<group>"; };
+		AA4EDD881CEB3F840014AC21 /* SChatBubbleSizeCalculating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatBubbleSizeCalculating.swift; path = Layout/SChatBubbleSizeCalculating.swift; sourceTree = "<group>"; };
+		AA4EDD8A1CEB3FDF0014AC21 /* SChatBubbleSizeCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatBubbleSizeCalculator.swift; path = Layout/SChatBubbleSizeCalculator.swift; sourceTree = "<group>"; };
+		AA4EDD8C1CEB412B0014AC21 /* SChatMessageData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatMessageData.swift; path = Models/SChatMessageData.swift; sourceTree = "<group>"; };
+		AA4EDD8E1CEB43890014AC21 /* SChatMediaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatMediaData.swift; path = Models/SChatMediaData.swift; sourceTree = "<group>"; };
+		AA4EDD901CEB445E0014AC21 /* SChatCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatCollectionViewFlowLayout.swift; path = Layout/SChatCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		AA8E11371CD5435500CA8DF1 /* SChatAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SChatAssets.bundle; sourceTree = "<group>"; };
 		AADE92031CD34AD20008E68B /* SChatInputToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatInputToolbar.swift; path = Views/SChatInputToolbar.swift; sourceTree = "<group>"; };
 		AADE92061CD369320008E68B /* SChatToolbarButtonFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatToolbarButtonFactory.swift; path = Factories/SChatToolbarButtonFactory.swift; sourceTree = "<group>"; };
@@ -1371,6 +1381,8 @@
 				AA3155AD1CCFCA94005599A9 /* SMessage.swift */,
 				AA3155AF1CCFCCD0005599A9 /* SImageFile.swift */,
 				AA3155B11CCFCD3D005599A9 /* SMessageImage.swift */,
+				AA4EDD8C1CEB412B0014AC21 /* SChatMessageData.swift */,
+				AA4EDD8E1CEB43890014AC21 /* SChatMediaData.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1408,6 +1420,9 @@
 			children = (
 				AAEC5F441CDE0185009F7429 /* SChatCollectionViewFlowLayoutInvalidationContext.swift */,
 				AAEC5F461CDE094B009F7429 /* SChatCollectionViewLayoutAttributes.swift */,
+				AA4EDD881CEB3F840014AC21 /* SChatBubbleSizeCalculating.swift */,
+				AA4EDD8A1CEB3FDF0014AC21 /* SChatBubbleSizeCalculator.swift */,
+				AA4EDD901CEB445E0014AC21 /* SChatCollectionViewFlowLayout.swift */,
 			);
 			name = Layout;
 			sourceTree = "<group>";
@@ -2094,13 +2109,16 @@
 				AA3155AA1CCFCA71005599A9 /* SChat.swift in Sources */,
 				AADE92071CD369320008E68B /* SChatToolbarButtonFactory.swift in Sources */,
 				AAF1DBAE1CD6778C0040A0FB /* SChatNSBundle.swift in Sources */,
+				AA4EDD891CEB3F840014AC21 /* SChatBubbleSizeCalculating.swift in Sources */,
 				529444D409C1443AC331529447BBAAB0 /* SopinetChat-dummy.m in Sources */,
 				AAF3DB711CD227A800759E27 /* SChatCollectionView.swift in Sources */,
 				AA0F7E831CE9EF99006FA052 /* SChatCollectionViewCellOutgoing.swift in Sources */,
 				AA1457071CE87EDA002FE4CB /* SChatCollectionViewCell.swift in Sources */,
 				AAF3DB781CD236D500759E27 /* SChatInputToolbarDelegate.swift in Sources */,
+				AA4EDD911CEB445E0014AC21 /* SChatCollectionViewFlowLayout.swift in Sources */,
 				AAF1DBB01CD67CA80040A0FB /* SChatUIImage.swift in Sources */,
 				AAEC5F451CDE0185009F7429 /* SChatCollectionViewFlowLayoutInvalidationContext.swift in Sources */,
+				AA4EDD8F1CEB43890014AC21 /* SChatMediaData.swift in Sources */,
 				AA258FE71CD8912F00E251BB /* SChatKeyboardController.swift in Sources */,
 				AAF1DBAC1CD61E3F0040A0FB /* SChatUIView.swift in Sources */,
 				AA1457051CE87E55002FE4CB /* SChatCollectionViewCellDelegate.swift in Sources */,
@@ -2115,6 +2133,8 @@
 				AA1457031CE87BA0002FE4CB /* SChatLabel.swift in Sources */,
 				AAF118CB1CD77687002B94DD /* SChatString.swift in Sources */,
 				AA3155B01CCFCCD0005599A9 /* SImageFile.swift in Sources */,
+				AA4EDD8B1CEB3FDF0014AC21 /* SChatBubbleSizeCalculator.swift in Sources */,
+				AA4EDD8D1CEB412B0014AC21 /* SChatMessageData.swift in Sources */,
 				AA258FE91CD891E700E251BB /* SChatKeyboardControllerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
