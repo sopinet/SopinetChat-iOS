@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class SChatCollectionViewOutgoing: SChatCollectionViewCell
+public class SChatCollectionViewCellOutgoing: SChatCollectionViewCell
 {
     // MARK: Overrides
     

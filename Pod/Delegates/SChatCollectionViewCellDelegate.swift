@@ -16,7 +16,7 @@ public protocol SChatCollectionViewCellDelegate
     
     func messagesCollectionViewCellDidTapMessageBubble(cell: SChatCollectionViewCell)
     
-    func messagesCollectionViewCellDidTapCell(cell: SChatCollectionViewCell)
+    func messagesCollectionViewCellDidTapCell(cell: SChatCollectionViewCell, atPosition position: CGPoint)
     
-    func messagesCollectionViewCell(cell: SChatCollectionViewCell)
+    func messagesCollectionViewCell(cell: SChatCollectionViewCell, didPerformAction action: Selector, withSender sender: AnyObject?)
 }
