@@ -47,7 +47,16 @@ public class SChatBubbleSizeCalculator: NSObject, SChatBubbleSizeCalculating
     
     // MARK NSObject
     
-    // ...
+    override public var description: String
+    {
+        set {
+            description = "<\(self.dynamicType): cache=\(self.cache), minimumBubbleWidth=\(self.minimumBubbleWidth), usesFixedWidthBubbles=\(self.usesFixedWidthBubbles)>"
+        }
+        get
+        {
+            return description
+        }
+    }
     
     // MARK: SChatBubbleSizeCalculating
     
@@ -56,8 +65,84 @@ public class SChatBubbleSizeCalculator: NSObject, SChatBubbleSizeCalculating
         self.cache!.removeAllObjects()
     }
     
-    public func messageBubbleForMessageData(messageData: SChatMessageData, atIndexPath indexPath: NSIndexPath, withLayout layout: SChatCollectionViewFlowLayout)
+    public func messageBubbleSizeForMessageData(messageData: SChatMessageData, atIndexPath indexPath: NSIndexPath, withLayout layout: SChatCollectionViewFlowLayout) -> CGSize
     {
+        let cachedSize: NSValue? = self.cache?.objectForKey(messageData.messageHash()) as? NSValue
         
+        if cachedSize != nil
+        {
+            return cachedSize!.CGSizeValue()
+        }
+        
+        var finalSize = CGSizeZero
+        
+        if messageData.isMediaMessage()
+        {
+            finalSize = messageData.media!.mediaViewDisplaySize
+        }
+        else
+        {
+            let avatarSize = self.sChatAvatarSizeForMessageData(messageData, withLayout: layout)
+            
+            let spacingBetweenAvatarAndBubble: CGFloat = 2.0
+            
+            let horizontalContainerInsets = layout.messageBubbleTextViewTextContainerInsets!.left + layout.messageBubbleTextViewTextContainerInsets!.right
+            
+            let horizontalFrameInsets = layout.messageBubbleTextViewFrameInsets!.left + layout.messageBubbleTextViewFrameInsets!.right
+            
+            let horizontalInsetsTotal = horizontalContainerInsets + horizontalFrameInsets + spacingBetweenAvatarAndBubble
+            
+            let maximumTextWidth = self.textBubbleWidthForLayout(layout) - Float(avatarSize.width) - layout.messageBubbleLeftRightMargin! - Float(horizontalInsetsTotal)
+            
+            let stringRect = (messageData.text as! NSString).boundingRectWithSize(CGSizeMake(CGFloat(maximumTextWidth), CGFloat.max), options: [NSStringDrawingOptions.UsesLineFragmentOrigin, NSStringDrawingOptions.UsesFontLeading],
+                                                                                  attributes: [NSFontAttributeName : (layout.messageBubbleFont!)], context: nil)
+            
+            let stringSize = CGRectIntegral(stringRect).size
+            
+            let verticalContainerInsets = layout.messageBubbleTextViewTextContainerInsets!.top + layout.messageBubbleTextViewTextContainerInsets!.bottom
+
+            let verticalFrameInsets = layout.messageBubbleTextViewFrameInsets!.top + layout.messageBubbleTextViewFrameInsets!.bottom
+            
+            let verticalInsets = verticalContainerInsets + verticalFrameInsets + CGFloat(self.additionalInset!)
+            
+            let finalWidth = max(Float(stringSize.width + horizontalInsetsTotal), Float(self.minimumBubbleWidth!)) + Float(self.additionalInset!)
+            
+            finalSize = CGSizeMake(CGFloat(finalWidth), stringSize.height + verticalInsets)
+        }
+        
+        self.cache?.setObject(NSValue(CGSize: finalSize), forKey: messageData.messageHash())
+        
+        return finalSize
+    }
+    
+    func sChatAvatarSizeForMessageData(messageData: SChatMessageData,
+                                       withLayout layout: SChatCollectionViewFlowLayout) -> CGSize
+    {
+        let messageSender = messageData.senderId
+        
+        if messageSender == layout.collectionView?.dataSourceInterceptor?.senderId
+        {
+            return layout.outgoingAvatarViewSize!
+        }
+        
+        return layout.incomingAvatarViewSize!
+    }
+    
+    func textBubbleWidthForLayout(layout: SChatCollectionViewFlowLayout) -> Float
+    {
+        if self.layoutWidthForFixedWidthBubbles > 0.0
+        {
+            return self.layoutWidthForFixedWidthBubbles!
+        }
+        
+        let horizontalInsets = layout.sectionInset.left + layout.sectionInset.right + CGFloat(self.additionalInset!)
+        
+        let width = CGRectGetWidth(layout.collectionView!.bounds) - horizontalInsets
+        
+        let height = CGRectGetHeight(layout.collectionView!.bounds) - horizontalInsets
+        
+        self.layoutWidthForFixedWidthBubbles = min(Float(width), Float(height))
+        
+        return self.layoutWidthForFixedWidthBubbles!
     }
 }

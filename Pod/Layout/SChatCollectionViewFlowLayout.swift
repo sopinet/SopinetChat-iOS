@@ -10,5 +10,20 @@ import Foundation
 
 public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
 {
-
+    public override var collectionView: SChatCollectionView?
+    {
+        get { return collectionView }
+    }
+    
+    var incomingAvatarViewSize: CGSize?
+    
+    var outgoingAvatarViewSize: CGSize?
+    
+    var messageBubbleTextViewFrameInsets: UIEdgeInsets?
+    
+    var messageBubbleTextViewTextContainerInsets: UIEdgeInsets?
+    
+    var messageBubbleLeftRightMargin: Float?
+    
+    var messageBubbleFont: UIFont?
 }

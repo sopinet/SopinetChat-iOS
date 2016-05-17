@@ -10,9 +10,9 @@ import Foundation
 
 public protocol SChatBubbleSizeCalculating
 {
-    func messageBubbleForMessageData(messageData: SChatMessageData,
+    func messageBubbleSizeForMessageData(messageData: SChatMessageData,
                                      atIndexPath indexPath: NSIndexPath,
-                                                 withLayout layout: SChatCollectionViewFlowLayout)
+                                                 withLayout layout: SChatCollectionViewFlowLayout) -> CGSize
     
     func prepareForResettingLayout(layout: SChatCollectionViewFlowLayout)
 }
