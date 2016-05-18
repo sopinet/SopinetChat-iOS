@@ -18,12 +18,28 @@ public class SChatCollectionView: UICollectionView
         didSet {
             if dataSource != nil {
                 //let castedDelegate = unsafeBitCast(delegate, SChatInputToolbarDelegate.self)
-                let castedDelegate: SChatCollectionViewDataSource = dataSource as! SChatCollectionViewDataSource
-                dataSourceInterceptor = castedDelegate
+                let castedDataSource: SChatCollectionViewDataSource = dataSource as! SChatCollectionViewDataSource
+                dataSourceInterceptor = castedDataSource
             }
             else {
                 dataSourceInterceptor = nil
             }
         }
     }
+    
+    weak var delegateInterceptor: SChatCollectionViewDelegateFlowLayout?
+    
+    override public var delegate: UICollectionViewDelegate? {
+        didSet {
+            if delegate != nil {
+                //let castedDelegate = unsafeBitCast(delegate, SChatInputToolbarDelegate.self)
+                let castedDelegate: SChatCollectionViewDelegateFlowLayout = delegate as! SChatCollectionViewDelegateFlowLayout
+                delegateInterceptor = castedDelegate
+            }
+            else {
+                delegateInterceptor = nil
+            }
+        }
+    }
+    
 }

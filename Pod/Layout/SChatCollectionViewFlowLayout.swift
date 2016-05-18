@@ -276,12 +276,12 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
     
     func sChatDidReceiveApplicationMemoryWarningNotification(notification: NSNotification)
     {
-        // TODO: self.resetLayout()
+        self.sChatResetLayout()
     }
     
     func sChatDidReceiveDeviceOrientationDidChangeNotification(notification: NSNotification)
     {
-        // TODO: self.resetLayout()
+        self.sChatResetLayout()
         self.invalidateLayoutWithContext(SChatCollectionViewFlowLayoutInvalidationContext.context())
     }
     
@@ -298,12 +298,12 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
         if (context as! SChatCollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutAttributes
             || (context as! SChatCollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutDelegateMetrics
         {
-            // TODO: self.sChatResetDynamicAnimator()
+            self.sChatResetDynamicAnimator()
         }
         
         if (context as! SChatCollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutMessagesCache
         {
-            // TODO: self.sChatResetLayout()
+            self.sChatResetLayout()
         }
         
         super.invalidateLayoutWithContext(context)
@@ -323,9 +323,9 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
             
             let visibleItemsIndexPaths: NSSet = NSSet(array: visibleItems.valueForKey(NSStringFromSelector(Selector("indexPath"))) as! [AnyObject])
             
-            // TODO: self.sChatRemoveNoLongerVisibleBehaviorsFromVisibleItemsIndexPaths(visibleItemsIndexPaths)
+            self.sChatRemoveNoLongerVisibleBehaviorsFromVisibleItemsIndexPaths(visibleItemsIndexPaths)
             
-            // TODO: self.sChatAddNewlyVisibleBehaviorsFromVisibleItems(visibleItems)
+            self.sChatAddNewlyVisibleBehaviorsFromVisibleItems(visibleItems as [AnyObject])
         }
     }
     
@@ -363,7 +363,7 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
             {
                 if value.representedElementCategory == UICollectionElementCategory.Cell
                 {
-                    // TODO: self.sChatConfigureMessageCellLayoutAttributes(attributesItem)
+                    self.sChatConfigureMessageCellLayoutAttributes(value as! SChatCollectionViewLayoutAttributes)
                 }
                 else
                 {
@@ -381,7 +381,7 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
         
         if customAttributes.representedElementCategory == UICollectionElementCategory.Cell
         {
-            // TODO: self.sChatConfigureMessageCellLayoutAttributes(customAttributes)
+            self.sChatConfigureMessageCellLayoutAttributes(customAttributes)
         }
         
         return customAttributes
@@ -400,7 +400,7 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
             
             for (index, value) in self.dynamicAnimator!.behaviors.enumerate()
             {
-                // TODO: self.sChatAdjustSpringBehavior(value, forTouchLocation: touchLocation)
+                self.sChatAdjustSpringBehavior(value as! UIAttachmentBehavior, forTouchLocation: touchLocation!)
                 self.dynamicAnimator?.updateItemUsingCurrentState((value as! UIAttachmentBehavior).items.first!)
             }
         }
@@ -417,6 +417,199 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
     
     public override func prepareForCollectionViewUpdates(updateItems: [UICollectionViewUpdateItem])
     {
-        // ...
+        super.prepareForCollectionViewUpdates(updateItems)
+        
+        for (index, value) in updateItems.enumerate()
+        {
+            if value.updateAction == UICollectionUpdateAction.Insert
+            {
+                if !self.springinessEnabled && (self.dynamicAnimator!.layoutAttributesForCellAtIndexPath(value.indexPathAfterUpdate!) == nil) != nil
+                {
+                    let collectionViewHeight = CGRectGetHeight(self.collectionView!.bounds)
+                    
+                    let attributes: SChatCollectionViewLayoutAttributes = self.dynamicAnimator!.layoutAttributesForCellAtIndexPath(value.indexPathAfterUpdate!) as! SChatCollectionViewLayoutAttributes
+                    
+                    if attributes.representedElementCategory == UICollectionElementCategory.Cell
+                    {
+                        self.sChatConfigureMessageCellLayoutAttributes(attributes)
+                    }
+                    
+                    attributes.frame = CGRectMake(0.0,
+                                                  collectionViewHeight + CGRectGetHeight(attributes.frame),
+                                                  CGRectGetWidth(attributes.frame),
+                                                  CGRectGetHeight(attributes.frame))
+                    
+                    if self.springinessEnabled
+                    {
+                        let springBehaviour = self.sChatSpringBehaviorWithLayoutAttributesItem(attributes)
+                        
+                        self.dynamicAnimator?.addBehavior(springBehaviour!)
+                    }
+                }
+            }
+        }
+    }
+    
+    // MARK: Invalidation utilities
+    
+    func sChatResetLayout()
+    {
+        self.bubbleSizeCalculator?.prepareForResettingLayout(self)
+        self.sChatResetDynamicAnimator()
+    }
+    
+    func sChatResetDynamicAnimator()
+    {
+        if self.springinessEnabled
+        {
+            self.dynamicAnimator?.removeAllBehaviors()
+            self.visibleIndexPaths?.removeAllObjects()
+        }
+    }
+    
+    // MARK: Message cell layout utilities
+    
+    func messageBubblesSizeForItemAtIndexPath(indexPath: NSIndexPath) -> CGSize
+    {
+        let messageItem: SChatMessageData = self.collectionView!.dataSourceInterceptor!.collectionView(self.collectionView!, messageDataForItemAtIndexPath: indexPath)
+        
+        return self.bubbleSizeCalculator!.messageBubbleSizeForMessageData(messageItem,
+                                                                          atIndexPath: indexPath,
+                                                                          withLayout: self)
+    }
+    
+    func sizeForItemAtIndexPath(indexPath: NSIndexPath) -> CGSize
+    {
+        let messageBubbleSize = self.messageBubblesSizeForItemAtIndexPath(indexPath)
+        
+        let attributes: SChatCollectionViewLayoutAttributes = self.layoutAttributesForItemAtIndexPath(indexPath) as! SChatCollectionViewLayoutAttributes
+        
+        var finalHeight = Float(messageBubbleSize.height)
+        
+        finalHeight += attributes.cellTopLabelHeight!
+        finalHeight += attributes.messageBubbleTopLabelHeight!
+        finalHeight += attributes.cellBottomLabelHeight!
+        
+        return CGSizeMake(CGFloat(self.itemWidth), CGFloat(ceilf(finalHeight)))
+    }
+    
+    func sChatConfigureMessageCellLayoutAttributes(layoutAttributes: SChatCollectionViewLayoutAttributes)
+    {
+        let indexPath = layoutAttributes.indexPath
+        
+        let messageBubbleSize = self.messageBubblesSizeForItemAtIndexPath(indexPath)
+        
+        layoutAttributes.messageBubbleContainerViewWidth = Float(messageBubbleSize.width)
+        
+        layoutAttributes.textViewFrameInsets = self.messageBubbleTextViewFrameInsets
+        
+        layoutAttributes.textViewTextContainerInsets = self.messageBubbleTextViewTextContainerInsets
+        
+        layoutAttributes.incomingAvatarViewSize = self.incomingAvatarViewSize
+        
+        layoutAttributes.outgoingAvatarViewSize = self.outgoingAvatarViewSize
+        
+        layoutAttributes.cellTopLabelHeight = self.collectionView!.delegateInterceptor?
+            .collectionView(self.collectionView!,
+                            layout: self,
+                            heightForCellTopLabelAtIndexPath: indexPath)
+        
+        layoutAttributes.messageBubbleTopLabelHeight = self.collectionView!.delegateInterceptor?
+            .collectionView(self.collectionView!,
+                            layout: self,
+                            heightForMessageBubbleTopLabelAtIndexPath: indexPath)
+        
+        layoutAttributes.cellBottomLabelHeight = self.collectionView!.delegateInterceptor?.collectionView(self.collectionView!, layout: self, heightForCellBottomLabelAtIndexPath: indexPath)
+    }
+    
+    // MARK: Spring behavior utilities
+    
+    func sChatSpringBehaviorWithLayoutAttributesItem(item: UICollectionViewLayoutAttributes) -> UIAttachmentBehavior?
+    {
+        if CGSizeEqualToSize(item.frame.size, CGSizeZero)
+        {
+            return nil
+        }
+        
+        let springBehavior: UIAttachmentBehavior = UIAttachmentBehavior(item: item,
+                                                                        attachedToAnchor: item.center)
+        
+        springBehavior.length = 1.0
+        springBehavior.damping = 1.0
+        springBehavior.frequency = 1.0
+        
+        return springBehavior
+    }
+    
+    func sChatAddNewlyVisibleBehaviorsFromVisibleItems(visibleItems: [AnyObject])
+    {
+        let indexSet: NSIndexSet = (visibleItems as NSArray).indexesOfObjectsPassingTest({
+            (item: AnyObject!, index: Int, stop: UnsafeMutablePointer<ObjCBool>) -> Bool in
+            return !self.visibleIndexPaths!.containsObject(item.indexPath)
+        })
+        
+        let newlyVisibleItems = (visibleItems as NSArray).objectsAtIndexes(indexSet)
+        
+        let touchLocation = self.collectionView!.panGestureRecognizer.locationInView(self.collectionView!)
+        
+        for (index, value) in newlyVisibleItems.enumerate()
+        {
+            let springBehaviour: UIAttachmentBehavior = self.sChatSpringBehaviorWithLayoutAttributesItem(value as! UICollectionViewLayoutAttributes)!
+            
+            self.sChatAdjustSpringBehavior(springBehaviour, forTouchLocation: touchLocation)
+            
+            self.dynamicAnimator?.addBehavior(springBehaviour)
+            self.visibleIndexPaths?.addObject(value.indexPath)
+        }
+    }
+    
+    func sChatRemoveNoLongerVisibleBehaviorsFromVisibleItemsIndexPaths(visibleItemsIndexPaths: NSSet)
+    {
+        let behaviors = self.dynamicAnimator!.behaviors
+        
+        let indexSet: NSIndexSet = (behaviors as NSArray).indexesOfObjectsPassingTest({
+            (springBehaviour: AnyObject!, index: Int, stop: UnsafeMutablePointer<ObjCBool>) -> Bool in
+            
+            let layoutAttributes: UICollectionViewLayoutAttributes = springBehaviour.items.first! as! UICollectionViewLayoutAttributes
+            
+            return !self.visibleIndexPaths!.containsObject(layoutAttributes.indexPath)
+        })
+        
+        let behaviorsNSArray: NSArray = self.dynamicAnimator!.behaviors as! NSArray
+        let behaviorsToRemove = behaviorsNSArray.objectsAtIndexes(indexSet)
+        
+        for (index, value) in behaviorsToRemove.enumerate()
+        {
+            let layoutAttributes: UICollectionViewLayoutAttributes = value.items.first! as! UICollectionViewLayoutAttributes
+            
+            self.dynamicAnimator?.removeBehavior(value as! UIDynamicBehavior)
+            self.visibleIndexPaths?.removeObject(layoutAttributes.indexPath)
+        }
+
+    }
+    
+    func sChatAdjustSpringBehavior(springBehavior: UIAttachmentBehavior, forTouchLocation touchLocation: CGPoint)
+    {
+        let item: UICollectionViewLayoutAttributes = springBehavior.items.first! as! UICollectionViewLayoutAttributes
+        
+        var center = item.center
+        
+        if !CGPointEqualToPoint(CGPointZero, touchLocation)
+        {
+            let distanceFromTouch = fabs(touchLocation.y - springBehavior.anchorPoint.y)
+            
+            let scrollResistance = distanceFromTouch / CGFloat(self.springResistanceFactor)
+            
+            if self.latestDelta < 0.0
+            {
+                center.y += max(CGFloat(self.latestDelta!), CGFloat(self.latestDelta!) * scrollResistance)
+            }
+            else
+            {
+                center.y += min(CGFloat(self.latestDelta!), CGFloat(self.latestDelta!) * scrollResistance)
+            }
+            
+            item.center = center
+        }
     }
 }

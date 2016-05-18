@@ -225,6 +225,8 @@
 		AA4EDD971CEB75E80014AC21 /* SChatAvatarImageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EDD961CEB75E80014AC21 /* SChatAvatarImageDataSource.swift */; };
 		AA572C9AC15C6598E7D2BC2032056E68 /* Pods-SopinetChat_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 619F4CD4DA87834F02119580F7ABE57B /* Pods-SopinetChat_Tests-dummy.m */; };
 		AA8E11381CD5435500CA8DF1 /* SChatAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AA8E11371CD5435500CA8DF1 /* SChatAssets.bundle */; };
+		AAA64ADE1CECCF98004392F1 /* SChatCollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA64ADD1CECCF98004392F1 /* SChatCollectionViewDelegateFlowLayout.swift */; };
+		AAA64AE01CECD1CC004392F1 /* SChatLoadEarlierHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA64ADF1CECD1CC004392F1 /* SChatLoadEarlierHeaderView.swift */; };
 		AADE92041CD34AD20008E68B /* SChatInputToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADE92031CD34AD20008E68B /* SChatInputToolbar.swift */; };
 		AADE92071CD369320008E68B /* SChatToolbarButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADE92061CD369320008E68B /* SChatToolbarButtonFactory.swift */; };
 		AADE92101CD375B70008E68B /* SChatUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADE920F1CD375B70008E68B /* SChatUIColor.swift */; };
@@ -700,6 +702,8 @@
 		AA4EDD941CEB756C0014AC21 /* SChatBubbleImageDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatBubbleImageDataSource.swift; path = Models/SChatBubbleImageDataSource.swift; sourceTree = "<group>"; };
 		AA4EDD961CEB75E80014AC21 /* SChatAvatarImageDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatAvatarImageDataSource.swift; path = Models/SChatAvatarImageDataSource.swift; sourceTree = "<group>"; };
 		AA8E11371CD5435500CA8DF1 /* SChatAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SChatAssets.bundle; sourceTree = "<group>"; };
+		AAA64ADD1CECCF98004392F1 /* SChatCollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatCollectionViewDelegateFlowLayout.swift; path = Models/SChatCollectionViewDelegateFlowLayout.swift; sourceTree = "<group>"; };
+		AAA64ADF1CECD1CC004392F1 /* SChatLoadEarlierHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatLoadEarlierHeaderView.swift; path = Views/SChatLoadEarlierHeaderView.swift; sourceTree = "<group>"; };
 		AADE92031CD34AD20008E68B /* SChatInputToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatInputToolbar.swift; path = Views/SChatInputToolbar.swift; sourceTree = "<group>"; };
 		AADE92061CD369320008E68B /* SChatToolbarButtonFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatToolbarButtonFactory.swift; path = Factories/SChatToolbarButtonFactory.swift; sourceTree = "<group>"; };
 		AADE920F1CD375B70008E68B /* SChatUIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatUIColor.swift; path = Extensions/SChatUIColor.swift; sourceTree = "<group>"; };
@@ -1394,6 +1398,7 @@
 				AA4EDD921CEB73430014AC21 /* SChatCollectionViewDataSource.swift */,
 				AA4EDD941CEB756C0014AC21 /* SChatBubbleImageDataSource.swift */,
 				AA4EDD961CEB75E80014AC21 /* SChatAvatarImageDataSource.swift */,
+				AAA64ADD1CECCF98004392F1 /* SChatCollectionViewDelegateFlowLayout.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1454,6 +1459,7 @@
 				AA0F7E821CE9EF99006FA052 /* SChatCollectionViewCellOutgoing.swift */,
 				AA0F7E841CE9F002006FA052 /* SChatCollectionViewCellIncoming.xib */,
 				AA0F7E861CE9F01A006FA052 /* SChatCollectionViewCellOutgoing.xib */,
+				AAA64ADF1CECD1CC004392F1 /* SChatLoadEarlierHeaderView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -2114,6 +2120,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47CF75F571EEFA4A405EF4E25BE7D9E1 /* NotificationsManager.swift in Sources */,
+				AAA64AE01CECD1CC004392F1 /* SChatLoadEarlierHeaderView.swift in Sources */,
 				AA3155B21CCFCD3D005599A9 /* SMessageImage.swift in Sources */,
 				AAF3DB731CD2290A00759E27 /* SChatToolbarView.swift in Sources */,
 				AA2CFFCC1CE5F9930022EF00 /* SChatCellTextView.swift in Sources */,
@@ -2138,6 +2145,7 @@
 				AAF118C91CD76CED002B94DD /* SChatComposerTextView.swift in Sources */,
 				AA0F7E811CE9EF1D006FA052 /* SChatCollectionViewCellIncoming.swift in Sources */,
 				AA4EDD931CEB73430014AC21 /* SChatCollectionViewDataSource.swift in Sources */,
+				AAA64ADE1CECCF98004392F1 /* SChatCollectionViewDelegateFlowLayout.swift in Sources */,
 				AA3155AE1CCFCA94005599A9 /* SMessage.swift in Sources */,
 				AA4EDD951CEB756C0014AC21 /* SChatBubbleImageDataSource.swift in Sources */,
 				AA3155AC1CCFCA83005599A9 /* SUser.swift in Sources */,
