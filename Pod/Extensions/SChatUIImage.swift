@@ -40,8 +40,48 @@ extension UIImage
         return UIImage(contentsOfFile: path!)!
     }
     
+    static func sChatBubbleRegularImage() -> UIImage
+    {
+        return UIImage.sChatImageFromBundleWithName("bubble_regular")
+    }
+    
+    static func sChatBubbleRegularTaillessImage() -> UIImage
+    {
+        return UIImage.sChatImageFromBundleWithName("bubble_tailless")
+    }
+    
+    static func sChatBubbleStrokedImage() -> UIImage
+    {
+        return UIImage.sChatImageFromBundleWithName("bubble_stroked")
+    }
+    
+    static func sChatBubbleStrokedTaillessImage() -> UIImage
+    {
+        return UIImage.sChatImageFromBundleWithName("bubble_stroked_tailless")
+    }
+    
+    static func sChatBubbleCompactImage() -> UIImage
+    {
+        return UIImage.sChatImageFromBundleWithName("bubble_min")
+    }
+    
+    static func sChatBubbleCompactTaillessImage() -> UIImage
+    {
+        return UIImage.sChatImageFromBundleWithName("bubble_min_tailless")
+    }
+    
     static func sChatDefaultAccesoryImage() -> UIImage
     {
         return sChatImageFromBundleWithName("clip")
+    }
+    
+    static func sChatDefaultTypingIndicatorImage() -> UIImage
+    {
+        return UIImage.sChatImageFromBundleWithName("typing")
+    }
+    
+    static func sChatDefaultPlayImage() -> UIImage
+    {
+        return UIImage.sChatImageFromBundleWithName("play")
     }
 }
