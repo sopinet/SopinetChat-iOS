@@ -471,7 +471,7 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
     
     func messageBubblesSizeForItemAtIndexPath(indexPath: NSIndexPath) -> CGSize
     {
-        let messageItem: SChatMessageData = self.collectionView!.dataSourceInterceptor!.collectionView(self.collectionView!, messageDataForItemAtIndexPath: indexPath)
+        let messageItem: SChatMessageData = self.collectionView!.dataSourceInterceptor!.collectionView(self.collectionView!, messageDataForItemAtIndexPath: indexPath)!
         
         return self.bubbleSizeCalculator!.messageBubbleSizeForMessageData(messageItem,
                                                                           atIndexPath: indexPath,

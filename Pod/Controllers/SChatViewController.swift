@@ -29,9 +29,9 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
     var currentInteractivePopGestureRecognizer: UIGestureRecognizer? = nil
     var selectedIndexPathForMenu: NSIndexPath?
     
-    public var senderDisplayName: String
+    public var senderDisplayName: String = ""
     
-    public var senderId: String
+    public var senderId: String = ""
     
     var automaticallyScrollsToMostRecentMessage: Bool = true
     
@@ -559,6 +559,11 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         assert(false, "ERROR: requried method not implemented")
     }
     
+    public func collectionView(collectionView: SChatCollectionView, didTapMessageBubbleAtIndexPath indexPath: NSIndexPath)
+    {
+        assert(false, "ERROR: requried method not implemented")
+    }
+    
     public func collectionView(collectionView: SChatCollectionView, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath) -> SChatBubbleImageDataSource?
     {
         assert(false, "ERROR: requried method not implemented")
@@ -598,10 +603,12 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         return 1
     }
     
-    public func collectionView(collectionView: SChatCollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
-        let messageItem:SChatMessageData? = collectionView.dataSourceInterceptor!
-            .collectionView(collectionView,
+        let castedCollectionView: SChatCollectionView = collectionView as! SChatCollectionView
+        
+        let messageItem:SChatMessageData? = castedCollectionView.dataSourceInterceptor!
+            .collectionView(castedCollectionView,
                             messageDataForItemAtIndexPath: indexPath)
         
         assert(messageItem != nil, "Message item = nil on cellForItemAtIndexPath")
@@ -626,7 +633,7 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         
         let cell: SChatCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier!, forIndexPath: indexPath) as! SChatCollectionViewCell
         
-        cell.delegate = collectionView
+        cell.delegate = castedCollectionView
         
         if !isMediaMessage
         {
@@ -634,7 +641,7 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
             
             assert(cell.textView.text != nil, "cell.textView = nil in cellForItemAtIndexPath")
             
-            let bubbleImageDataSource: SChatBubbleImageDataSource = collectionView.dataSourceInterceptor!.collectionView(collectionView, messageBubbleImageDataForItemAtIndexPath: indexPath)!
+            let bubbleImageDataSource: SChatBubbleImageDataSource = castedCollectionView.dataSourceInterceptor!.collectionView(castedCollectionView, messageBubbleImageDataForItemAtIndexPath: indexPath)!
             
             cell.messageBubbleImageView.image = bubbleImageDataSource.messageBubbleImage
             
@@ -650,11 +657,11 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         
         var needsAvatar = true
         
-        if isOutgoingMessage && CGSizeEqualToSize(collectionView.collectionViewLayoutInterceptor!.outgoingAvatarViewSize, CGSizeZero)
+        if isOutgoingMessage && CGSizeEqualToSize(castedCollectionView.collectionViewLayoutInterceptor!.outgoingAvatarViewSize, CGSizeZero)
         {
             needsAvatar = false
         }
-        else if !isOutgoingMessage && CGSizeEqualToSize(collectionView.collectionViewLayoutInterceptor!.incomingAvatarViewSize, CGSizeZero)
+        else if !isOutgoingMessage && CGSizeEqualToSize(castedCollectionView.collectionViewLayoutInterceptor!.incomingAvatarViewSize, CGSizeZero)
         {
             needsAvatar = false
         }
@@ -663,7 +670,7 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         
         if needsAvatar
         {
-            avatarImageDataSource = collectionView.dataSourceInterceptor?.collectionView(collectionView, avatarImageDataForItemAtIndexPath: indexPath)
+            avatarImageDataSource = castedCollectionView.dataSourceInterceptor?.collectionView(castedCollectionView, avatarImageDataForItemAtIndexPath: indexPath)
             
             if avatarImageDataSource != nil
             {
@@ -682,11 +689,11 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
             }
         }
         
-        cell.cellTopLabel.attributedText = collectionView.dataSourceInterceptor?.collectionView(collectionView, attributedTextForCellTopLabelAtIndexPath: indexPath)
+        cell.cellTopLabel.attributedText = castedCollectionView.dataSourceInterceptor?.collectionView(castedCollectionView, attributedTextForCellTopLabelAtIndexPath: indexPath)
         
-        cell.messageBubbleTopLabel.attributedText = collectionView.dataSourceInterceptor?.collectionView(collectionView, attributedTextForMessageBubbleTopLabelAtIndexPath: indexPath)
+        cell.messageBubbleTopLabel.attributedText = castedCollectionView.dataSourceInterceptor?.collectionView(castedCollectionView, attributedTextForMessageBubbleTopLabelAtIndexPath: indexPath)
         
-        cell.cellBottomLabel.attributedText = collectionView.dataSourceInterceptor?.collectionView(collectionView, attributedTextForCellBottomLabelAtIndexPath: indexPath)
+        cell.cellBottomLabel.attributedText = castedCollectionView.dataSourceInterceptor?.collectionView(castedCollectionView, attributedTextForCellBottomLabelAtIndexPath: indexPath)
         
         let bubbleTopLabelInset: CGFloat = avatarImageDataSource != nil ? 60.0 : 15.0
         
@@ -720,6 +727,91 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
     // MARK: CollectionView Delegate
     
     public func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool
+    {
+        let castedCollectionView: SChatCollectionView = collectionView as! SChatCollectionView
+        
+        let messageItem = castedCollectionView.dataSourceInterceptor?.collectionView(castedCollectionView, messageDataForItemAtIndexPath: indexPath)
+        
+        if messageItem!.isMediaMessage()
+        {
+            return false
+        }
+        
+        self.selectedIndexPathForMenu = indexPath
+        
+        let selectedCell: SChatCollectionViewCell = castedCollectionView.cellForItemAtIndexPath(indexPath) as! SChatCollectionViewCell
+        
+        selectedCell.textView.selectable = false
+        
+        return true
+    }
+    
+    public func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool
+    {
+        if action == #selector(copy(_:)) || action == #selector(delete(_:))
+        {
+            return true
+        }
+        
+        return false
+    }
+    
+    public func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?)
+    {
+        let castedCollectionView: SChatCollectionView = collectionView as! SChatCollectionView
+        
+        if action == #selector(copy(_:))
+        {
+            let messageData = castedCollectionView.dataSourceInterceptor?.collectionView(castedCollectionView, messageDataForItemAtIndexPath: indexPath)
+            
+            UIPasteboard.generalPasteboard().string = messageData?.text
+        }
+        else if action == #selector(delete(_:))
+        {
+            castedCollectionView.dataSourceInterceptor?.collectionView(castedCollectionView, didDeleteMessageAtIndexPath: indexPath)
+        }
+    }
+    
+    // CollectionView Delegate Flow Layout
+    
+    public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
+    {
+        let castedCollectionViewLayout: SChatCollectionViewFlowLayout = collectionViewLayout as! SChatCollectionViewFlowLayout
+        
+        return castedCollectionViewLayout.sizeForItemAtIndexPath(indexPath)
+    }
+    
+    public func collectionView(collectionView: SChatCollectionView, layout: SChatCollectionViewFlowLayout, heightForCellTopLabelAtIndexPath indexPath: NSIndexPath) -> Float
+    {
+        return 0.0
+    }
+    
+    public func collectionView(collectionView: SChatCollectionView, layout: SChatCollectionViewFlowLayout, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath) -> Float
+    {
+        return 0.0
+    }
+    
+    public func collectionView(collectionView: SChatCollectionView, layout: SChatCollectionViewFlowLayout, heightForCellBottomLabelAtIndexPath indexPath: NSIndexPath) -> Float
+    {
+        return 0.0
+    }
+    
+    public func collectionView(collectionView: SChatCollectionView, didTapAvatarImageView avatarImageView: UIImageView, atIndexPath indexPath: NSIndexPath)
+    {
+        
+    }
+    
+    public func collectionView(collectionView: SChatCollectionView, didTapMessageBubbleAtIndexPath avatarImageView: UIImageView, atIndexPath indexPath: NSIndexPath)
+    {
+        
+    }
+    
+    public func collectionView(collectionView: SChatCollectionView, didTapCellAtIndexPath indexPath: NSIndexPath, touchLocation: CGPoint)
+    {
+        
+    }
+    
+    public func collectionView(collectionView: SChatCollectionView, header: SChatLoadEarlierHeaderView, didTapLoadEarlierMessagesButton sender: UIButton)
     {
         
     }
