@@ -547,4 +547,180 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
     }
     
     // MARK: SChat CollectionView Data Source
+    
+    public func collectionView(collectionView: SChatCollectionView, messageDataForItemAtIndexPath indexPath: NSIndexPath) -> SChatMessageData?
+    {
+        assert(false, "ERROR: requried method not implemented")
+        return nil
+    }
+    
+    public func collectionView(collectionView: SChatCollectionView, didDeleteMessageAtIndexPath indexPath: NSIndexPath)
+    {
+        assert(false, "ERROR: requried method not implemented")
+    }
+    
+    public func collectionView(collectionView: SChatCollectionView, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath) -> SChatBubbleImageDataSource?
+    {
+        assert(false, "ERROR: requried method not implemented")
+        return nil
+    }
+    
+    public func collectionView(collectionView: SChatCollectionView, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath) -> SChatAvatarImageDataSource?
+    {
+        assert(false, "ERROR: requried method not implemented")
+        return nil
+    }
+    
+    public func collectionView(collectionView: SChatCollectionView, attributedTextForCellTopLabelAtIndexPath indexPath:NSIndexPath) -> NSAttributedString?
+    {
+        return nil
+    }
+    
+    public func collectionView(collectionView: SChatCollectionView, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath:NSIndexPath) -> NSAttributedString?
+    {
+        return nil
+    }
+    
+    public func collectionView(collectionView: SChatCollectionView, attributedTextForCellBottomLabelAtIndexPath indexPath: NSIndexPath) -> NSAttributedString?
+    {
+        return nil
+    }
+    
+    // MARK: CollectionView Data Source
+    
+    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return 0
+    }
+    
+    public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
+    {
+        return 1
+    }
+    
+    public func collectionView(collectionView: SChatCollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+    {
+        let messageItem:SChatMessageData? = collectionView.dataSourceInterceptor!
+            .collectionView(collectionView,
+                            messageDataForItemAtIndexPath: indexPath)
+        
+        assert(messageItem != nil, "Message item = nil on cellForItemAtIndexPath")
+        
+        let messageSenderId: String? = messageItem!.senderId
+        
+        assert(messageSenderId != nil, "MessageSenderId = nil on cellForItemAtIndexPath")
+        
+        let isOutgoingMessage = messageSenderId == self.senderId
+        let isMediaMessage = messageItem!.isMediaMessage()
+        
+        var cellIdentifier: String? = nil
+        
+        if isMediaMessage
+        {
+            cellIdentifier = isOutgoingMessage ? self.outgoingMediaCellIdentifier : self.incomingMediaCellIdentifier
+        }
+        else
+        {
+            cellIdentifier = isOutgoingMessage ? self.outgoingCellIdentifier : self.incomingCellIdentifier
+        }
+        
+        let cell: SChatCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifier!, forIndexPath: indexPath) as! SChatCollectionViewCell
+        
+        cell.delegate = collectionView
+        
+        if !isMediaMessage
+        {
+            cell.textView.text = messageItem?.text
+            
+            assert(cell.textView.text != nil, "cell.textView = nil in cellForItemAtIndexPath")
+            
+            let bubbleImageDataSource: SChatBubbleImageDataSource = collectionView.dataSourceInterceptor!.collectionView(collectionView, messageBubbleImageDataForItemAtIndexPath: indexPath)!
+            
+            cell.messageBubbleImageView.image = bubbleImageDataSource.messageBubbleImage
+            
+            cell.messageBubbleImageView.highlightedImage = bubbleImageDataSource.messageBubbleHighlightedImage
+        }
+        else
+        {
+            let messageMedia: SChatMediaData? = messageItem?.media
+            
+            //TODO: cell.mediaView = messageMedia.mediaPlaceholder()
+            assert(cell.mediaView != nil)
+        }
+        
+        var needsAvatar = true
+        
+        if isOutgoingMessage && CGSizeEqualToSize(collectionView.collectionViewLayoutInterceptor!.outgoingAvatarViewSize, CGSizeZero)
+        {
+            needsAvatar = false
+        }
+        else if !isOutgoingMessage && CGSizeEqualToSize(collectionView.collectionViewLayoutInterceptor!.incomingAvatarViewSize, CGSizeZero)
+        {
+            needsAvatar = false
+        }
+        
+        var avatarImageDataSource: SChatAvatarImageDataSource? = nil
+        
+        if needsAvatar
+        {
+            avatarImageDataSource = collectionView.dataSourceInterceptor?.collectionView(collectionView, avatarImageDataForItemAtIndexPath: indexPath)
+            
+            if avatarImageDataSource != nil
+            {
+                let avatarImage = avatarImageDataSource?.avatarImage
+                
+                if avatarImage == nil
+                {
+                    cell.avatarImageView.image = avatarImageDataSource?.avatarPlaceholderImage
+                    cell.avatarImageView.highlightedImage = nil
+                }
+                else
+                {
+                    cell.avatarImageView.image = avatarImage
+                    cell.avatarImageView.highlightedImage = avatarImageDataSource?.avatarHighlightedImage
+                }
+            }
+        }
+        
+        cell.cellTopLabel.attributedText = collectionView.dataSourceInterceptor?.collectionView(collectionView, attributedTextForCellTopLabelAtIndexPath: indexPath)
+        
+        cell.messageBubbleTopLabel.attributedText = collectionView.dataSourceInterceptor?.collectionView(collectionView, attributedTextForMessageBubbleTopLabelAtIndexPath: indexPath)
+        
+        cell.cellBottomLabel.attributedText = collectionView.dataSourceInterceptor?.collectionView(collectionView, attributedTextForCellBottomLabelAtIndexPath: indexPath)
+        
+        let bubbleTopLabelInset: CGFloat = avatarImageDataSource != nil ? 60.0 : 15.0
+        
+        if isOutgoingMessage
+        {
+            cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, bubbleTopLabelInset)
+        }
+        else
+        {
+            cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0.0, bubbleTopLabelInset, 0.0, 0.0)
+        }
+        
+        cell.textView.dataDetectorTypes = UIDataDetectorTypes.All
+        
+        cell.backgroundColor = UIColor.clearColor()
+        cell.layer.rasterizationScale = UIScreen.mainScreen().scale
+        cell.layer.shouldRasterize = true
+        
+        return cell
+    }
+    
+    /* TODO: Necesito hacer el typing indicator y el loadEarlierHeader public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
+    {
+        return nil
+    }*/
+    
+    // TODO: Implementar esto: referenceSizeForFooterInSection
+    
+    // TODO: Implementar esto: referenceSizeForHeaderInSection
+    
+    // MARK: CollectionView Delegate
+    
+    public func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool
+    {
+        
+    }
 }

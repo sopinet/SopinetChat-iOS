@@ -72,7 +72,7 @@ public class SChatInputToolbar: UIToolbar {
         self.contentView?.leftBarButtomItem = SChatToolbarButtonFactory.defaultAccessoryButtonItem()
         self.contentView?.rightBarButtomItem = SChatToolbarButtonFactory.defaultSendButtonItem()
         
-        toogleSendButtonEnabled()
+        toggleSendButtonEnabled()
     }
     
     // MARK: Setters
