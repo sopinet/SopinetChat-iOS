@@ -585,7 +585,6 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
             self.dynamicAnimator?.removeBehavior(value as! UIDynamicBehavior)
             self.visibleIndexPaths?.removeObject(layoutAttributes.indexPath)
         }
-
     }
     
     func sChatAdjustSpringBehavior(springBehavior: UIAttachmentBehavior, forTouchLocation touchLocation: CGPoint)

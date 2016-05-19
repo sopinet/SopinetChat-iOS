@@ -22,4 +22,24 @@ extension UIColor {
     convenience init(netHex:Int) {
         self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
     }
+    
+    public static func sChatMessageBubbleGreenColor() -> UIColor
+    {
+        return UIColor(hue:130 / 360, saturation: 0.68, brightness: 0.84, alpha: 1.0)
+    }
+    
+    public static func sChatMessageBubbleBlueColor() -> UIColor
+    {
+        return UIColor(hue:210 / 360, saturation: 0.94, brightness: 1.0, alpha: 1.0)
+    }
+    
+    public static func sChatMessageBubbleRedColor() -> UIColor
+    {
+        return UIColor(hue:0 / 360, saturation: 0.79, brightness: 1.0, alpha: 1.0)
+    }
+    
+    public static func sChatMessageBubbleLightGrayColor() -> UIColor
+    {
+        return UIColor(hue:240 / 360, saturation: 0.02, brightness: 0.92, alpha: 1.0)
+    }
 }

@@ -96,7 +96,7 @@ public class SChatInputToolbar: UIToolbar {
     
     // MARK: Input Toolbar functions
     
-    func toogleSendButtonEnabled()
+    func toggleSendButtonEnabled()
     {
         if let auxContentView = self.contentView
         {

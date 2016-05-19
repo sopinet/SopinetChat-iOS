@@ -9,12 +9,12 @@
 import UIKit
 import Foundation
 
-public class SChatViewController: UIViewController, UITextViewDelegate, SChatInputToolbarDelegate, SChatKeyboardControllerDelegate {
+public class SChatViewController: UIViewController, UITextViewDelegate, SChatInputToolbarDelegate, SChatKeyboardControllerDelegate, SChatCollectionViewDataSource, SChatCollectionViewDelegateFlowLayout {
     
     // MARK: Outlets
     
     @IBOutlet public var schatview: UIView!
-    @IBOutlet weak public var sChatCollectionView: UICollectionView!
+    @IBOutlet weak public var sChatCollectionView: SChatCollectionView!
     @IBOutlet weak public var schatInputToolbar: SChatInputToolbar!
     
     @IBOutlet weak var toolbarBottomLayoutGuide: NSLayoutConstraint!
@@ -27,6 +27,25 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
     var isObserving: Bool = false
     var textViewWasFirstResponderDuringInteractivePop: Bool = false
     var currentInteractivePopGestureRecognizer: UIGestureRecognizer? = nil
+    var selectedIndexPathForMenu: NSIndexPath?
+    
+    public var senderDisplayName: String
+    
+    public var senderId: String
+    
+    var automaticallyScrollsToMostRecentMessage: Bool = true
+    
+    var outgoingCellIdentifier: String = ""
+    
+    var outgoingMediaCellIdentifier: String = ""
+    
+    var incomingCellIdentifier: String = ""
+    
+    var incomingMediaCellIdentifier: String = ""
+    
+    var showTypingIndicator: Bool = true
+    
+    var showLoadEarlierMessagesHeader: Bool = false
     
     // MARK: Class methods
     
@@ -40,6 +59,16 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
     }
     
     // MARK: Life-Cycle
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?)
+    {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required public init?(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+    }
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -111,6 +140,11 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         let insets = UIEdgeInsetsMake(topValue, 0.0, bottomValue, 0.0)
         self.sChatCollectionView.contentInset = insets
         self.sChatCollectionView.scrollIndicatorInsets = insets
+    }
+    
+    func sChatIsMenuVisible() -> Bool
+    {
+        return self.selectedIndexPathForMenu != nil && UIMenuController.sharedMenuController().menuVisible
     }
     
     // MARK: Utilities
@@ -213,7 +247,7 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
             return
         }
         
-        self.schatInputToolbar.toogleSendButtonEnabled()
+        self.schatInputToolbar.toggleSendButtonEnabled()
     }
     
     public func textViewDidEndEditing(textView: UITextView)
@@ -405,4 +439,112 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
     func sendButtonTapped(sender: AnyObject) {
         
     }
+    
+    // TODO: View rotation methods
+    
+    // MARK: SChat Messages View Controller
+    
+    func didPressSendButton(button: UIButton,
+                            withMessageText text: String,
+                                            senderId senderId: String,
+                                                     senderDisplayName senderDisplayName: String,
+                                                                       date date: NSDate)
+    {
+        assert(false, "Error! required method not implemented in subclass. Need to implement")
+    }
+    
+    func didPressAccesoryButton(sender: UIButton)
+    {
+        assert(false, "Error! required method not implemented in subclass. Need to iplement")
+    }
+    
+    func finishSendingMessage()
+    {
+        self.finishSendingMessageAnimated(true)
+    }
+    
+    func finishSendingMessageAnimated(animated: Bool)
+    {
+        let textView = self.schatInputToolbar.contentView?.contentTextView
+        textView!.text = nil
+        textView?.undoManager?.removeAllActions()
+        
+        self.schatInputToolbar.toggleSendButtonEnabled()
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(UITextViewTextDidChangeNotification, object: textView!)
+        
+        self.sChatCollectionView.collectionViewLayoutInterceptor?.invalidateLayoutWithContext(SChatCollectionViewFlowLayoutInvalidationContext.context())
+        
+        self.sChatCollectionView.reloadData()
+        
+        if self.automaticallyScrollsToMostRecentMessage
+        {
+            self.scrollToBottomAnimated(animated)
+        }
+    }
+    
+    func finishReceivingMessage()
+    {
+        self.finishReceivingMessageAnimated(true)
+    }
+    
+    func finishReceivingMessageAnimated(animated: Bool)
+    {
+        self.showTypingIndicator = false
+        
+        self.sChatCollectionView.collectionViewLayoutInterceptor?.invalidateLayoutWithContext(SChatCollectionViewFlowLayoutInvalidationContext.context())
+        
+        self.sChatCollectionView.reloadData()
+        
+        if self.automaticallyScrollsToMostRecentMessage && self.sChatIsMenuVisible()
+        {
+            self.scrollToBottomAnimated(true)
+        }
+    }
+    
+    func scrollToBottomAnimated(animated: Bool)
+    {
+        if self.sChatCollectionView.numberOfSections() == 0
+        {
+            return
+        }
+        
+        let items = self.sChatCollectionView.numberOfItemsInSection(0)
+        
+        if items == 0
+        {
+            return
+        }
+        
+        let collectionViewContentHeight = self.sChatCollectionView.collectionViewLayoutInterceptor?.collectionViewContentSize().height
+        
+        let isContentTooSmall = collectionViewContentHeight < CGRectGetHeight(self.sChatCollectionView.bounds)
+        
+        if isContentTooSmall
+        {
+            self.sChatCollectionView.scrollRectToVisible(CGRectMake(0.0,
+                collectionViewContentHeight! - 1.0,
+                1.0,
+                1.0),
+                                                         animated: animated)
+            
+            return
+        }
+        
+        let finalRow = max(0, self.sChatCollectionView.numberOfItemsInSection(0) - 1)
+        
+        let finalIndexPath = NSIndexPath(forRow:finalRow, inSection: 0)
+        
+        let finalCellSize = self.sChatCollectionView.collectionViewLayoutInterceptor?.sizeForItemAtIndexPath(finalIndexPath)
+        
+        let maxHeightForVisibleMessage = CGRectGetHeight(self.sChatCollectionView.bounds) - self.sChatCollectionView.contentInset.top - CGRectGetHeight(self.schatInputToolbar.bounds)
+        
+        let scrollPosition = finalCellSize!.height > maxHeightForVisibleMessage ? UICollectionViewScrollPosition.Bottom : UICollectionViewScrollPosition.Top
+        
+        self.sChatCollectionView.scrollToItemAtIndexPath(finalIndexPath,
+                                                         atScrollPosition: scrollPosition,
+                                                         animated: animated)
+    }
+    
+    // MARK: SChat CollectionView Data Source
 }
