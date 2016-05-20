@@ -10,17 +10,17 @@ import Foundation
 
 public protocol SChatMessageData
 {
-    var senderId: String { get }
+    var senderId: String? { set get }
     
-    var senderDisplayName: String { get }
+    var senderDisplayName: String? { set get }
     
-    var date: String { get }
+    var date: NSDate? { set get }
     
-    var text: String? { get }
+    var text: String? { set get }
     
-    var media: SChatMediaData? { get }
+    var media: SChatMediaData? { set get }
     
-    func isMediaMessage() -> Bool
+    var isMediaMessage: Bool? { set get }
     
-    func messageHash() -> UInt
+    var messageHash: UInt? { set get }
 }

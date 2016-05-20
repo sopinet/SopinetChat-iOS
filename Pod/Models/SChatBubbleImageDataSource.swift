@@ -10,7 +10,7 @@ import Foundation
 
 public protocol SChatBubbleImageDataSource
 {
-    var messageBubbleImage: UIImage { get }
+    var messageBubbleImage: UIImage? { get }
     
-    var messageBubbleHighlightedImage: UIImage { get }
+    var messageBubbleHighlightedImage: UIImage? { get }
 }

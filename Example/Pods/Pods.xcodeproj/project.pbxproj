@@ -202,6 +202,8 @@
 		AA0F7E831CE9EF99006FA052 /* SChatCollectionViewCellOutgoing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0F7E821CE9EF99006FA052 /* SChatCollectionViewCellOutgoing.swift */; };
 		AA0F7E851CE9F002006FA052 /* SChatCollectionViewCellIncoming.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA0F7E841CE9F002006FA052 /* SChatCollectionViewCellIncoming.xib */; };
 		AA0F7E871CE9F01A006FA052 /* SChatCollectionViewCellOutgoing.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA0F7E861CE9F01A006FA052 /* SChatCollectionViewCellOutgoing.xib */; };
+		AA11C5691CEEF27800B2FEE7 /* SChatBubbleImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11C5681CEEF27800B2FEE7 /* SChatBubbleImageFactory.swift */; };
+		AA11C56B1CEEFC0000B2FEE7 /* SChatBubbleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11C56A1CEEFC0000B2FEE7 /* SChatBubbleImage.swift */; };
 		AA1457031CE87BA0002FE4CB /* SChatLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1457021CE87BA0002FE4CB /* SChatLabel.swift */; };
 		AA1457051CE87E55002FE4CB /* SChatCollectionViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1457041CE87E55002FE4CB /* SChatCollectionViewCellDelegate.swift */; };
 		AA1457071CE87EDA002FE4CB /* SChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1457061CE87EDA002FE4CB /* SChatCollectionViewCell.swift */; };
@@ -679,6 +681,8 @@
 		AA0F7E841CE9F002006FA052 /* SChatCollectionViewCellIncoming.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SChatCollectionViewCellIncoming.xib; path = Views/SChatCollectionViewCellIncoming.xib; sourceTree = "<group>"; };
 		AA0F7E861CE9F01A006FA052 /* SChatCollectionViewCellOutgoing.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SChatCollectionViewCellOutgoing.xib; path = Views/SChatCollectionViewCellOutgoing.xib; sourceTree = "<group>"; };
 		AA10FBF65CDBEA40E27897C47149ED5D /* Realm-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Realm-prefix.pch"; sourceTree = "<group>"; };
+		AA11C5681CEEF27800B2FEE7 /* SChatBubbleImageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatBubbleImageFactory.swift; path = Factories/SChatBubbleImageFactory.swift; sourceTree = "<group>"; };
+		AA11C56A1CEEFC0000B2FEE7 /* SChatBubbleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatBubbleImage.swift; path = Models/SChatBubbleImage.swift; sourceTree = "<group>"; };
 		AA130D464E0A2EB3294803AD864B540B /* List.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = List.swift; path = RealmSwift/List.swift; sourceTree = "<group>"; };
 		AA1457021CE87BA0002FE4CB /* SChatLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatLabel.swift; path = Views/SChatLabel.swift; sourceTree = "<group>"; };
 		AA1457041CE87E55002FE4CB /* SChatCollectionViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatCollectionViewCellDelegate.swift; path = Delegates/SChatCollectionViewCellDelegate.swift; sourceTree = "<group>"; };
@@ -1399,6 +1403,7 @@
 				AA4EDD941CEB756C0014AC21 /* SChatBubbleImageDataSource.swift */,
 				AA4EDD961CEB75E80014AC21 /* SChatAvatarImageDataSource.swift */,
 				AAA64ADD1CECCF98004392F1 /* SChatCollectionViewDelegateFlowLayout.swift */,
+				AA11C56A1CEEFC0000B2FEE7 /* SChatBubbleImage.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1415,6 +1420,7 @@
 			isa = PBXGroup;
 			children = (
 				AADE92061CD369320008E68B /* SChatToolbarButtonFactory.swift */,
+				AA11C5681CEEF27800B2FEE7 /* SChatBubbleImageFactory.swift */,
 			);
 			name = Factories;
 			sourceTree = "<group>";
@@ -2120,6 +2126,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47CF75F571EEFA4A405EF4E25BE7D9E1 /* NotificationsManager.swift in Sources */,
+				AA11C56B1CEEFC0000B2FEE7 /* SChatBubbleImage.swift in Sources */,
 				AAA64AE01CECD1CC004392F1 /* SChatLoadEarlierHeaderView.swift in Sources */,
 				AA3155B21CCFCD3D005599A9 /* SMessageImage.swift in Sources */,
 				AAF3DB731CD2290A00759E27 /* SChatToolbarView.swift in Sources */,
@@ -2151,6 +2158,7 @@
 				AA3155AC1CCFCA83005599A9 /* SUser.swift in Sources */,
 				C9976146223EA411E39CA66A6CE46CEC /* SopinetChat.swift in Sources */,
 				AADE92101CD375B70008E68B /* SChatUIColor.swift in Sources */,
+				AA11C5691CEEF27800B2FEE7 /* SChatBubbleImageFactory.swift in Sources */,
 				AAF3DB7A1CD2374700759E27 /* SChatViewController.swift in Sources */,
 				AADE92041CD34AD20008E68B /* SChatInputToolbar.swift in Sources */,
 				AA1457031CE87BA0002FE4CB /* SChatLabel.swift in Sources */,

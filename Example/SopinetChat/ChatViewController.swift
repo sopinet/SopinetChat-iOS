@@ -17,6 +17,8 @@ class ChatViewController: SChatViewController {
         
         schatview.frame = self.view.frame
         self.view.addSubview(schatview)
+        
+        
     }
 
 }

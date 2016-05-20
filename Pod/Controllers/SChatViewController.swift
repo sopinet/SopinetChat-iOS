@@ -618,11 +618,11 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         assert(messageSenderId != nil, "MessageSenderId = nil on cellForItemAtIndexPath")
         
         let isOutgoingMessage = messageSenderId == self.senderId
-        let isMediaMessage = messageItem!.isMediaMessage()
+        let isMediaMessage = messageItem!.isMediaMessage
         
         var cellIdentifier: String? = nil
         
-        if isMediaMessage
+        if isMediaMessage!
         {
             cellIdentifier = isOutgoingMessage ? self.outgoingMediaCellIdentifier : self.incomingMediaCellIdentifier
         }
@@ -635,7 +635,7 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         
         cell.delegate = castedCollectionView
         
-        if !isMediaMessage
+        if !isMediaMessage!
         {
             cell.textView.text = messageItem?.text
             
@@ -732,7 +732,7 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         
         let messageItem = castedCollectionView.dataSourceInterceptor?.collectionView(castedCollectionView, messageDataForItemAtIndexPath: indexPath)
         
-        if messageItem!.isMediaMessage()
+        if messageItem!.isMediaMessage!
         {
             return false
         }
