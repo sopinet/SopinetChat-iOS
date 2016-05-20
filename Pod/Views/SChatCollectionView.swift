@@ -12,7 +12,7 @@ public class SChatCollectionView: UICollectionView, SChatCollectionViewCellDeleg
 {
     // MARK: Properties
     
-    weak var dataSourceInterceptor: SChatCollectionViewDataSource?
+    weak public var dataSourceInterceptor: SChatCollectionViewDataSource?
     
     override public var dataSource: UICollectionViewDataSource? {
         didSet {
@@ -27,7 +27,7 @@ public class SChatCollectionView: UICollectionView, SChatCollectionViewCellDeleg
         }
     }
     
-    weak var delegateInterceptor: SChatCollectionViewDelegateFlowLayout?
+    weak public var delegateInterceptor: SChatCollectionViewDelegateFlowLayout?
     
     override public var delegate: UICollectionViewDelegate? {
         didSet {
@@ -42,7 +42,7 @@ public class SChatCollectionView: UICollectionView, SChatCollectionViewCellDeleg
         }
     }
     
-    weak var collectionViewLayoutInterceptor: SChatCollectionViewFlowLayout?
+    weak public var collectionViewLayoutInterceptor: SChatCollectionViewFlowLayout?
     
     override public var collectionViewLayout: UICollectionViewLayout {
         didSet

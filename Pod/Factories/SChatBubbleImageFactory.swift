@@ -18,12 +18,12 @@ public class SChatBubbleImageFactory: NSObject
     
     // MARK: Initialization
     
-    override convenience init()
+    override convenience public init()
     {
         self.init(bubbleImage: UIImage.sChatBubbleCompactImage(), capInsets: UIEdgeInsetsZero)
     }
     
-    init(bubbleImage: UIImage, capInsets: UIEdgeInsets)
+    public init(bubbleImage: UIImage, capInsets: UIEdgeInsets)
     {
         super.init()
         
@@ -41,12 +41,12 @@ public class SChatBubbleImageFactory: NSObject
     
     // MARK: Public
     
-    func outgoingMessageBubbleImageWithColor(color: UIColor) -> SChatBubbleImage
+    public func outgoingMessageBubbleImageWithColor(color: UIColor) -> SChatBubbleImage
     {
         return self.sChatMessagesBubbleImageWithColor(color, flippedForIncoming: false)
     }
     
-    func incomingMessageBubbleImageWithColor(color: UIColor) -> SChatBubbleImage
+    public func incomingMessageBubbleImageWithColor(color: UIColor) -> SChatBubbleImage
     {
         return self.sChatMessagesBubbleImageWithColor(color, flippedForIncoming: true)
     }

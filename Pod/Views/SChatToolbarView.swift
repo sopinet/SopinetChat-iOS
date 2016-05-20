@@ -21,16 +21,16 @@ public class SChatToolbarView: UIView {
     
     // MARK: Properties
     
-    weak var leftBarButtomItem: UIButton? {
+    weak var leftBarButtonItem: UIButton? {
         didSet
         {
-            if leftBarButtomItem != nil {
-                leftBarButtomItem?.removeFromSuperview()
+            if leftBarButtonItem != nil {
+                leftBarButtonItem?.removeFromSuperview()
             }
             
             // TODO: Improve this to allow developers remove this button
             
-            if let auxLeftBarButtomItem = leftBarButtomItem
+            if let auxLeftBarButtomItem = leftBarButtonItem
             {
                 if CGRectEqualToRect(auxLeftBarButtomItem.frame, CGRectZero)
                 {
@@ -40,23 +40,23 @@ public class SChatToolbarView: UIView {
             
             leftButtonView.hidden = false
             
-            leftBarButtomItem?.translatesAutoresizingMaskIntoConstraints = false
+            leftBarButtonItem?.translatesAutoresizingMaskIntoConstraints = false
             
             leftButtonView.backgroundColor = UIColor.clearColor()
-            leftButtonView.addSubview(leftBarButtomItem!)
-            leftButtonView.sChatPinAllEdgesOfSubview(leftBarButtomItem!)
+            leftButtonView.addSubview(leftBarButtonItem!)
+            leftButtonView.sChatPinAllEdgesOfSubview(leftBarButtonItem!)
             self.setNeedsUpdateConstraints()
         }
     }
     
-    weak var rightBarButtomItem: UIButton? {
+    weak var rightBarButtonItem: UIButton? {
         didSet
         {
-            if rightBarButtomItem != nil {
-                rightBarButtomItem?.removeFromSuperview()
+            if rightBarButtonItem != nil {
+                rightBarButtonItem?.removeFromSuperview()
             }
             
-            if let auxRightBarButtonItem = rightBarButtomItem
+            if let auxRightBarButtonItem = rightBarButtonItem
             {
                 if CGRectEqualToRect(auxRightBarButtonItem.frame, CGRectZero)
                 {
@@ -66,11 +66,11 @@ public class SChatToolbarView: UIView {
             
             rightButtonView.hidden = false
             
-            rightBarButtomItem?.translatesAutoresizingMaskIntoConstraints = false
+            rightBarButtonItem?.translatesAutoresizingMaskIntoConstraints = false
             
             rightButtonView.backgroundColor = UIColor.clearColor()
-            rightButtonView.addSubview(rightBarButtomItem!)
-            rightButtonView.sChatPinAllEdgesOfSubview(rightBarButtomItem!)
+            rightButtonView.addSubview(rightBarButtonItem!)
+            rightButtonView.sChatPinAllEdgesOfSubview(rightBarButtonItem!)
             self.setNeedsUpdateConstraints()
         }
     }

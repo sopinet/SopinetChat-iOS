@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SChatLabel: UILabel
+public class SChatLabel: UILabel
 {
     // MARK: Properties
     
@@ -44,7 +44,7 @@ class SChatLabel: UILabel
     
     // MARK: Drawing
     
-    override func drawTextInRect(rect: CGRect)
+    override public func drawTextInRect(rect: CGRect)
     {
         super.drawTextInRect(CGRectMake(CGRectGetMinX(rect) + self.textInsets!.left,
             CGRectGetMinY(rect) + self.textInsets!.top,

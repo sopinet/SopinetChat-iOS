@@ -16,41 +16,41 @@ public class SChatCollectionViewCell: UICollectionViewCell
     
     var delegate: SChatCollectionViewCellDelegate? = nil
     
-    @IBOutlet weak var cellTopLabel: SChatLabel!
+    @IBOutlet weak public var cellTopLabel: SChatLabel!
     
-    @IBOutlet weak var messageBubbleTopLabel: SChatLabel!
+    @IBOutlet weak public var messageBubbleTopLabel: SChatLabel!
     
-    @IBOutlet weak var cellBottomLabel: SChatLabel!
+    @IBOutlet weak public var cellBottomLabel: SChatLabel!
     
-    @IBOutlet weak var textView: SChatCellTextView!
+    @IBOutlet weak public var textView: SChatCellTextView!
     
-    @IBOutlet weak var messageBubbleImageView: UIImageView!
+    @IBOutlet weak public var messageBubbleImageView: UIImageView!
     
-    @IBOutlet weak var messageBubbleContainerView: UIView!
+    @IBOutlet weak public var messageBubbleContainerView: UIView!
     
-    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak public var avatarImageView: UIImageView!
     
-    @IBOutlet weak var avatarContainerView: UIView!
+    @IBOutlet weak public var avatarContainerView: UIView!
     
-    @IBOutlet weak var messageBubbleContainerWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak public var messageBubbleContainerWidthConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var textViewTopVerticalSpaceConstraint: NSLayoutConstraint!
+    @IBOutlet weak public var textViewTopVerticalSpaceConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var textViewBottomVerticalSpaceConstraint: NSLayoutConstraint!
+    @IBOutlet weak public var textViewBottomVerticalSpaceConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var textViewAvatarHorizontalSpaceConstraint: NSLayoutConstraint!
+    @IBOutlet weak public var textViewAvatarHorizontalSpaceConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var textViewMarginHorizontalSpaceConstraint: NSLayoutConstraint!
+    @IBOutlet weak public var textViewMarginHorizontalSpaceConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var cellTopLabelHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak public var cellTopLabelHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var messageBubbleTopLabelHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak public var messageBubbleTopLabelHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var cellBottomLabelHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak public var cellBottomLabelHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var avatarContainerViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak public var avatarContainerViewWidthConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var avatarContainerViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak public var avatarContainerViewHeightConstraint: NSLayoutConstraint!
     
     // Properties
     

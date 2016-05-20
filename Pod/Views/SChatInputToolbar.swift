@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+let kSChatInputToolbarKeyValueObservingContext = UnsafeMutablePointer<()>()
+
 public class SChatInputToolbar: UIToolbar {
 
     // MARK: Properties
@@ -33,18 +35,33 @@ public class SChatInputToolbar: UIToolbar {
     
     var contentView: SChatToolbarView?
     
+    //var sChatIsObserving: Bool = false
+    
     // MARK: Initializers
+    
+    public override func awakeFromNib()
+    {
+        super.awakeFromNib()
+        
+        setUp()
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setUp()
+        //setUp()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        setUp()
+        //setUp()
+    }
+    
+    deinit
+    {
+        // remove observers
+        self.contentView = nil
     }
     
     // MARK: Functions
@@ -59,6 +76,11 @@ public class SChatInputToolbar: UIToolbar {
     {
         self.translatesAutoresizingMaskIntoConstraints = false
         
+        //self.sChatIsObserving = false
+        
+        self.preferredDefaultHeight = 44.0
+        self.maximumHeight = NSNotFound
+        
         let toolbarView: SChatToolbarView = loadToolbarView()
         
         toolbarView.frame = self.frame
@@ -69,10 +91,12 @@ public class SChatInputToolbar: UIToolbar {
         
         self.contentView = toolbarView
         
-        self.contentView?.leftBarButtomItem = SChatToolbarButtonFactory.defaultAccessoryButtonItem()
-        self.contentView?.rightBarButtomItem = SChatToolbarButtonFactory.defaultSendButtonItem()
+        self.contentView?.leftBarButtonItem = SChatToolbarButtonFactory.defaultAccessoryButtonItem()
+        self.contentView?.rightBarButtonItem = SChatToolbarButtonFactory.defaultSendButtonItem()
         
         toggleSendButtonEnabled()
+        
+        self.sChatAddObservers()
     }
     
     // MARK: Setters
@@ -102,14 +126,89 @@ public class SChatInputToolbar: UIToolbar {
         {
             let hasText = auxContentView.contentTextView.hasText()
             
-            if let auxRightBarButtonItem = auxContentView.rightBarButtomItem {
+            if let auxRightBarButtonItem = auxContentView.rightBarButtonItem {
                 auxRightBarButtonItem.enabled = hasText
             }
         }
     }
     
-    func addTapGestureRecognizers()
+    // MARK: Key-value observing
+    
+    /*public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>)
     {
         
+        if context == kSChatInputToolbarKeyValueObservingContext
+        {
+            if object!.isEqual(self.contentView)
+            {
+                if keyPath == NSStringFromSelector(Selector("leftBarButtonItem"))
+                {
+                    self.contentView?.leftBarButtonItem?.removeTarget(self,
+                                                                      action: nil,
+                                                                      forControlEvents: UIControlEvents.TouchUpInside)
+                    
+                    self.contentView?.leftBarButtonItem?.addTarget(self,
+                                                                   action: #selector(self.sChatLeftButtonTapped(_:)),
+                                                                   forControlEvents: UIControlEvents.TouchUpInside)
+                }
+                else if keyPath == NSStringFromSelector(Selector("rightBarButtonItem"))
+                {
+                    self.contentView?.rightBarButtonItem?.removeTarget(self,
+                                                                      action: nil,
+                                                                      forControlEvents: UIControlEvents.TouchUpInside)
+                    
+                    self.contentView?.rightBarButtonItem?.addTarget(self,
+                                                                   action: #selector(self.sChatRightButtonTapped(_:)),
+                                                                   forControlEvents: UIControlEvents.TouchUpInside)
+                }
+                
+                self.toggleSendButtonEnabled()
+            }
+        }
+    }*/
+    
+    func sChatAddObservers()
+    {
+        self.contentView?.leftBarButtonItem?.addTarget(self,
+                                                       action: #selector(self.sChatLeftButtonTapped(_:)),
+                                                       forControlEvents: UIControlEvents.TouchUpInside)
+        
+        self.contentView?.rightBarButtonItem?.addTarget(self,
+                                                        action: #selector(self.sChatRightButtonTapped(_:)),
+                                                        forControlEvents: UIControlEvents.TouchUpInside)
+        /*if self.sChatIsObserving
+        {
+            return
+        }
+        
+        self.contentView?.addObserver(self,
+                                      forKeyPath: "leftBarButtonItem",
+                                        options: [NSKeyValueObservingOptions.New, NSKeyValueObservingOptions.Old],
+                                        context: kSChatInputToolbarKeyValueObservingContext)
+        
+        self.contentView?.addObserver(self,
+                                      forKeyPath: NSStringFromSelector(Selector("rightBarButtonItem")),
+                                      options: NSKeyValueObservingOptions.New,
+                                      context: kSChatInputToolbarKeyValueObservingContext)
+        
+        self.sChatIsObserving = true*/
+    }
+    
+    func sChatRemoveObservers()
+    {
+        /*if !sChatIsObserving
+        {
+            return
+        }
+        
+        self.contentView?.removeObserver(self,
+                                         forKeyPath: NSStringFromSelector(Selector("leftBarButtomItem")),
+                                         context: kSChatInputToolbarKeyValueObservingContext)
+        
+        self.contentView?.removeObserver(self,
+                                         forKeyPath: NSStringFromSelector(Selector("rightBarButtomItem")),
+                                         context: kSChatInputToolbarKeyValueObservingContext)
+        
+        self.sChatIsObserving = false*/
     }
 }

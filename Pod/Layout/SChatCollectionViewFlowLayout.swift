@@ -16,6 +16,8 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
 {
     // MARK: Properties
     
+    // TODO: Hacerle el casting
+    
     public override var collectionView: SChatCollectionView?
     {
         get { return collectionView }
@@ -67,7 +69,7 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
         }
     }
     
-    var incomingAvatarViewSize: CGSize {
+    public var incomingAvatarViewSize: CGSize {
         set
         {
             if !CGSizeEqualToSize(incomingAvatarViewSize, newValue)
@@ -83,7 +85,7 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
         }
     }
     
-    var outgoingAvatarViewSize: CGSize {
+    public var outgoingAvatarViewSize: CGSize {
         set
         {
             if !CGSizeEqualToSize(outgoingAvatarViewSize, newValue)
@@ -197,7 +199,7 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
         self.sectionInset = UIEdgeInsetsMake(10.0, 4.0, 10.0, 4.0)
         self.minimumLineSpacing = 4.0
         
-        self.messageBubbleFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        // TODO: Descomentar esto self.messageBubbleFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         
         if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad
         {
@@ -205,19 +207,19 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
         }
         else
         {
-            self.messageBubbleLeftRightMargin = 50.0
+            // TODO: Descomentar esto self.messageBubbleLeftRightMargin = 50.0
         }
         
         self.messageBubbleTextViewFrameInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, 6.0)
-        self.messageBubbleTextViewTextContainerInsets = UIEdgeInsetsMake(7.0, 14.0, 7.0, 14.0)
+        // TODO: Descomentar esto self.messageBubbleTextViewTextContainerInsets = UIEdgeInsetsMake(7.0, 14.0, 7.0, 14.0)
         
         let defaultAvatarSize = CGSizeMake(kSChatCollectionViewAvatarSizeDefault, kSChatCollectionViewAvatarSizeDefault)
         
-        self.incomingAvatarViewSize = defaultAvatarSize
-        self.outgoingAvatarViewSize = defaultAvatarSize
+        // TODO: Descomentar esto self.incomingAvatarViewSize = defaultAvatarSize
+        // TODO: Descomentar esto self.outgoingAvatarViewSize = defaultAvatarSize
         
-        springinessEnabled = false
-        springResistanceFactor = 1000
+        // TODO: Descomentar esto springinessEnabled = false
+        // TODO: Descomentar esto springResistanceFactor = 1000
         
         NSNotificationCenter.defaultCenter().addObserver(self,
                                                          selector: #selector(sChatDidReceiveApplicationMemoryWarningNotification(_:)),
@@ -291,11 +293,11 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
     {
         if context.invalidateDataSourceCounts
         {
-            (context as! SChatCollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutAttributes = true
-            (context as! SChatCollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutDelegateMetrics = true
+            // TODO: Descomentar esto (context as! SChatCollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutAttributes = true
+            // TODO: Descomentar esto (context as! SChatCollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutDelegateMetrics = true
         }
         
-        if (context as! SChatCollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutAttributes
+        /* TODO: Descomentar esto if (context as! SChatCollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutAttributes
             || (context as! SChatCollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutDelegateMetrics
         {
             self.sChatResetDynamicAnimator()
@@ -304,7 +306,7 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
         if (context as! SChatCollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutMessagesCache
         {
             self.sChatResetLayout()
-        }
+        }*/
         
         super.invalidateLayoutWithContext(context)
     }

@@ -9,7 +9,7 @@
 import Foundation
 import SopinetChat
 
-public class Message: NSObject, SChatMessageData, NSCoding, NSCopying
+public class Message: NSObject, SChatMessageData, NSCoding
 {
     // MARK: Properties
     
@@ -29,13 +29,17 @@ public class Message: NSObject, SChatMessageData, NSCoding, NSCopying
     
     // MARK: Initialization
     
-    override convenience init()
+    override public init()
     {
-        //assert(false, "init() is not a valid initializer for SChatMessageData.")
+        
+    }
+    /*override convenience public init()
+    {
+        assert(false, "init() is not a valid initializer for SChatMessageData.")
         self.init(senderId: "", displayName: "", text: "")
     }
     
-    convenience init(senderId: String,
+    convenience public init(senderId: String,
          displayName: String,
          text: String)
     {
@@ -62,7 +66,7 @@ public class Message: NSObject, SChatMessageData, NSCoding, NSCopying
         self.messageHash = UInt(self.hash)
     }
     
-    convenience init(senderId: String,
+    convenience public init(senderId: String,
                 displayName: String,
                 media: SChatMediaData)
     {
@@ -90,7 +94,7 @@ public class Message: NSObject, SChatMessageData, NSCoding, NSCopying
         self.messageHash = UInt(self.hash)
     }
     
-    init(senderId: String,
+    public init(senderId: String,
          senderDisplayName: String,
          date: NSDate,
          isMedia: Bool)
@@ -101,7 +105,7 @@ public class Message: NSObject, SChatMessageData, NSCoding, NSCopying
         self.date = date
         self.isMediaMessage = isMedia
         self.messageHash = UInt(self.hash)
-    }
+    }*/
     
     deinit
     {
@@ -194,7 +198,7 @@ public class Message: NSObject, SChatMessageData, NSCoding, NSCopying
     
     // MARK: NSCoding
     
-    public func copyWithZone(zone: NSZone) -> AnyObject
+    /*public func copyWithZone(zone: NSZone) -> AnyObject
     {
         if self.isMediaMessage!
         {
@@ -210,5 +214,5 @@ public class Message: NSObject, SChatMessageData, NSCoding, NSCopying
                                          date: self.date!,
                                          text: self.text!)
         }
-    }
+    }*/
 }

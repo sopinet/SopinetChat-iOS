@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SChatCellTextView: UITextView
+public class SChatCellTextView: UITextView
 {
     // MARK: Initializers
     
@@ -48,7 +48,7 @@ class SChatCellTextView: UITextView
     
     // ..
     
-    override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool
+    override public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool
     {
         if gestureRecognizer.isKindOfClass(UITapGestureRecognizer)
         {

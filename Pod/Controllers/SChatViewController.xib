@@ -10,8 +10,8 @@
                 <outlet property="sChatCollectionView" destination="RFF-7W-C33" id="gtH-t2-pQr"/>
                 <outlet property="schatInputToolbar" destination="Evs-Qe-djh" id="XmE-G8-Jkf"/>
                 <outlet property="schatview" destination="iN0-l3-epB" id="v6i-X6-qwj"/>
-                <outlet property="toolbarBottomLayoutGuide" destination="bK8-MB-VaD" id="L2T-QN-jMu"/>
-                <outlet property="toolbarHeightConstraint" destination="0eB-UD-SVZ" id="1Mv-EI-a3A"/>
+                <outlet property="toolbarBottomLayoutGuide" destination="bK8-MB-VaD" id="FzK-c4-b1M"/>
+                <outlet property="toolbarHeightConstraint" destination="0eB-UD-SVZ" id="xT8-mr-dUp"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -22,7 +22,11 @@
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="RFF-7W-C33" customClass="SChatCollectionView" customModule="SopinetChat" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <collectionViewLayout key="collectionViewLayout" id="PIN-pZ-wsu"/>
+                    <collectionViewLayout key="collectionViewLayout" id="dRW-Vk-wTP" customClass="SChatCollectionViewFlowLayout" customModule="SopinetChat" customModuleProvider="target"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="z7n-x9-SFK"/>
+                        <outlet property="delegate" destination="-1" id="m6O-bo-uDd"/>
+                    </connections>
                 </collectionView>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Evs-Qe-djh" customClass="SChatInputToolbar" customModule="SopinetChat" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="556" width="600" height="44"/>

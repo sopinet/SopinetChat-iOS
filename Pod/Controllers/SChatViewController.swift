@@ -110,9 +110,28 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
     
     func sChatConfigureSChatViewController()
     {
+        //self.sChatCollectionView.backgroundColor = UIColor.blackColor()
+        
+        self.toolbarHeightConstraint.constant = self.schatInputToolbar.preferredDefaultHeight
+        
+        self.sChatCollectionView.dataSource = self
+        self.sChatCollectionView.delegate = self
+        
         self.schatInputToolbar.delegate = self
+        
         self.schatInputToolbar.contentView?.contentTextView.delegate = self
+        
+        self.automaticallyScrollsToMostRecentMessage = true
+        
+        self.outgoingCellIdentifier = SChatCollectionViewCellOutgoing.cellReuseIdentifier()
+        self.incomingCellIdentifier = SChatCollectionViewCellIncoming.cellReuseIdentifier()
+        
+        self.showTypingIndicator = false
+        self.showLoadEarlierMessagesHeader = false
+        
         self.topContentAdditionalInset = CGFloat(0.0)
+        
+        self.sChatUpdateCollectionViewInsets()
         
         if self.schatInputToolbar.contentView?.contentTextView != nil {
             self.keyboardController = SChatKeyboardController(textView: self.schatInputToolbar.contentView!.contentTextView,
@@ -432,19 +451,34 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
     
     // MARK: SChatInputToolbarDelegate
     
-    func attachButtonTapped(sender: AnyObject) {
+    func attachButtonTapped(sender: AnyObject)
+    {
         
     }
     
-    func sendButtonTapped(sender: AnyObject) {
+    func sendButtonTapped(sender: AnyObject)
+    {
+        self.didPressSendButton(sender as! UIButton,
+                                withMessageText: self.sChatCurrentlyComposedMessageText(),
+                                senderId: self.senderId,
+                                senderDisplayName: self.senderDisplayName,
+                                date: NSDate())
+    }
+    
+    func sChatCurrentlyComposedMessageText() -> String
+    {
+        self.schatInputToolbar.contentView?.contentTextView.inputDelegate?.selectionWillChange(self.schatInputToolbar.contentView?.contentTextView)
         
+        self.schatInputToolbar.contentView?.contentTextView.inputDelegate?.selectionDidChange(self.schatInputToolbar.contentView?.contentTextView)
+        
+        return (self.schatInputToolbar.contentView?.contentTextView.text.sChatStringByTrimingWhitespace())!
     }
     
     // TODO: View rotation methods
     
     // MARK: SChat Messages View Controller
     
-    func didPressSendButton(button: UIButton,
+    public func didPressSendButton(button: UIButton,
                             withMessageText text: String,
                                             senderId senderId: String,
                                                      senderDisplayName senderDisplayName: String,
@@ -458,7 +492,7 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         assert(false, "Error! required method not implemented in subclass. Need to iplement")
     }
     
-    func finishSendingMessage()
+    public func finishSendingMessage()
     {
         self.finishSendingMessageAnimated(true)
     }
@@ -479,11 +513,11 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         
         if self.automaticallyScrollsToMostRecentMessage
         {
-            self.scrollToBottomAnimated(animated)
+            // TODO: Descomentar esto y solucionar error self.scrollToBottomAnimated(animated)
         }
     }
     
-    func finishReceivingMessage()
+    public func finishReceivingMessage()
     {
         self.finishReceivingMessageAnimated(true)
     }
