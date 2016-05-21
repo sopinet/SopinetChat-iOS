@@ -9,7 +9,7 @@
 import Foundation
 import SopinetChat
 
-public class Message: NSObject, SChatMessageData, NSCoding
+public class Message: NSObject, SChatMessageData, NSCoding, NSCopying
 {
     // MARK: Properties
     
@@ -25,11 +25,13 @@ public class Message: NSObject, SChatMessageData, NSCoding
     
     public var isMediaMessage: Bool?
     
-    public var messageHash: UInt?
+    public var messageHash: Int? {
+        get { return self.hash }
+    }
     
     // MARK: Initialization
     
-    public init(senderId: String,
+    public required init(senderId: String,
                          senderDisplayName: String,
                          date: NSDate?,
                          text: String?,
@@ -158,9 +160,16 @@ public class Message: NSObject, SChatMessageData, NSCoding
     
     override public var hash: Int
     {
-        let contentHash = self.isMediaMessage! ? Int(self.media!.mediaHash) : self.text!.hash
+        // TODO: Descomentar esto let contentHash = self.isMediaMessage! ? Int(self.media!.mediaHash) : self.text!.hash
         
-        return self.senderId!.hash ^ self.date!.hash ^ contentHash
+        var contentHash = self.text?.hash
+        
+        if contentHash == nil
+        {
+            contentHash = 0
+        }
+        
+        return self.senderId!.hash ^ self.date!.hash ^ contentHash!
     }
     
     override public var description: String
@@ -208,21 +217,25 @@ public class Message: NSObject, SChatMessageData, NSCoding
     
     // MARK: NSCoding
     
-    /*public func copyWithZone(zone: NSZone) -> AnyObject
+    public func copyWithZone(zone: NSZone) -> AnyObject
     {
         if self.isMediaMessage!
         {
             return self.dynamicType.init(senderId: self.senderId!,
                                          senderDisplayName: self.senderDisplayName!,
-                                         date: self.date!,
-                                         media: self.media!)
+                                         date: self.date,
+                                         text: nil,
+                                         media: self.media!,
+                                         isMediaMessage: true)
         }
         else
         {
             return self.dynamicType.init(senderId: self.senderId!,
                                          senderDisplayName: self.senderDisplayName!,
-                                         date: self.date!,
-                                         text: self.text!)
+                                         date: self.date,
+                                         text: self.text,
+                                         media: nil,
+                                         isMediaMessage: false)
         }
-    }*/
+    }
 }

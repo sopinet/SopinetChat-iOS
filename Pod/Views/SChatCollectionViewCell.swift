@@ -87,7 +87,7 @@ public class SChatCollectionViewCell: UICollectionViewCell
     
     weak var tapGestureRecognizer: UITapGestureRecognizer? = nil
     
-    private var _textViewFrameInsets: UIEdgeInsets?
+    private var _textViewFrameInsets: UIEdgeInsets? = UIEdgeInsetsZero
     var textViewFrameInsets: UIEdgeInsets? {
         set
         {
@@ -233,22 +233,23 @@ public class SChatCollectionViewCell: UICollectionViewCell
     
     public override func preferredLayoutAttributesFittingAttributes(layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes
     {
-        return layoutAttributes
+        return layoutAttributes as! SChatCollectionViewLayoutAttributes
     }
     
     public override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes)
     {
-        super.applyLayoutAttributes(layoutAttributes)
+        super.applyLayoutAttributes(layoutAttributes as! SChatCollectionViewLayoutAttributes)
         
-        /* TODO: Descomentar esto
+        /* TODO: Descomentar esto*/
         let customAttributes: SChatCollectionViewLayoutAttributes = layoutAttributes as! SChatCollectionViewLayoutAttributes
         
         if self.textView.font != customAttributes.messageBubbleFont
         {
             self.textView.font = customAttributes.messageBubbleFont
+            //self.textView.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         }
         
-        if UIEdgeInsetsEqualToEdgeInsets(self.textView.textContainerInset, customAttributes.textViewTextContainerInsets!)
+        if !UIEdgeInsetsEqualToEdgeInsets(self.textView.textContainerInset, customAttributes.textViewTextContainerInsets!)
         {
             self.textView.textContainerInset = customAttributes.textViewTextContainerInsets!
         }
@@ -270,7 +271,7 @@ public class SChatCollectionViewCell: UICollectionViewCell
         else if self.isKindOfClass(SChatCollectionViewCellOutgoing)
         {
             self.avatarViewSize = customAttributes.outgoingAvatarViewSize
-        } */
+        }
     }
     
     private var _highlighted: Bool = false

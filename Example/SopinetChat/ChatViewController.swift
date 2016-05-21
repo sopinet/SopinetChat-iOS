@@ -37,7 +37,7 @@ class ChatViewController: SChatViewController
     
     override func collectionView(collectionView: SChatCollectionView, messageDataForItemAtIndexPath indexPath: NSIndexPath) -> SChatMessageData?
     {
-        return messages[indexPath.row]
+        return messages[indexPath.item]
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
@@ -108,6 +108,6 @@ class ChatViewController: SChatViewController
         let bubbleImageFactory = SChatBubbleImageFactory()
         
         outgoingBubbleImageView = bubbleImageFactory.outgoingMessageBubbleImageWithColor(UIColor.sChatMessageBubbleBlueColor())
-        incomingBubbleImageView = bubbleImageFactory.outgoingMessageBubbleImageWithColor(UIColor.sChatMessageBubbleLightGrayColor())
+        incomingBubbleImageView = bubbleImageFactory.incomingMessageBubbleImageWithColor(UIColor.sChatMessageBubbleLightGrayColor())
     }
 }

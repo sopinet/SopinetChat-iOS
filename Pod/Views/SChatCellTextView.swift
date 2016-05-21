@@ -22,6 +22,28 @@ public class SChatCellTextView: UITextView
     {
         super.init(coder: coder)
         
+        /*self.textColor = UIColor.whiteColor()
+        self.editable = false
+        self.selectable = true
+        self.userInteractionEnabled = true
+        self.dataDetectorTypes = UIDataDetectorTypes.None
+        self.showsHorizontalScrollIndicator = false
+        self.showsVerticalScrollIndicator = false
+        self.scrollEnabled = false
+        self.backgroundColor = UIColor.clearColor()
+        self.contentInset = UIEdgeInsetsZero
+        self.scrollIndicatorInsets = UIEdgeInsetsZero
+        self.contentOffset = CGPointZero
+        self.textContainerInset = UIEdgeInsetsZero
+        self.textContainer.lineFragmentPadding = 0
+        self.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(),
+                                   NSUnderlineStyleAttributeName: [NSUnderlineStyle.StyleSingle.rawValue, NSUnderlineStyle.PatternSolid.rawValue]]*/
+    }
+    
+    public override func awakeFromNib()
+    {
+        super.awakeFromNib()
+        
         self.textColor = UIColor.whiteColor()
         self.editable = false
         self.selectable = true

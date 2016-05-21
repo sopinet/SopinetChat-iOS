@@ -22,5 +22,5 @@ public protocol SChatMessageData
     
     var isMediaMessage: Bool? { set get }
     
-    var messageHash: UInt? { set get }
+    var messageHash: Int? { get }
 }

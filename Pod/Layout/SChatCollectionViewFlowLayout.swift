@@ -147,22 +147,15 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
         }
     }
     
-    private var _messageBubbleFont: UIFont?
+    private var _messageBubbleFont: UIFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
     var messageBubbleFont: UIFont? {
         set
         {
-            if newValue != nil
+            if !_messageBubbleFont.isEqual(newValue!)
             {
-                if _messageBubbleFont == nil || !_messageBubbleFont!.isEqual(newValue!)
-                {
-                    _messageBubbleFont = newValue
-                    
-                    self.invalidateLayoutWithContext(SChatCollectionViewFlowLayoutInvalidationContext.context())
-                }
-            }
-            else
-            {
-                _messageBubbleFont = newValue
+                _messageBubbleFont = newValue!
+                
+                self.invalidateLayoutWithContext(SChatCollectionViewFlowLayoutInvalidationContext.context())
             }
         }
         get
@@ -267,12 +260,12 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
         self.sChatConfigureFlowLayout()
     }
     
-    func layoutAttributesClass() -> AnyClass
+    public override class func layoutAttributesClass() -> AnyClass
     {
         return SChatCollectionViewLayoutAttributes.self
     }
     
-    func invalidationContextClass() -> AnyClass
+    public override class func invalidationContextClass() -> AnyClass
     {
         return SChatCollectionViewFlowLayoutInvalidationContext.self
     }
@@ -310,11 +303,11 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
     {
         if context.invalidateDataSourceCounts
         {
-            // TODO: Descomentar esto (context as! SChatCollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutAttributes = true
-            // TODO: Descomentar esto (context as! SChatCollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutDelegateMetrics = true
+            (context as! SChatCollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutAttributes = true
+            (context as! SChatCollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutDelegateMetrics = true
         }
         
-        /* TODO: Descomentar esto if (context as! SChatCollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutAttributes
+        if (context as! SChatCollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutAttributes
             || (context as! SChatCollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutDelegateMetrics
         {
             self.sChatResetDynamicAnimator()
@@ -323,7 +316,7 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
         if (context as! SChatCollectionViewFlowLayoutInvalidationContext).invalidateFlowLayoutMessagesCache
         {
             self.sChatResetLayout()
-        }*/
+        }
         
         super.invalidateLayoutWithContext(context)
     }
@@ -382,7 +375,8 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
             {
                 if value.representedElementCategory == UICollectionElementCategory.Cell
                 {
-                    // TODO: Descomentar esto self.sChatConfigureMessageCellLayoutAttributes(value as! SChatCollectionViewLayoutAttributes)
+                    // TODO: Descomentar esto
+                    self.sChatConfigureMessageCellLayoutAttributes(value as! SChatCollectionViewLayoutAttributes)
                 }
                 else
                 {
@@ -396,14 +390,15 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
     
     public override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes?
     {
-        /* TODO: Descomentar esto let customAttributes: SChatCollectionViewLayoutAttributes = super.layoutAttributesForItemAtIndexPath(indexPath) as! SChatCollectionViewLayoutAttributes
+        /* TODO: Descomentar esto */
+        let customAttributes: SChatCollectionViewLayoutAttributes? = super.layoutAttributesForItemAtIndexPath(indexPath) as? SChatCollectionViewLayoutAttributes
         
-        if customAttributes.representedElementCategory == UICollectionElementCategory.Cell
+        if customAttributes?.representedElementCategory == UICollectionElementCategory.Cell
         {
-            self.sChatConfigureMessageCellLayoutAttributes(customAttributes)
+            self.sChatConfigureMessageCellLayoutAttributes(customAttributes!)
         }
         
-        return customAttributes*/
+        return customAttributes
         
         return nil
     }
@@ -435,6 +430,8 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
         
         return false
     }
+    
+    
     
     public override func prepareForCollectionViewUpdates(updateItems: [UICollectionViewUpdateItem])
     {
@@ -503,13 +500,18 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
     {
         let messageBubbleSize = self.messageBubblesSizeForItemAtIndexPath(indexPath)
         
-        // Descomentar esto let attributes: SChatCollectionViewLayoutAttributes = self.layoutAttributesForItemAtIndexPath(indexPath) as! SChatCollectionViewLayoutAttributes
+        // Descomentar esto
+        let attributes: SChatCollectionViewLayoutAttributes? = self.layoutAttributesForItemAtIndexPath(indexPath) as? SChatCollectionViewLayoutAttributes
         
         var finalHeight = Float(messageBubbleSize.height)
         
-        /* TODO: Descomentar esto finalHeight += attributes.cellTopLabelHeight!
-        finalHeight += attributes.messageBubbleTopLabelHeight!
-        finalHeight += attributes.cellBottomLabelHeight!*/
+        /* TODO: Descomentar esto*/
+        if attributes != nil
+        {
+            finalHeight += attributes!.cellTopLabelHeight!
+            finalHeight += attributes!.messageBubbleTopLabelHeight!
+            finalHeight += attributes!.cellBottomLabelHeight!
+        }
         
         return CGSizeMake(CGFloat(self.itemWidth), CGFloat(ceilf(finalHeight)))
     }

@@ -68,7 +68,7 @@ public class SChatBubbleImageFactory: NSObject
         
         if flippedForIncoming
         {
-            normalBubble = self.sChatStretchableImageFromImage(normalBubble, withCapInsets: self.capInsets!)
+            normalBubble = self.self.sChatHorizontallyFlippedImageFromImage(normalBubble)
             highlightedImage = self.sChatHorizontallyFlippedImageFromImage(highlightedImage)
         }
         

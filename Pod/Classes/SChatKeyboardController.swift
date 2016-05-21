@@ -150,13 +150,11 @@ public class SChatKeyboardController : NSObject
     
     func sChatDidReceiveKeyboardWillChangeFrameNotification(notification: NSNotification)
     {
-        // TODO: Descomentar esto cuando tenga montado el recognizer
         self.sChatHandleKeyboardNotification(notification, completion: nil)
     }
     
     func sChatDidReceiveKeyboardDidChangeFrameNotification(notification: NSNotification)
     {
-        // TODO: Descomentar esto cuando tenga montado el recognizer
         self.sChatSetKeyboardViewHidden(false)
         
         self.sChatHandleKeyboardNotification(notification, completion: nil)

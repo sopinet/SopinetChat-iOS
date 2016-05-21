@@ -513,7 +513,8 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         
         if self.automaticallyScrollsToMostRecentMessage
         {
-            // TODO: Descomentar esto y solucionar error self.scrollToBottomAnimated(animated)
+            // TODO: Descomentar esto y solucionar error
+            //self.scrollToBottomAnimated(animated)
         }
     }
     
@@ -532,6 +533,7 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         
         if self.automaticallyScrollsToMostRecentMessage && self.sChatIsMenuVisible()
         {
+            // TODO: Descomentar esto y solucionar error 
             self.scrollToBottomAnimated(true)
         }
     }

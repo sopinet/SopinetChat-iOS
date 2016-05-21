@@ -10,40 +10,46 @@ import UIKit
 
 class SChatCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes
 {
-    var messageBubbleFont: UIFont?
+    var messageBubbleFont: UIFont? = nil
     
+    private var _messageBubbleContainerViewWidth: Float?
     var messageBubbleContainerViewWidth: Float? {
-        set { self.messageBubbleContainerViewWidth = ceilf(newValue!) }
-        get {return self.messageBubbleContainerViewWidth }
+        set { _messageBubbleContainerViewWidth = ceilf(newValue!) }
+        get {return _messageBubbleContainerViewWidth }
     }
     
     var textViewTextContainerInsets: UIEdgeInsets? = nil
     
     var textViewFrameInsets: UIEdgeInsets? = nil
     
+    private var _incomingAvatarViewSize: CGSize?
     var incomingAvatarViewSize: CGSize? {
-        set { self.incomingAvatarViewSize = self.sChatCorrectedAvatarSizeFromSize(newValue!) }
-        get { return self.incomingAvatarViewSize }
+        set { _incomingAvatarViewSize = self.sChatCorrectedAvatarSizeFromSize(newValue!) }
+        get { return _incomingAvatarViewSize }
     }
     
+    private var _outgoingAvatarViewSize: CGSize?
     var outgoingAvatarViewSize: CGSize? {
-        set { self.outgoingAvatarViewSize = self.sChatCorrectedAvatarSizeFromSize(newValue!) }
-        get { return self.outgoingAvatarViewSize }
+        set { _outgoingAvatarViewSize = self.sChatCorrectedAvatarSizeFromSize(newValue!) }
+        get { return _outgoingAvatarViewSize }
     }
     
+    private var _cellTopLabelHeight: Float?
     var cellTopLabelHeight: Float? {
-        set { self.cellTopLabelHeight = self.sChatCorrectedLabelHeightForHeight(newValue!) }
-        get { return self.cellTopLabelHeight }
+        set { _cellTopLabelHeight = self.sChatCorrectedLabelHeightForHeight(newValue!) }
+        get { return _cellTopLabelHeight }
     }
     
+    private var _messageBubbleTopLabelHeight: Float?
     var messageBubbleTopLabelHeight: Float? {
-        set { self.messageBubbleTopLabelHeight = self.sChatCorrectedLabelHeightForHeight(newValue!) }
-        get { return messageBubbleTopLabelHeight }
+        set { _messageBubbleTopLabelHeight = self.sChatCorrectedLabelHeightForHeight(newValue!) }
+        get { return _messageBubbleTopLabelHeight }
     }
     
+    private var _cellBottomLabelHeight: Float?
     var cellBottomLabelHeight: Float? {
-        set { self.cellBottomLabelHeight = self.sChatCorrectedLabelHeightForHeight(newValue!) }
-        get { return cellBottomLabelHeight }
+        set { _cellBottomLabelHeight = self.sChatCorrectedLabelHeightForHeight(newValue!) }
+        get { return _cellBottomLabelHeight }
     }
     
     // MARK: Life-Cycle
@@ -70,7 +76,7 @@ class SChatCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes
     
     override func isEqual(object: AnyObject?) -> Bool
     {
-        if self.isEqual(object) {
+        if super.isEqual(object) {
             return true
         }
         
@@ -82,8 +88,7 @@ class SChatCollectionViewLayoutAttributes: UICollectionViewLayoutAttributes
         {
             let layoutAttributes: SChatCollectionViewLayoutAttributes = object as! SChatCollectionViewLayoutAttributes
             
-            if !layoutAttributes.messageBubbleFont!.isEqual(self.messageBubbleFont)
-                || !UIEdgeInsetsEqualToEdgeInsets(layoutAttributes.textViewFrameInsets!, self.textViewFrameInsets!)
+            if !UIEdgeInsetsEqualToEdgeInsets(layoutAttributes.textViewFrameInsets!, self.textViewFrameInsets!)
                 || !UIEdgeInsetsEqualToEdgeInsets(layoutAttributes.textViewTextContainerInsets!, self.textViewTextContainerInsets!)
                 || !CGSizeEqualToSize(layoutAttributes.incomingAvatarViewSize!, self.incomingAvatarViewSize!)
                 || !CGSizeEqualToSize(layoutAttributes.outgoingAvatarViewSize!, self.outgoingAvatarViewSize!)
