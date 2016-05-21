@@ -82,6 +82,9 @@ public class SChatCollectionView: UICollectionView, SChatCollectionViewCellDeleg
         
         // TODO: Faltan tipos de celdas
         
+        let castedCollectionViewLayout: SChatCollectionViewFlowLayout = collectionViewLayout as! SChatCollectionViewFlowLayout
+        collectionViewLayoutInterceptor = castedCollectionViewLayout
+        
         self.typingIndicatorDysplaysOnLeft = true
         self.typingIndicatorMessageBubbleColor = UIColor.sChatMessageBubbleLightGrayColor()
         self.typingIndicatorEllipsisColor = typingIndicatorMessageBubbleColor // TODO: Color by darkening...
