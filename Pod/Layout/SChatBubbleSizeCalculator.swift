@@ -67,7 +67,8 @@ public class SChatBubbleSizeCalculator: NSObject, SChatBubbleSizeCalculating
     
     public func messageBubbleSizeForMessageData(messageData: SChatMessageData, atIndexPath indexPath: NSIndexPath, withLayout layout: SChatCollectionViewFlowLayout) -> CGSize
     {
-        let cachedSize: NSValue? = self.cache?.objectForKey(messageData.messageHash!) as? NSValue
+        // TODO: Descomentar esto let cachedSize: NSValue? = self.cache?.objectForKey(messageData.messageHash!) as? NSValue
+        let cachedSize: NSValue? = nil
         
         if cachedSize != nil
         {
@@ -110,7 +111,7 @@ public class SChatBubbleSizeCalculator: NSObject, SChatBubbleSizeCalculating
             finalSize = CGSizeMake(CGFloat(finalWidth), stringSize.height + verticalInsets)
         }
         
-        self.cache?.setObject(NSValue(CGSize: finalSize), forKey: messageData.messageHash!)
+        // TODO: Descomentar esto: self.cache?.setObject(NSValue(CGSize: finalSize), forKey: messageData.messageHash!)
         
         return finalSize
     }
@@ -120,7 +121,7 @@ public class SChatBubbleSizeCalculator: NSObject, SChatBubbleSizeCalculating
     {
         let messageSender = messageData.senderId
         
-        if messageSender == layout.collectionView?.dataSourceInterceptor?.senderId
+        if messageSender == (layout.collectionView as! SChatCollectionView).dataSourceInterceptor?.senderId
         {
             return layout.outgoingAvatarViewSize
         }

@@ -54,26 +54,27 @@ public class SChatCollectionViewCell: UICollectionViewCell
     
     // Properties
     
+    private var _mediaView: UIView?
     weak var mediaView: UIView? {
         set
         {
-            if mediaView != nil
+            if _mediaView != nil
             {
                 self.messageBubbleImageView.removeFromSuperview()
                 self.textView.removeFromSuperview()
                 
                 
-                mediaView!.translatesAutoresizingMaskIntoConstraints = false
-                mediaView!.frame = self.messageBubbleContainerView.bounds
+                _mediaView!.translatesAutoresizingMaskIntoConstraints = false
+                _mediaView!.frame = self.messageBubbleContainerView.bounds
                 
-                self.messageBubbleContainerView.addSubview(mediaView!)
-                self.messageBubbleContainerView.sChatPinAllEdgesOfSubview(mediaView!)
-                mediaView = newValue
+                self.messageBubbleContainerView.addSubview(_mediaView!)
+                self.messageBubbleContainerView.sChatPinAllEdgesOfSubview(_mediaView!)
+                _mediaView = newValue
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     for index in 0...(self.messageBubbleContainerView.subviews.count - 1)
                     {
-                        if !self.messageBubbleContainerView.subviews[index].isEqual(self.mediaView)
+                        if !self.messageBubbleContainerView.subviews[index].isEqual(self._mediaView)
                         {
                             self.messageBubbleContainerView.subviews[index].removeFromSuperview()
                         }
@@ -81,17 +82,18 @@ public class SChatCollectionViewCell: UICollectionViewCell
                 })
             }
         }
-        get { return mediaView }
+        get { return _mediaView }
     }
     
     weak var tapGestureRecognizer: UITapGestureRecognizer? = nil
     
+    private var _textViewFrameInsets: UIEdgeInsets?
     var textViewFrameInsets: UIEdgeInsets? {
         set
         {
             if newValue != nil
             {
-                if UIEdgeInsetsEqualToEdgeInsets(newValue!, textViewFrameInsets!)
+                if UIEdgeInsetsEqualToEdgeInsets(newValue!, _textViewFrameInsets!)
                 {
                     return
                 }
@@ -111,12 +113,13 @@ public class SChatCollectionViewCell: UICollectionViewCell
         }
     }
     
+    private var _avatarViewSize: CGSize? = CGSizeZero
     var avatarViewSize: CGSize? {
         set
         {
             if newValue != nil
             {
-                if CGSizeEqualToSize(newValue!, avatarViewSize!)
+                if CGSizeEqualToSize(newValue!, _avatarViewSize!)
                 {
                     return
                 }
@@ -143,7 +146,7 @@ public class SChatCollectionViewCell: UICollectionViewCell
     
     public class func nib() -> UINib!
     {
-        return UINib.init(nibName:NSStringFromClass(self), bundle: NSBundle(forClass: self))
+        return UINib.init(nibName:String(self), bundle: NSBundle(forClass: self))
     }
     
     public static func cellReuseIdentifier() -> String
@@ -237,6 +240,7 @@ public class SChatCollectionViewCell: UICollectionViewCell
     {
         super.applyLayoutAttributes(layoutAttributes)
         
+        /* TODO: Descomentar esto
         let customAttributes: SChatCollectionViewLayoutAttributes = layoutAttributes as! SChatCollectionViewLayoutAttributes
         
         if self.textView.font != customAttributes.messageBubbleFont
@@ -266,19 +270,21 @@ public class SChatCollectionViewCell: UICollectionViewCell
         else if self.isKindOfClass(SChatCollectionViewCellOutgoing)
         {
             self.avatarViewSize = customAttributes.outgoingAvatarViewSize
-        }
+        } */
     }
     
+    private var _highlighted: Bool = false
     override public var highlighted: Bool
     {
         set { self.messageBubbleImageView.highlighted = newValue }
-        get { return highlighted }
+        get { return _highlighted }
     }
     
+    private var _selected: Bool = false
     override public var selected: Bool
     {
         set { self.messageBubbleImageView.highlighted = newValue }
-        get { return selected }
+        get { return _selected }
     }
     
     // MARK: Menu actions
@@ -312,11 +318,12 @@ public class SChatCollectionViewCell: UICollectionViewCell
     
     // MARK: Vars overrides
     
+    private var _backgroundColor: UIColor?
     override public var backgroundColor: UIColor?
     {
         set
         {
-            backgroundColor = newValue
+            _backgroundColor = newValue
             
             self.cellTopLabel.backgroundColor = newValue
             self.messageBubbleTopLabel.backgroundColor = newValue
@@ -328,7 +335,7 @@ public class SChatCollectionViewCell: UICollectionViewCell
             self.messageBubbleContainerView.backgroundColor = newValue
             self.avatarContainerView.backgroundColor = newValue
         }
-        get { return backgroundColor }
+        get { return _backgroundColor }
     }
     
     // MARK: Utilities

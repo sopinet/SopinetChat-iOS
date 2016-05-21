@@ -29,9 +29,19 @@ public class Message: NSObject, SChatMessageData, NSCoding
     
     // MARK: Initialization
     
-    override public init()
-    {
-        
+    public init(senderId: String,
+                         senderDisplayName: String,
+                         date: NSDate?,
+                         text: String?,
+                         media: SChatMediaData?,
+                         isMediaMessage: Bool)
+    {   
+        self.senderId = senderId
+        self.senderDisplayName = senderDisplayName
+        self.date = date
+        self.text = text
+        self.media = media
+        self.isMediaMessage = isMediaMessage
     }
     /*override convenience public init()
     {

@@ -85,10 +85,13 @@ class ChatViewController: SChatViewController
     func addMessage(id: String, text: String)
     {
         //let message = Message(senderId: id, displayName: "", text: text)
-        let message = Message()
-        message.senderId = id
-        message.text = "Hola"
-        message.senderDisplayName = senderDisplayName
+        let message = Message(senderId: id,
+                              senderDisplayName: "David",
+                              date: NSDate(),
+                              text: text,
+                              media: nil,
+                              isMediaMessage: false)
+        
         messages.append(message)
         
         print("Messages count: \(messages.count) - CollectionView Items: \(self.sChatCollectionView.numberOfItemsInSection(0))")

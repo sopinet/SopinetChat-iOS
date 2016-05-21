@@ -12,14 +12,15 @@ public class SChatLabel: UILabel
 {
     // MARK: Properties
     
+    private var _textInsets: UIEdgeInsets? = UIEdgeInsetsZero
     var textInsets: UIEdgeInsets? {
         set {
-            if !UIEdgeInsetsEqualToEdgeInsets(self.textInsets!, newValue!) {
-                self.textInsets = newValue!
+            if !UIEdgeInsetsEqualToEdgeInsets(_textInsets!, newValue!) {
+                _textInsets = newValue!
                 self.setNeedsDisplay()
             }
         }
-        get {return textInsets}
+        get {return _textInsets}
     }
     
     // MARK: Initialization

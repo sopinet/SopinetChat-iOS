@@ -691,6 +691,7 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         
         var needsAvatar = true
         
+        /* TODO: Descomentar esto
         if isOutgoingMessage && CGSizeEqualToSize(castedCollectionView.collectionViewLayoutInterceptor!.outgoingAvatarViewSize, CGSizeZero)
         {
             needsAvatar = false
@@ -698,7 +699,9 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         else if !isOutgoingMessage && CGSizeEqualToSize(castedCollectionView.collectionViewLayoutInterceptor!.incomingAvatarViewSize, CGSizeZero)
         {
             needsAvatar = false
-        }
+        }*/
+        
+        needsAvatar = false
         
         var avatarImageDataSource: SChatAvatarImageDataSource? = nil
         

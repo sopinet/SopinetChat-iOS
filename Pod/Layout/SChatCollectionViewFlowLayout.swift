@@ -16,36 +16,46 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
 {
     // MARK: Properties
     
-    // TODO: Hacerle el casting
+    weak var collectionViewInterceptor: SChatCollectionView?
     
-    public override var collectionView: SChatCollectionView?
-    {
-        get { return collectionView }
-    }
+    /*public override var collectionView: UICollectionView? {
+        didSet {
+            if collectionView != nil {
+                //let castedDelegate = unsafeBitCast(delegate, SChatInputToolbarDelegate.self)
+                let castedCollectionView: SChatCollectionView = collectionView as! SChatCollectionView
+                collectionViewInterceptor = castedCollectionView
+            }
+            else {
+                collectionViewInterceptor = nil
+            }
+        }
+    }*/
     
+    private var _bubbleSizeCalculator: SChatBubbleSizeCalculating?
     var bubbleSizeCalculator: SChatBubbleSizeCalculating? {
         set
         {
-            bubbleSizeCalculator = newValue
+            _bubbleSizeCalculator = newValue
         }
         get
         {
-            if bubbleSizeCalculator == nil
+            if _bubbleSizeCalculator == nil
             {
-                bubbleSizeCalculator = SChatBubbleSizeCalculator()
+                _bubbleSizeCalculator = SChatBubbleSizeCalculator()
             }
-            return bubbleSizeCalculator
+            return _bubbleSizeCalculator
         }
     }
     
+    private var _springinessEnabled: Bool = false
     var springinessEnabled: Bool {
         set
         {
-            if springinessEnabled != newValue
+            if _springinessEnabled != newValue
             {
-                springinessEnabled = newValue
+                _springinessEnabled = newValue
                 
-                if !springinessEnabled
+                if !_springinessEnabled
                 {
                     dynamicAnimator?.removeAllBehaviors()
                     visibleIndexPaths?.removeAllObjects()
@@ -56,7 +66,7 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
         }
         get
         {
-            return springinessEnabled
+            return _springinessEnabled
         }
     }
     
@@ -69,123 +79,130 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
         }
     }
     
+    private var _incomingAvatarViewSize: CGSize = CGSizeZero
     public var incomingAvatarViewSize: CGSize {
         set
         {
-            if !CGSizeEqualToSize(incomingAvatarViewSize, newValue)
+            if !CGSizeEqualToSize(_incomingAvatarViewSize, newValue)
             {
-                incomingAvatarViewSize = newValue
+                _incomingAvatarViewSize = newValue
                 
                 self.invalidateLayoutWithContext(SChatCollectionViewFlowLayoutInvalidationContext.context())
             }
         }
         get
         {
-            return incomingAvatarViewSize
+            return _incomingAvatarViewSize
         }
     }
     
+    private var _outgoingAvatarViewSize: CGSize = CGSizeZero
     public var outgoingAvatarViewSize: CGSize {
         set
         {
-            if !CGSizeEqualToSize(outgoingAvatarViewSize, newValue)
+            if !CGSizeEqualToSize(_outgoingAvatarViewSize, newValue)
             {
-                outgoingAvatarViewSize = newValue
+                _outgoingAvatarViewSize = newValue
                 
                 self.invalidateLayoutWithContext(SChatCollectionViewFlowLayoutInvalidationContext.context())
             }
         }
         get
         {
-            return outgoingAvatarViewSize
+            return _outgoingAvatarViewSize
         }
     }
     
     var messageBubbleTextViewFrameInsets: UIEdgeInsets?
     
+    private var _messageBubbleTextViewTextContainerInsets: UIEdgeInsets = UIEdgeInsetsZero
     var messageBubbleTextViewTextContainerInsets: UIEdgeInsets {
         set
         {
-            if !UIEdgeInsetsEqualToEdgeInsets(self.messageBubbleTextViewTextContainerInsets, newValue)
+            if !UIEdgeInsetsEqualToEdgeInsets(_messageBubbleTextViewTextContainerInsets, newValue)
             {
-                messageBubbleTextViewTextContainerInsets = newValue
+                _messageBubbleTextViewTextContainerInsets = newValue
                 
                 self.invalidateLayoutWithContext(SChatCollectionViewFlowLayoutInvalidationContext.context())
             }
         }
         get
         {
-            return messageBubbleTextViewTextContainerInsets
+            return _messageBubbleTextViewTextContainerInsets
         }
     }
     
+    private var _messageBubbleLeftRightMargin: Float = 0.0
     var messageBubbleLeftRightMargin: Float {
         set
         {
             assert(newValue >= 0.0, "messageBubbleLeftRightMargin must be equal to or greater than 0.0")
-            messageBubbleLeftRightMargin = ceilf(newValue)
+            _messageBubbleLeftRightMargin = ceilf(newValue)
             
             self.invalidateLayoutWithContext(SChatCollectionViewFlowLayoutInvalidationContext.context())
         }
         get
         {
-            return messageBubbleLeftRightMargin
+            return _messageBubbleLeftRightMargin
         }
     }
     
+    private var _messageBubbleFont: UIFont?
     var messageBubbleFont: UIFont? {
         set
         {
             if newValue != nil
             {
-                if messageBubbleFont == nil || !messageBubbleFont!.isEqual(newValue!)
+                if _messageBubbleFont == nil || !_messageBubbleFont!.isEqual(newValue!)
                 {
-                    messageBubbleFont = newValue
+                    _messageBubbleFont = newValue
                     
                     self.invalidateLayoutWithContext(SChatCollectionViewFlowLayoutInvalidationContext.context())
                 }
             }
             else
             {
-                messageBubbleFont = newValue
+                _messageBubbleFont = newValue
             }
         }
         get
         {
-            return messageBubbleFont
+            return _messageBubbleFont
         }
     }
     
     var cacheLimit: UInt = 200
     
+    private var _dynamicAnimator: UIDynamicAnimator?
     var dynamicAnimator: UIDynamicAnimator? {
         set
         {
-            dynamicAnimator = newValue
+            _dynamicAnimator = newValue
         }
         get
         {
-            if dynamicAnimator == nil
+            if _dynamicAnimator == nil
             {
-                dynamicAnimator = UIDynamicAnimator(collectionViewLayout: self)
+                _dynamicAnimator = UIDynamicAnimator(collectionViewLayout: self)
             }
             
-            return dynamicAnimator
+            return _dynamicAnimator
         }
     }
     
+    var _visibleIndexPaths: NSMutableSet?
     var visibleIndexPaths: NSMutableSet? {
         set
         {
-            visibleIndexPaths = newValue
+            _visibleIndexPaths = newValue
         }
         get
         {
-            if visibleIndexPaths == nil
+            if _visibleIndexPaths == nil
             {
-                visibleIndexPaths = NSMutableSet()
+                _visibleIndexPaths = NSMutableSet()
             }
-            return visibleIndexPaths
+            return _visibleIndexPaths
         }
     }
     
@@ -199,7 +216,7 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
         self.sectionInset = UIEdgeInsetsMake(10.0, 4.0, 10.0, 4.0)
         self.minimumLineSpacing = 4.0
         
-        // TODO: Descomentar esto self.messageBubbleFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+        self.messageBubbleFont = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
         
         if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad
         {
@@ -207,19 +224,19 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
         }
         else
         {
-            // TODO: Descomentar esto self.messageBubbleLeftRightMargin = 50.0
+            self.messageBubbleLeftRightMargin = 50.0
         }
         
         self.messageBubbleTextViewFrameInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, 6.0)
-        // TODO: Descomentar esto self.messageBubbleTextViewTextContainerInsets = UIEdgeInsetsMake(7.0, 14.0, 7.0, 14.0)
+        self.messageBubbleTextViewTextContainerInsets = UIEdgeInsetsMake(7.0, 14.0, 7.0, 14.0)
         
         let defaultAvatarSize = CGSizeMake(kSChatCollectionViewAvatarSizeDefault, kSChatCollectionViewAvatarSizeDefault)
         
-        // TODO: Descomentar esto self.incomingAvatarViewSize = defaultAvatarSize
-        // TODO: Descomentar esto self.outgoingAvatarViewSize = defaultAvatarSize
+        self.incomingAvatarViewSize = defaultAvatarSize
+        self.outgoingAvatarViewSize = defaultAvatarSize
         
-        // TODO: Descomentar esto springinessEnabled = false
-        // TODO: Descomentar esto springResistanceFactor = 1000
+        springinessEnabled = false
+        springResistanceFactor = 1000
         
         NSNotificationCenter.defaultCenter().addObserver(self,
                                                          selector: #selector(sChatDidReceiveApplicationMemoryWarningNotification(_:)),
@@ -365,7 +382,7 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
             {
                 if value.representedElementCategory == UICollectionElementCategory.Cell
                 {
-                    self.sChatConfigureMessageCellLayoutAttributes(value as! SChatCollectionViewLayoutAttributes)
+                    // TODO: Descomentar esto self.sChatConfigureMessageCellLayoutAttributes(value as! SChatCollectionViewLayoutAttributes)
                 }
                 else
                 {
@@ -379,14 +396,16 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
     
     public override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes?
     {
-        let customAttributes: SChatCollectionViewLayoutAttributes = super.layoutAttributesForItemAtIndexPath(indexPath) as! SChatCollectionViewLayoutAttributes
+        /* TODO: Descomentar esto let customAttributes: SChatCollectionViewLayoutAttributes = super.layoutAttributesForItemAtIndexPath(indexPath) as! SChatCollectionViewLayoutAttributes
         
         if customAttributes.representedElementCategory == UICollectionElementCategory.Cell
         {
             self.sChatConfigureMessageCellLayoutAttributes(customAttributes)
         }
         
-        return customAttributes
+        return customAttributes*/
+        
+        return nil
     }
     
     public override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool
@@ -473,7 +492,7 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
     
     func messageBubblesSizeForItemAtIndexPath(indexPath: NSIndexPath) -> CGSize
     {
-        let messageItem: SChatMessageData = self.collectionView!.dataSourceInterceptor!.collectionView(self.collectionView!, messageDataForItemAtIndexPath: indexPath)!
+        let messageItem: SChatMessageData = (self.collectionView as! SChatCollectionView).dataSourceInterceptor!.collectionView((self.collectionView as! SChatCollectionView), messageDataForItemAtIndexPath: indexPath)!
         
         return self.bubbleSizeCalculator!.messageBubbleSizeForMessageData(messageItem,
                                                                           atIndexPath: indexPath,
@@ -484,13 +503,13 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
     {
         let messageBubbleSize = self.messageBubblesSizeForItemAtIndexPath(indexPath)
         
-        let attributes: SChatCollectionViewLayoutAttributes = self.layoutAttributesForItemAtIndexPath(indexPath) as! SChatCollectionViewLayoutAttributes
+        // Descomentar esto let attributes: SChatCollectionViewLayoutAttributes = self.layoutAttributesForItemAtIndexPath(indexPath) as! SChatCollectionViewLayoutAttributes
         
         var finalHeight = Float(messageBubbleSize.height)
         
-        finalHeight += attributes.cellTopLabelHeight!
+        /* TODO: Descomentar esto finalHeight += attributes.cellTopLabelHeight!
         finalHeight += attributes.messageBubbleTopLabelHeight!
-        finalHeight += attributes.cellBottomLabelHeight!
+        finalHeight += attributes.cellBottomLabelHeight!*/
         
         return CGSizeMake(CGFloat(self.itemWidth), CGFloat(ceilf(finalHeight)))
     }
@@ -511,17 +530,17 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
         
         layoutAttributes.outgoingAvatarViewSize = self.outgoingAvatarViewSize
         
-        layoutAttributes.cellTopLabelHeight = self.collectionView!.delegateInterceptor?
-            .collectionView(self.collectionView!,
+        layoutAttributes.cellTopLabelHeight = (self.collectionView as! SChatCollectionView).delegateInterceptor?
+            .collectionView((self.collectionView as! SChatCollectionView),
                             layout: self,
                             heightForCellTopLabelAtIndexPath: indexPath)
         
-        layoutAttributes.messageBubbleTopLabelHeight = self.collectionView!.delegateInterceptor?
-            .collectionView(self.collectionView!,
+        layoutAttributes.messageBubbleTopLabelHeight = (self.collectionView as! SChatCollectionView).delegateInterceptor?
+            .collectionView((self.collectionView as! SChatCollectionView),
                             layout: self,
                             heightForMessageBubbleTopLabelAtIndexPath: indexPath)
         
-        layoutAttributes.cellBottomLabelHeight = self.collectionView!.delegateInterceptor?.collectionView(self.collectionView!, layout: self, heightForCellBottomLabelAtIndexPath: indexPath)
+        layoutAttributes.cellBottomLabelHeight = (self.collectionView as! SChatCollectionView).delegateInterceptor?.collectionView((self.collectionView as! SChatCollectionView), layout: self, heightForCellBottomLabelAtIndexPath: indexPath)
     }
     
     // MARK: Spring behavior utilities
