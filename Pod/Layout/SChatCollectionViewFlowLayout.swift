@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-let kSChatCollectionViewCellLabelHeightDefault: CGFloat = 20.0
-let kSChatCollectionViewAvatarSizeDefault: CGFloat = 30.0
+public let kSChatCollectionViewCellLabelHeightDefault: CGFloat = 20.0
+public let kSChatCollectionViewAvatarSizeDefault: CGFloat = 30.0
 
 public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
 {

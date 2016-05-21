@@ -82,6 +82,63 @@ class ChatViewController: SChatViewController
         return nil
     }
     
+    override func collectionView(collectionView: SChatCollectionView, attributedTextForCellTopLabelAtIndexPath indexPath: NSIndexPath) -> NSAttributedString?
+    {
+        let message = self.messages[indexPath.item]
+        
+        if let date = message.date
+        {
+            return NSAttributedString(string: "Hoy, 19:23")
+        }
+        else
+        {
+            return nil
+        }
+    }
+    
+    override func collectionView(collectionView: SChatCollectionView, layout: SChatCollectionViewFlowLayout, heightForCellTopLabelAtIndexPath indexPath: NSIndexPath) -> Float
+    {
+        return Float(kSChatCollectionViewCellLabelHeightDefault)
+    }
+    
+    override func collectionView(collectionView: SChatCollectionView, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath) -> NSAttributedString?
+    {
+        let message = self.messages[indexPath.item]
+        
+        if let displayName = message.senderDisplayName
+        {
+            return NSAttributedString(string: displayName)
+        }
+        else
+        {
+            return nil
+        }
+    }
+    
+    override func collectionView(collectionView: SChatCollectionView, layout: SChatCollectionViewFlowLayout, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath) -> Float
+    {
+        return Float(kSChatCollectionViewCellLabelHeightDefault)
+    }
+    
+    /*override func collectionView(collectionView: SChatCollectionView, attributedTextForCellBottomLabelAtIndexPath indexPath: NSIndexPath) -> NSAttributedString?
+    {
+        let message = self.messages[indexPath.item]
+        
+        if let date = message.date
+        {
+            return NSAttributedString(string: date.description)
+        }
+        else
+        {
+            return nil
+        }
+    }
+    
+    override func collectionView(collectionView: SChatCollectionView, layout: SChatCollectionViewFlowLayout, heightForCellBottomLabelAtIndexPath indexPath: NSIndexPath) -> Float
+    {
+        return Float(kSChatCollectionViewCellLabelHeightDefault)
+    }*/
+    
     func addMessage(id: String, text: String)
     {
         //let message = Message(senderId: id, displayName: "", text: text)
