@@ -514,7 +514,7 @@ public class SChatViewController: UIViewController, UITextViewDelegate, SChatInp
         if self.automaticallyScrollsToMostRecentMessage
         {
             // TODO: Descomentar esto y solucionar error
-            //self.scrollToBottomAnimated(animated)
+            self.scrollToBottomAnimated(animated)
         }
     }
     

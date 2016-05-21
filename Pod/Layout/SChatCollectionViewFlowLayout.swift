@@ -528,6 +528,8 @@ public class SChatCollectionViewFlowLayout: UICollectionViewFlowLayout
         
         layoutAttributes.textViewTextContainerInsets = self.messageBubbleTextViewTextContainerInsets
         
+        layoutAttributes.messageBubbleFont = self.messageBubbleFont
+        
         layoutAttributes.incomingAvatarViewSize = self.incomingAvatarViewSize
         
         layoutAttributes.outgoingAvatarViewSize = self.outgoingAvatarViewSize
