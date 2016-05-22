@@ -232,6 +232,8 @@
 		AADE92041CD34AD20008E68B /* SChatInputToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADE92031CD34AD20008E68B /* SChatInputToolbar.swift */; };
 		AADE92071CD369320008E68B /* SChatToolbarButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADE92061CD369320008E68B /* SChatToolbarButtonFactory.swift */; };
 		AADE92101CD375B70008E68B /* SChatUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADE920F1CD375B70008E68B /* SChatUIColor.swift */; };
+		AAEA6AA61CF1BFC100422CAB /* SChatAvatarImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEA6AA51CF1BFC100422CAB /* SChatAvatarImage.swift */; };
+		AAEA6AA81CF1CA6200422CAB /* SChatAvatarImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEA6AA71CF1CA6200422CAB /* SChatAvatarImageFactory.swift */; };
 		AAEC5F451CDE0185009F7429 /* SChatCollectionViewFlowLayoutInvalidationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEC5F441CDE0185009F7429 /* SChatCollectionViewFlowLayoutInvalidationContext.swift */; };
 		AAEC5F471CDE094B009F7429 /* SChatCollectionViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEC5F461CDE094B009F7429 /* SChatCollectionViewLayoutAttributes.swift */; };
 		AAF118C91CD76CED002B94DD /* SChatComposerTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF118C81CD76CED002B94DD /* SChatComposerTextView.swift */; };
@@ -711,6 +713,8 @@
 		AADE92031CD34AD20008E68B /* SChatInputToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatInputToolbar.swift; path = Views/SChatInputToolbar.swift; sourceTree = "<group>"; };
 		AADE92061CD369320008E68B /* SChatToolbarButtonFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatToolbarButtonFactory.swift; path = Factories/SChatToolbarButtonFactory.swift; sourceTree = "<group>"; };
 		AADE920F1CD375B70008E68B /* SChatUIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatUIColor.swift; path = Extensions/SChatUIColor.swift; sourceTree = "<group>"; };
+		AAEA6AA51CF1BFC100422CAB /* SChatAvatarImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatAvatarImage.swift; path = Models/SChatAvatarImage.swift; sourceTree = "<group>"; };
+		AAEA6AA71CF1CA6200422CAB /* SChatAvatarImageFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatAvatarImageFactory.swift; path = Factories/SChatAvatarImageFactory.swift; sourceTree = "<group>"; };
 		AAEC5F441CDE0185009F7429 /* SChatCollectionViewFlowLayoutInvalidationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatCollectionViewFlowLayoutInvalidationContext.swift; path = Layout/SChatCollectionViewFlowLayoutInvalidationContext.swift; sourceTree = "<group>"; };
 		AAEC5F461CDE094B009F7429 /* SChatCollectionViewLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatCollectionViewLayoutAttributes.swift; path = Layout/SChatCollectionViewLayoutAttributes.swift; sourceTree = "<group>"; };
 		AAF118C81CD76CED002B94DD /* SChatComposerTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatComposerTextView.swift; path = Views/SChatComposerTextView.swift; sourceTree = "<group>"; };
@@ -1404,6 +1408,7 @@
 				AA4EDD961CEB75E80014AC21 /* SChatAvatarImageDataSource.swift */,
 				AAA64ADD1CECCF98004392F1 /* SChatCollectionViewDelegateFlowLayout.swift */,
 				AA11C56A1CEEFC0000B2FEE7 /* SChatBubbleImage.swift */,
+				AAEA6AA51CF1BFC100422CAB /* SChatAvatarImage.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1421,6 +1426,7 @@
 			children = (
 				AADE92061CD369320008E68B /* SChatToolbarButtonFactory.swift */,
 				AA11C5681CEEF27800B2FEE7 /* SChatBubbleImageFactory.swift */,
+				AAEA6AA71CF1CA6200422CAB /* SChatAvatarImageFactory.swift */,
 			);
 			name = Factories;
 			sourceTree = "<group>";
@@ -2147,9 +2153,11 @@
 				AAEC5F451CDE0185009F7429 /* SChatCollectionViewFlowLayoutInvalidationContext.swift in Sources */,
 				AA4EDD8F1CEB43890014AC21 /* SChatMediaData.swift in Sources */,
 				AA258FE71CD8912F00E251BB /* SChatKeyboardController.swift in Sources */,
+				AAEA6AA61CF1BFC100422CAB /* SChatAvatarImage.swift in Sources */,
 				AAF1DBAC1CD61E3F0040A0FB /* SChatUIView.swift in Sources */,
 				AA1457051CE87E55002FE4CB /* SChatCollectionViewCellDelegate.swift in Sources */,
 				AAF118C91CD76CED002B94DD /* SChatComposerTextView.swift in Sources */,
+				AAEA6AA81CF1CA6200422CAB /* SChatAvatarImageFactory.swift in Sources */,
 				AA0F7E811CE9EF1D006FA052 /* SChatCollectionViewCellIncoming.swift in Sources */,
 				AA4EDD931CEB73430014AC21 /* SChatCollectionViewDataSource.swift in Sources */,
 				AAA64ADE1CECCF98004392F1 /* SChatCollectionViewDelegateFlowLayout.swift in Sources */,

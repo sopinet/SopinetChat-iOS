@@ -10,9 +10,9 @@ import Foundation
 
 public protocol SChatAvatarImageDataSource
 {
-    var avatarImage: UIImage { get }
+    var avatarImage: UIImage? { get }
     
-    var avatarHighlightedImage: UIImage { get }
+    var avatarHighlightedImage: UIImage? { get }
     
-    var avatarPlaceholderImage: UIImage { get }
+    var avatarPlaceholderImage: UIImage? { get }
 }
