@@ -122,7 +122,7 @@ public class SChatAvatarImageFactory: NSObject
         assert(diameter > 0, "The diameter should be greater than 0 in sChatCircularImage")
         
         let frame = CGRectMake(0.0, 0.0, CGFloat(diameter), CGFloat(diameter))
-        let newImage: UIImage? = nil
+        var newImage: UIImage? = nil
         
         UIGraphicsBeginImageContextWithOptions(frame.size, false, UIScreen.mainScreen().scale)
         
@@ -137,6 +137,8 @@ public class SChatAvatarImageFactory: NSObject
             CGContextSetFillColorWithColor(context, _highlightedColor.CGColor)
             CGContextFillEllipseInRect(context, frame)
         }
+        
+        newImage = UIGraphicsGetImageFromCurrentImageContext()
         
         UIGraphicsEndImageContext()
         

@@ -29,8 +29,8 @@ class ChatViewController: SChatViewController
         
         setupBubbles()
         
-        self.sChatCollectionView.collectionViewLayoutInterceptor?.incomingAvatarViewSize = CGSizeZero
-        self.sChatCollectionView.collectionViewLayoutInterceptor?.outgoingAvatarViewSize = CGSizeZero
+        //self.sChatCollectionView.collectionViewLayoutInterceptor?.incomingAvatarViewSize = CGSizeMake(30.0, 30.0)
+        //self.sChatCollectionView.collectionViewLayoutInterceptor?.outgoingAvatarViewSize = CGSizeMake(30.0, 30.0)
     }
     
     // MARK: Functions
@@ -79,7 +79,11 @@ class ChatViewController: SChatViewController
     
     override func collectionView(collectionView: SChatCollectionView, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath) -> SChatAvatarImageDataSource?
     {
-        return nil
+        return SChatAvatarImageFactory.avatarImageWithUserInitials("DM",
+                                                                   backgroundColor: UIColor.lightGrayColor(),
+                                                                   textColor: UIColor.darkGrayColor(),
+                                                                   font: UIFont.preferredFontForTextStyle(UIFontTextStyleBody),
+                                                                   diameter: 40)
     }
     
     override func collectionView(collectionView: SChatCollectionView, attributedTextForCellTopLabelAtIndexPath indexPath: NSIndexPath) -> NSAttributedString?
