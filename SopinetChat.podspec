@@ -30,9 +30,9 @@ Create chat functionality fast and easy.
   s.platform     = :ios, '8.0'
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes/**/*'
+  s.source_files = 'Pod/**/*'
   s.resource_bundles = {
-    'SopinetChat' => ['Pod/Assets/*.png']
+    'SopinetChat' => ['Pod/Resources']
   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
