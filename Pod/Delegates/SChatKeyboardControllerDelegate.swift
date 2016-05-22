@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import UIKit
 
-public protocol SChatKeyboardControllerDelegate: class
+public protocol SChatKeyboardControllerDelegate
 {
     // MARK: Abstract functions
     

@@ -23,13 +23,11 @@
 		25C714F6C33E73142A459AF9998C6154 /* Quick-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F1239905207F3A9E17C0EA1989A76777 /* Quick-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D3405986FC586FA6C0A5E0B6BA7E64E /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C4C0C5C2EC3645F0FB52DDAF811484 /* Validation.swift */; };
 		30AACAA8D51DC8C429577D9B67BB016C /* BeginWith.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2452E19B012C016D0A63FFDD9E5EB16 /* BeginWith.swift */; };
-		30F18CDA1ED2F24AD0B663D0735BC698 /* SopinetChat.h in Headers */ = {isa = PBXBuildFile; fileRef = 63AB5AC3C7C08F3E89CBAEF72F7E88E8 /* SopinetChat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		31455E4391BD517BAC44723B1962DC91 /* Pods-SopinetChat_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 619F4CD4DA87834F02119580F7ABE57B /* Pods-SopinetChat_Tests-dummy.m */; };
 		31629295E87A24C98238C66D41983C49 /* BeVoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8E6D8030E63459A323EFC89D5098AC /* BeVoid.swift */; };
 		320FA6B8EFA8818CD86C2EFB420783C3 /* World+DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27F186084B8A431552F60E9C26C5318 /* World+DSL.swift */; };
 		34CCDCA848A701466256BC2927DA8856 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FAA58238110B9459442CD4026CB670 /* NetworkReachabilityManager.swift */; };
 		38F5CE4B4C59A81734A93E32D35B696E /* FailureMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5393A2BF6BBC79751F43E11824135E /* FailureMessage.swift */; };
-		3ADB1EA11F1871D45A250045D6D98AF9 /* SopinetChat_Bridging_Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C424C7BF4361E8D1E4A84F7F71619E9 /* SopinetChat_Bridging_Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3D1BB98DEA422D8F173613EC715488B9 /* PostNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D9BCC33D1E722E86A601E31B4077F9 /* PostNotification.swift */; };
 		3EA8F215C9C1432D74E5CCA4834AA8C0 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD48B401F7EAD40EA5E7D4FFDDDAB036 /* ResponseSerialization.swift */; };
 		4081EA628AF0B73AC51FFB9D7AB3B89E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB5C9257BE573A918F591A24B1845C1 /* Manager.swift */; };
@@ -88,7 +86,8 @@
 		AA1AEE400F3BD73051AD545E886EDFC5 /* QuickSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5268B0D98CB50EACF0F22A1EDBBEDA3D /* QuickSpec.m */; };
 		AA314156AC500125F4078EE968DB14C6 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = A372698331F1DFDAFCA273AC20ADED5B /* Result.swift */; };
 		AA7D2026609A5441B6C6FE9FB76DB3E2 /* ExampleGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010E9194BD40D4EA42303E9473C05C6C /* ExampleGroup.swift */; };
-		AAC221AD1CF1EE7A00B70679 /* SChatAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AAC221AC1CF1EE7300B70679 /* SChatAssets.bundle */; };
+		AA8384F21CF21FF400F455E9 /* SopinetChat.h in Headers */ = {isa = PBXBuildFile; fileRef = AA8384F11CF21FF400F455E9 /* SopinetChat.h */; };
+		AA8384F41CF2202E00F455E9 /* SopinetChat_Bridging_Header.h in Headers */ = {isa = PBXBuildFile; fileRef = AA8384F31CF2202E00F455E9 /* SopinetChat_Bridging_Header.h */; };
 		AAEA6B091CF1E4F000422CAB /* SChatCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEA6AFF1CF1E4CC00422CAB /* SChatCollectionViewFlowLayout.swift */; };
 		AAEA6B0A1CF1E4F400422CAB /* SChatCollectionViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEA6B001CF1E4CC00422CAB /* SChatCollectionViewLayoutAttributes.swift */; };
 		AAEA6B0B1CF1E4F800422CAB /* SChatBubbleSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEA6B011CF1E4CC00422CAB /* SChatBubbleSizeCalculator.swift */; };
@@ -138,6 +137,7 @@
 		AAEA6B371CF1E5F100422CAB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22AD8E3DAAB2F620F0263B6C6C9A6CBF /* Info.plist */; };
 		AAEA6B381CF1E5FA00422CAB /* SopinetChat.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5178887AE26A25D9DFBB3735ED3DE9F1 /* SopinetChat.xcconfig */; };
 		AAEA6B391CF1E5FF00422CAB /* SopinetChat-prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 34EF35A11F8C260DBDD4DD12F2944267 /* SopinetChat-prefix.pch */; };
+		AAFC42D71CF215DA00A742E5 /* SChatAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AAFC42D61CF215D400A742E5 /* SChatAssets.bundle */; };
 		AD41977B201A66A4FDE1D614BBEC9FC1 /* NSString+QCKSelectorName.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCD16AAE8D3F3A100411EADEFA2690B /* NSString+QCKSelectorName.m */; };
 		ADF19C953CE2A7D0B72EC93A81FCCC26 /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F12D14C61ECF0EE42A2B5BC5B7C9E28A /* Alamofire-dummy.m */; };
 		AE4CF87C02C042DF13ED5B21C4FDC1E0 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104E96E05AD0490052277DB1BE4AC550 /* Stream.swift */; };
@@ -272,7 +272,6 @@
 		28DF05514EA1EEE37679C4A0BD6CC22C /* DSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DSL.swift; path = Sources/Nimble/DSL.swift; sourceTree = "<group>"; };
 		2B7A30FA54955B2BE2C78AA123436E01 /* Pods-SopinetChat_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SopinetChat_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		2BEDAC3F11972132E4302DEF21112264 /* AssertionDispatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssertionDispatcher.swift; path = Sources/Nimble/Adapters/AssertionDispatcher.swift; sourceTree = "<group>"; };
-		2C424C7BF4361E8D1E4A84F7F71619E9 /* SopinetChat_Bridging_Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SopinetChat_Bridging_Header.h; sourceTree = "<group>"; };
 		2DC16354CD78744F5D996304613E728A /* Equal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Equal.swift; path = Sources/Nimble/Matchers/Equal.swift; sourceTree = "<group>"; };
 		302A5030BA17CEB0FE07B828A215FD8E /* Quick.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Quick.modulemap; sourceTree = "<group>"; };
 		316DE50E03F36BC71999F55691567363 /* Pods-SopinetChat_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SopinetChat_Tests-umbrella.h"; sourceTree = "<group>"; };
@@ -302,7 +301,6 @@
 		5F5393A2BF6BBC79751F43E11824135E /* FailureMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FailureMessage.swift; path = Sources/Nimble/FailureMessage.swift; sourceTree = "<group>"; };
 		619F4CD4DA87834F02119580F7ABE57B /* Pods-SopinetChat_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SopinetChat_Tests-dummy.m"; sourceTree = "<group>"; };
 		61B143A3795019D73B27FA5204438D2F /* Closures.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Closures.swift; path = Sources/Quick/Hooks/Closures.swift; sourceTree = "<group>"; };
-		63AB5AC3C7C08F3E89CBAEF72F7E88E8 /* SopinetChat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SopinetChat.h; sourceTree = "<group>"; };
 		64BB134662A3FB21C013E0B7E8BE2848 /* MatcherProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MatcherProtocols.swift; path = Sources/Nimble/Matchers/MatcherProtocols.swift; sourceTree = "<group>"; };
 		64C80C4497DEBE5C6C42C8097967E4DA /* AsyncMatcherWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsyncMatcherWrapper.swift; path = Sources/Nimble/Wrappers/AsyncMatcherWrapper.swift; sourceTree = "<group>"; };
 		64D072C576B413764D3E59CFB4FC7053 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -348,7 +346,8 @@
 		A8BF2701D52BA7E21A61E2E85D29DC0B /* Pods-SopinetChat_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SopinetChat_Example.release.xcconfig"; sourceTree = "<group>"; };
 		A9E01997EAD2EC1ECD3E01CDCB776FB7 /* Nimble-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-prefix.pch"; sourceTree = "<group>"; };
 		AA2623D68A6464414CC3E829315F554E /* SopinetChat.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SopinetChat.swift; sourceTree = "<group>"; };
-		AAC221AC1CF1EE7300B70679 /* SChatAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SChatAssets.bundle; sourceTree = "<group>"; };
+		AA8384F11CF21FF400F455E9 /* SopinetChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SopinetChat.h; sourceTree = "<group>"; };
+		AA8384F31CF2202E00F455E9 /* SopinetChat_Bridging_Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SopinetChat_Bridging_Header.h; sourceTree = "<group>"; };
 		AAEA6AB11CF1E46800422CAB /* SChatAvatarImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatAvatarImage.swift; path = Models/SChatAvatarImage.swift; sourceTree = "<group>"; };
 		AAEA6AB21CF1E46800422CAB /* SChatAvatarImageDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatAvatarImageDataSource.swift; path = Models/SChatAvatarImageDataSource.swift; sourceTree = "<group>"; };
 		AAEA6AB31CF1E46800422CAB /* SChatMessageData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatMessageData.swift; path = Models/SChatMessageData.swift; sourceTree = "<group>"; };
@@ -395,6 +394,7 @@
 		AAEA6B011CF1E4CC00422CAB /* SChatBubbleSizeCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatBubbleSizeCalculator.swift; path = Layout/SChatBubbleSizeCalculator.swift; sourceTree = "<group>"; };
 		AAEA6B021CF1E4CC00422CAB /* SChatBubbleSizeCalculating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatBubbleSizeCalculating.swift; path = Layout/SChatBubbleSizeCalculating.swift; sourceTree = "<group>"; };
 		AAEA6B031CF1E4CC00422CAB /* SChatCollectionViewFlowLayoutInvalidationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SChatCollectionViewFlowLayoutInvalidationContext.swift; path = Layout/SChatCollectionViewFlowLayoutInvalidationContext.swift; sourceTree = "<group>"; };
+		AAFC42D61CF215D400A742E5 /* SChatAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SChatAssets.bundle; path = Resources/SChatAssets.bundle; sourceTree = "<group>"; };
 		AC610E634908EA1B5C9CCD02BF44E97C /* ExceptionCapture.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExceptionCapture.swift; path = Sources/Nimble/Utils/ExceptionCapture.swift; sourceTree = "<group>"; };
 		AD7726CDAEAE2AFE4204820A7BAA1694 /* Quick-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Quick-dummy.m"; sourceTree = "<group>"; };
 		B3B1FC8F91BEB3E172421F404904B778 /* Error.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Source/Error.swift; sourceTree = "<group>"; };
@@ -688,9 +688,9 @@
 			children = (
 				2787D043212EB43729F387CFC182F84D /* NotificationsManager.swift */,
 				F000A2E5BA28E9CEDAF6F4979A9AD5D7 /* SChatKeyboardController.swift */,
-				63AB5AC3C7C08F3E89CBAEF72F7E88E8 /* SopinetChat.h */,
 				AA2623D68A6464414CC3E829315F554E /* SopinetChat.swift */,
-				2C424C7BF4361E8D1E4A84F7F71619E9 /* SopinetChat_Bridging_Header.h */,
+				AA8384F11CF21FF400F455E9 /* SopinetChat.h */,
+				AA8384F31CF2202E00F455E9 /* SopinetChat_Bridging_Header.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -698,7 +698,7 @@
 		AAC221AB1CF1EE5500B70679 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				AAC221AC1CF1EE7300B70679 /* SChatAssets.bundle */,
+				AAFC42D61CF215D400A742E5 /* SChatAssets.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -967,8 +967,8 @@
 			files = (
 				AAEA6B391CF1E5FF00422CAB /* SopinetChat-prefix.pch in Headers */,
 				E1D8D700BB4EE126191D25434F322C5B /* SopinetChat-umbrella.h in Headers */,
-				30F18CDA1ED2F24AD0B663D0735BC698 /* SopinetChat.h in Headers */,
-				3ADB1EA11F1871D45A250045D6D98AF9 /* SopinetChat_Bridging_Header.h in Headers */,
+				AA8384F41CF2202E00F455E9 /* SopinetChat_Bridging_Header.h in Headers */,
+				AA8384F21CF21FF400F455E9 /* SopinetChat.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1149,6 +1149,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				es,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
 			productRefGroup = 44171DC71B6AF02FD1D72B7FD9683DF8 /* Products */;
@@ -1171,7 +1172,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAC221AD1CF1EE7A00B70679 /* SChatAssets.bundle in Resources */,
+				AAFC42D71CF215DA00A742E5 /* SChatAssets.bundle in Resources */,
 				AAEA6B1C1CF1E54900422CAB /* SChatCollectionViewCellOutgoing.xib in Resources */,
 				AAEA6B1B1CF1E54000422CAB /* SChatViewController.xib in Resources */,
 				AAEA6B371CF1E5F100422CAB /* Info.plist in Resources */,

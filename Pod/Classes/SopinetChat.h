@@ -2,6 +2,14 @@
 //  SopinetChat.h
 //  Pods
 //
+//  Created by David Moreno Lora on 22/5/16.
+//
+//
+
+//
+//  SopinetChat.h
+//  Pods
+//
 //  Created by David Moreno Lora on 30/3/16.
 //
 //
@@ -21,6 +29,5 @@ FOUNDATION_EXPORT const unsigned char SopinetChatVersionString[];
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <MagicalRecord/MagicalRecord.h>
 
 #endif /* SopinetChat_Bridging_Header_h */

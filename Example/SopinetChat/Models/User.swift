@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import RealmSwift
 import SopinetChat
 
-class User: Object {
+class User: NSObject {
     
 // Specify properties to ignore (Realm won't persist these)
     

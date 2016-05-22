@@ -15,7 +15,7 @@ public class SChatKeyboardController : NSObject
 {
     // MARK: Properties
     
-    weak var delegate: SChatKeyboardControllerDelegate?
+    var delegate: SChatKeyboardControllerDelegate?
     
     let textView: UITextView
     

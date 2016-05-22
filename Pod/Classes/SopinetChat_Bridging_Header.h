@@ -11,6 +11,5 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <MagicalRecord/MagicalRecord.h>
 
 #endif /* SopinetChat_Bridging_Header_h */

@@ -25,6 +25,6 @@ extension NSBundle
     
     static func sChatLocalizedStringForKey(key: String) -> String
     {
-        return NSLocalizedString(key, tableName: "Root", bundle: NSBundle.sChatAssetBundle(), comment: "")
+        return NSLocalizedString(key, tableName: "Localizable", bundle: NSBundle.sChatAssetBundle(), comment: "")
     }
 }
