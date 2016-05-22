@@ -39,6 +39,4 @@ Create chat functionality fast and easy.
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
     s.dependency 'Alamofire', '~> 3.0'
-    s.dependency 'MagicalRecord'
-    s.dependency 'RealmSwift'
 end

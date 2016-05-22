@@ -154,8 +154,6 @@ class ChatViewController: SChatViewController
                               isMediaMessage: false)
         
         messages.append(message)
-        
-        print("Messages count: \(messages.count) - CollectionView Items: \(self.sChatCollectionView.numberOfItemsInSection(0))")
     }
     
     override func didPressSendButton(button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: NSDate)

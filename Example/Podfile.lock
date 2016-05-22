@@ -1,19 +1,9 @@
 PODS:
-  - Alamofire (3.3.1)
-  - MagicalRecord (2.3.2):
-    - MagicalRecord/Core (= 2.3.2)
-  - MagicalRecord/Core (2.3.2)
+  - Alamofire (3.4.0)
   - Nimble (3.2.0)
   - Quick (0.9.1)
-  - Realm (0.99.1):
-    - Realm/Headers (= 0.99.1)
-  - Realm/Headers (0.99.1)
-  - RealmSwift (0.99.1):
-    - Realm (= 0.99.1)
   - SopinetChat (0.0.1):
     - Alamofire (~> 3.0)
-    - MagicalRecord
-    - RealmSwift
 
 DEPENDENCIES:
   - Nimble (~> 3.0)
@@ -25,12 +15,9 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
-  MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
+  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
   Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
   Quick: a5221fc21788b6aeda934805e68b061839bc3165
-  Realm: 522a0cc8e1f8755ee56d7dc16ca0fc380d045766
-  RealmSwift: 1d9c4299ef5dbf575c5da09fc706ed726327cfa0
-  SopinetChat: 813d08de846463c4067b49478d0979cb15b88dd5
+  SopinetChat: 09a71dfce6eb1aa94928a5e4072117c2eab06b30
 
 COCOAPODS: 0.39.0

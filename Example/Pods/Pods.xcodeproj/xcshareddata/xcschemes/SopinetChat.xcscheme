@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'DF8A666A2151886CEAA87687'
+               BlueprintIdentifier = '4565C946D5599FB9919E007C'
                BlueprintName = 'SopinetChat'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'SopinetChat.framework'>
